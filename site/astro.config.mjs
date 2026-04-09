@@ -4,7 +4,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://hospitalacupuncture.com',
+  site: 'https://realmindsai.github.io',
+  base: '/haif-project/',
   compressHTML: true,
 
   build: {
