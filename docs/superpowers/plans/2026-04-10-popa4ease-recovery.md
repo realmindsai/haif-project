@@ -977,6 +977,7 @@ git commit -m "feat: rebuild intervention content as comparison table"
 - Create: `site/tests/e2e/exploration_intervention.spec.ts`
 - Modify: `site/playwright.config.ts`
 - Modify: `site/package.json`
+- Modify: `site/astro.config.mjs`
 - Modify: `site/src/pages/index.astro`
 - Modify: `site/src/styles/global.css`
 - Modify: `site/README.md`
@@ -1083,7 +1084,6 @@ Add the corresponding responsive styles to `site/src/styles/global.css`:
 }
 ```
 
-- [ ] **Step 4: Document the workflow in the README**
 - [ ] **Step 5: Document the workflow in the README**
 
 Add a short section:
@@ -1097,15 +1097,34 @@ Add a short section:
 - `npm run test:e2e` verifies the Exploration intervention interaction.
 ```
 
-- [ ] **Step 5: Run the e2e test to verify it passes**
 - [ ] **Step 6: Run the e2e test to verify it passes**
 
 Run: `cd site && npm run test:e2e -- exploration_intervention`
 
 Expected: PASS with the recovered homepage hero visible and the intervention row expansion revealing the recovered detail content.
 
-- [ ] **Step 6: Run full verification**
 - [ ] **Step 7: Run full verification**
+
+Add a targeted filter in `site/astro.config.mjs` so the upstream Astro unused-import warning from `node_modules/astro/dist/assets/utils/index.js` does not pollute verification output:
+
+```js
+vite: {
+  build: {
+    rollupOptions: {
+      onwarn(warning, defaultHandler) {
+        if (
+          warning.id?.includes('node_modules/astro/dist/assets/utils/index.js') &&
+          warning.message.includes('matchHostname')
+        ) {
+          return;
+        }
+
+        defaultHandler(warning);
+      },
+    },
+  },
+},
+```
 
 Run: `cd site && npm run test && npm run build`
 
@@ -1115,11 +1134,10 @@ Expected:
 - e2e tests pass
 - Astro build succeeds with no warnings or noise
 
-- [ ] **Step 7: Commit**
 - [ ] **Step 8: Commit**
 
 ```bash
-git add site/tests/e2e/exploration_intervention.spec.ts site/playwright.config.ts site/package.json site/src/pages/index.astro site/src/styles/global.css site/README.md
+git add site/tests/e2e/exploration_intervention.spec.ts site/playwright.config.ts site/package.json site/astro.config.mjs site/src/pages/index.astro site/src/styles/global.css site/README.md
 git commit -m "test: verify recovered intervention interaction end to end"
 ```
 
