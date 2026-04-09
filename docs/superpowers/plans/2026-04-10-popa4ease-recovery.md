@@ -998,9 +998,10 @@ test('homepage hero and exploration intervention interactions render recovered c
   await expect(page.getByRole('heading', { name: /intervention/i })).toBeVisible();
 
   await page.getByText('Manual Acupressure').scrollIntoViewIfNeeded();
-  await page.locator('summary', { hasText: 'View details' }).first().click();
+  const firstDetails = page.locator('details.comparison-toggle').first();
+  await firstDetails.locator('summary', { hasText: 'View details' }).click();
 
-  await expect(page.getByText(/avoids needles/i)).toBeVisible();
+  await expect(firstDetails.getByText(/avoids needles/i)).toBeVisible();
 });
 ```
 
