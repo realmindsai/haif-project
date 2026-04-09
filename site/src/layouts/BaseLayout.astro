@@ -52,12 +52,30 @@ const currentPath = Astro.url.pathname;
           &#9776;
         </button>
         <nav class="main-nav" role="navigation" aria-label="Main">
-          <a href={url('/framework/')} aria-current={currentPath.startsWith('/framework') ? 'page' : undefined}>Framework</a>
+          <a href={url('/')} aria-current={currentPath === '/' ? 'page' : undefined}>Home</a>
+          <div class="nav-dropdown">
+            <a href={url('/framework/')} class="nav-dropdown-trigger" aria-current={currentPath.startsWith('/framework') ? 'page' : undefined}>Framework</a>
+            <div class="nav-dropdown-menu">
+              <a href={url('/framework/exploration/')}>Exploration</a>
+              <a href={url('/framework/preparation/')}>Preparation</a>
+              <a href={url('/framework/implementation/')}>Implementation</a>
+              <a href={url('/framework/sustainment/')}>Sustainment</a>
+            </div>
+          </div>
           <a href={url('/examples/')} aria-current={currentPath.startsWith('/examples') ? 'page' : undefined}>Examples</a>
+          <div class="nav-dropdown">
+            <a href={url('/for/clinicians/')} class="nav-dropdown-trigger" aria-current={currentPath.startsWith('/for') ? 'page' : undefined}>For You</a>
+            <div class="nav-dropdown-menu">
+              <a href={url('/for/administrators/')}>Administrators</a>
+              <a href={url('/for/clinicians/')}>Clinicians</a>
+              <a href={url('/for/practitioners/')}>Practitioners</a>
+              <a href={url('/for/researchers/')}>Researchers</a>
+            </div>
+          </div>
           <a href={url('/evidence/')} aria-current={currentPath === '/evidence/' ? 'page' : undefined}>Evidence</a>
           <a href={url('/faq/')} aria-current={currentPath === '/faq/' ? 'page' : undefined}>FAQ</a>
           <a href={url('/resources/')} aria-current={currentPath === '/resources/' ? 'page' : undefined}>Resources</a>
-          <a href={url('/about/')} aria-current={currentPath === '/about/' ? 'page' : undefined}>About</a>
+          <a href={url('/contact/')} aria-current={currentPath === '/contact/' ? 'page' : undefined}>Contact</a>
         </nav>
       </div>
     </header>
@@ -76,13 +94,16 @@ const currentPath = Astro.url.pathname;
       <div class="footer-inner">
         <p>
           <strong>Hospital Acupuncture Implementation Framework (HAIF)</strong><br />
-          Dr Zhen Zheng, PhD &middot; RMIT University<br />
+          Developed by Dr Zhen Zheng, PhD &middot; RMIT University<br />
           NHMRC Translating Research into Practice Fellow
         </p>
         <p>
           <a href={url('/about/')}>About</a> &middot;
           <a href={url('/contact/')}>Contact</a> &middot;
-          <a href={url('/references/')}>References</a>
+          <a href={url('/evidence/#references')}>References</a>
+        </p>
+        <p class="footer-acknowledgement">
+          Development funded by RMIT University Seed Grant and NHMRC TRIP Fellowship (App 1110446).
         </p>
       </div>
     </footer>
@@ -97,6 +118,16 @@ const currentPath = Astro.url.pathname;
           nav.classList.toggle('open');
         });
       }
+      // Mobile dropdown toggle
+      document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const dropdown = trigger.closest('.nav-dropdown');
+            if (dropdown) dropdown.classList.toggle('open');
+          }
+        });
+      });
     </script>
   </body>
 </html>
