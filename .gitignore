@@ -1,5 +1,2 @@
-# The deployable site has its own repo (realmindsai/haif-website)
-site/
-
 # OS junk
 .DS_Store
