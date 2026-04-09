@@ -126,7 +126,7 @@ export default defineConfig({
 
 - [ ] **Step 5: Verify the scaffolding**
 
-Run: `cd site && npx vitest --config vitest.config.ts --run --passWithNoTests && npx playwright test --config playwright.config.ts --list`
+Run: `cd site && npx vitest --config vitest.config.ts --run --passWithNoTests && npx playwright test --config playwright.config.ts --list --pass-with-no-tests`
 
 Expected: both commands exit `0`; Vitest accepts the config and Playwright lists the suite without a config error.
 
