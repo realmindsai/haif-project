@@ -976,6 +976,7 @@ git commit -m "feat: rebuild intervention content as comparison table"
 **Files:**
 - Create: `site/tests/e2e/exploration_intervention.spec.ts`
 - Modify: `site/playwright.config.ts`
+- Modify: `site/package.json`
 - Modify: `site/src/pages/index.astro`
 - Modify: `site/src/styles/global.css`
 - Modify: `site/README.md`
@@ -1020,6 +1021,12 @@ use: {
   baseURL: 'http://127.0.0.1:4321',
   trace: 'retain-on-failure',
 },
+```
+
+Keep the e2e output warning-free by updating `site/package.json` so `test:e2e` clears the `FORCE_COLOR` conflict:
+
+```json
+"test:e2e": "FORCE_COLOR=0 playwright test --pass-with-no-tests"
 ```
 
 - [ ] **Step 4: Add the recovered homepage hero image**
@@ -1109,7 +1116,7 @@ Expected:
 - [ ] **Step 8: Commit**
 
 ```bash
-git add site/tests/e2e/exploration_intervention.spec.ts site/playwright.config.ts site/src/pages/index.astro site/src/styles/global.css site/README.md
+git add site/tests/e2e/exploration_intervention.spec.ts site/playwright.config.ts site/package.json site/src/pages/index.astro site/src/styles/global.css site/README.md
 git commit -m "test: verify recovered intervention interaction end to end"
 ```
 
