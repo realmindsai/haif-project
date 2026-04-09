@@ -4,11 +4,16 @@ test('homepage hero and exploration intervention interactions render recovered c
   page,
 }) => {
   await page.goto('/haif-project/');
-  await expect(
-    page.getByRole('img', {
-      name: /hospital recovery context from the legacy popa4ease homepage/i,
-    }),
-  ).toBeVisible();
+  const heroImage = page.getByRole('img', {
+    name: /patient recovering in a hospital bed after surgery/i,
+  });
+  await expect(heroImage).toBeVisible();
+  await expect(heroImage).toHaveAttribute('src', /hero-banner\.jpg/);
+  expect(
+    await heroImage.evaluate((image) =>
+      image instanceof HTMLImageElement ? image.naturalWidth : 0,
+    ),
+  ).toBeGreaterThan(0);
 
   const explorationPage = await page.context().newPage();
   await explorationPage.goto('/haif-project/framework/exploration/');
@@ -16,9 +21,18 @@ test('homepage hero and exploration intervention interactions render recovered c
     explorationPage.getByRole('heading', { name: /intervention/i }),
   ).toBeVisible();
 
-  await explorationPage.getByText('Manual Acupressure').scrollIntoViewIfNeeded();
-  const firstDetails = explorationPage.locator('details.comparison-toggle').first();
-  await firstDetails.locator('summary', { hasText: 'View details' }).click();
+  const manualAcupressureRow = explorationPage
+    .locator('tbody tr')
+    .filter({ hasText: 'Manual Acupressure' });
+  await manualAcupressureRow.scrollIntoViewIfNeeded();
+  const manualAcupressureDetails = manualAcupressureRow.locator(
+    'details.comparison-toggle',
+  );
+  await manualAcupressureDetails
+    .locator('summary', { hasText: 'View details' })
+    .click();
 
-  await expect(firstDetails.getByText(/avoids needles/i)).toBeVisible();
+  await expect(
+    manualAcupressureDetails.getByText(/avoids needles/i),
+  ).toBeVisible();
 });
