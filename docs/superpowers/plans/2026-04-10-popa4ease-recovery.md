@@ -1026,10 +1026,10 @@ use: {
 },
 ```
 
-Keep the e2e output warning-free by updating `site/package.json` so `test:e2e` clears the `FORCE_COLOR` conflict:
+Keep the e2e output warning-free by updating `site/package.json` and the Playwright web-server command so the `NO_COLOR` and `FORCE_COLOR` environment variables do not conflict:
 
 ```json
-"test:e2e": "FORCE_COLOR=0 playwright test --pass-with-no-tests"
+"test:e2e": "NO_COLOR=1 FORCE_COLOR=0 playwright test --pass-with-no-tests"
 ```
 
 - [ ] **Step 4: Add the recovered homepage hero image**
