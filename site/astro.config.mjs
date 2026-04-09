@@ -3,6 +3,16 @@ import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 
+function isKnownAstroUnusedExternalImportWarning(warning) {
+  return (
+    warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+    warning.exporter === '@astrojs/internal-helpers/remote' &&
+    warning.ids?.some((id) =>
+      id.includes('node_modules/astro/dist/assets/utils/index.js'),
+    )
+  );
+}
+
 export default defineConfig({
   site: 'https://realmindsai.github.io',
   base: '/haif-project/',
@@ -13,17 +23,12 @@ export default defineConfig({
   },
 
   vite: {
-    logLevel: 'error',
     build: {
       rollupOptions: {
         onwarn(warning, defaultHandler) {
-          if (
-            warning.id?.includes('node_modules/astro/dist/assets/utils/index.js') &&
-            warning.message.includes('matchHostname')
-          ) {
+          if (isKnownAstroUnusedExternalImportWarning(warning)) {
             return;
           }
-
           defaultHandler(warning);
         },
       },
