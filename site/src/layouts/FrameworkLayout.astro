@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { url } from '../utils';
+import CitationTooltip from '../components/CitationTooltip.astro';
 
 interface Props {
   title: string;
@@ -66,4 +67,6 @@ const nextPhase = currentIndex < phases.length - 1 ? phases[currentIndex + 1] : 
       <a href={url('/examples/')}>View Examples &rarr;</a>
     )}
   </nav>
+
+  <CitationTooltip />
 </BaseLayout>

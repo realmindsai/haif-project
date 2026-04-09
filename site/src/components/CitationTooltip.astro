@@ -1,0 +1,73 @@
+---
+// CitationTooltip.astro
+// Include this component once per page (in BaseLayout or FrameworkLayout)
+// to enable citation tooltips.
+//
+// Usage in page content:
+//   <span data-cite="Lee2015">Lee et al., 2015</span>
+//
+// Citation content is stored in a <template> block:
+//   <template id="citations">
+//     <div data-ref="Lee2015">Lee, A., Chan, S. K. & Fan, L. T. 2015. Stimulation of the wrist acupuncture point PC6...</div>
+//   </template>
+---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const citesTemplate = document.getElementById('citations');
+    if (!citesTemplate) return;
+
+    let activeTooltip = null;
+
+    document.querySelectorAll('[data-cite]').forEach(el => {
+      const ref = el.getAttribute('data-cite');
+      const content = citesTemplate.content.querySelector(`[data-ref="${ref}"]`);
+      if (!content) return;
+
+      el.style.cursor = 'help';
+      el.style.borderBottom = '1px dotted currentColor';
+
+      const show = (e) => {
+        if (activeTooltip) activeTooltip.remove();
+        const tip = document.createElement('div');
+        tip.className = 'citation-tooltip';
+        tip.textContent = content.textContent;
+        tip.style.cssText = `
+          position: fixed;
+          background: var(--color-text, #2c3e50);
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 4px;
+          font-size: 0.8rem;
+          max-width: 320px;
+          z-index: 100;
+          pointer-events: none;
+          line-height: 1.4;
+        `;
+        document.body.appendChild(tip);
+        const rect = el.getBoundingClientRect();
+        tip.style.left = Math.min(rect.left, window.innerWidth - tip.offsetWidth - 8) + 'px';
+        tip.style.top = (rect.bottom + 6) + 'px';
+        activeTooltip = tip;
+      };
+
+      const hide = () => {
+        if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
+      };
+
+      el.addEventListener('mouseenter', show);
+      el.addEventListener('mouseleave', hide);
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeTooltip ? hide() : show(e);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('[data-cite]') && activeTooltip) {
+        activeTooltip.remove();
+        activeTooltip = null;
+      }
+    });
+  });
+</script>
