@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { url } from '../utils';
+import { resourceDownloads } from '../data/legacy/resourceDownloads';
 ---
 
 <BaseLayout
@@ -95,7 +96,12 @@ import { url } from '../utils';
       Exploration phase baseline audit.
     </p>
     <ul>
-      <li><a href={url('/downloads/ponv-data-extraction-template.pdf')}>PONV Data Extraction Template</a> (PDF)</li>
+      <li>
+        <a href={resourceDownloads.ponvDataExtractionTemplate.href}>
+          {resourceDownloads.ponvDataExtractionTemplate.label}
+        </a>
+        ({resourceDownloads.ponvDataExtractionTemplate.format})
+      </li>
     </ul>
   </div>
 

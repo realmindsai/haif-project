@@ -82,4 +82,18 @@ describe('legacy recovery outputs', () => {
     expect(xlsxItem?.localFilename.endsWith('.xlsx')).toBe(true);
     expect(existsSync(resolve(publicRoot, 'downloads', xlsxItem.localFilename))).toBe(true);
   });
+
+  it('renders the original xlsx download on the Resources page', () => {
+    const resourcesSource = readFileSync(
+      resolve(process.cwd(), 'src/pages/resources.astro'),
+      'utf8',
+    );
+    const downloadsSource = readFileSync(
+      resolve(process.cwd(), 'src/data/legacy/resourceDownloads.ts'),
+      'utf8',
+    );
+
+    expect(resourcesSource).toContain('resourceDownloads.ponvDataExtractionTemplate.href');
+    expect(downloadsSource).toContain('ponv_data_extraction_template.xlsx');
+  });
 });
