@@ -975,6 +975,7 @@ git commit -m "feat: rebuild intervention content as comparison table"
 
 **Files:**
 - Create: `site/tests/e2e/exploration_intervention.spec.ts`
+- Modify: `site/playwright.config.ts`
 - Modify: `site/src/pages/index.astro`
 - Modify: `site/src/styles/global.css`
 - Modify: `site/README.md`
@@ -1010,6 +1011,17 @@ Run: `cd site && npm run test:e2e -- exploration_intervention`
 Expected: FAIL because the recovered homepage hero image is not wired into `index.astro` yet.
 
 - [ ] **Step 3: Add the recovered homepage hero image**
+
+Before rerunning the e2e suite, align Playwright with the Astro base path by updating `site/playwright.config.ts`:
+
+```ts
+use: {
+  baseURL: 'http://127.0.0.1:4321/haif-project',
+  trace: 'retain-on-failure',
+},
+```
+
+- [ ] **Step 4: Add the recovered homepage hero image**
 
 Update `site/src/pages/index.astro` so the homepage hero uses the recovered legacy banner image that already exists locally as `hero-banner.jpg`:
 
@@ -1061,6 +1073,7 @@ Add the corresponding responsive styles to `site/src/styles/global.css`:
 ```
 
 - [ ] **Step 4: Document the workflow in the README**
+- [ ] **Step 5: Document the workflow in the README**
 
 Add a short section:
 
@@ -1074,12 +1087,14 @@ Add a short section:
 ```
 
 - [ ] **Step 5: Run the e2e test to verify it passes**
+- [ ] **Step 6: Run the e2e test to verify it passes**
 
 Run: `cd site && npm run test:e2e -- exploration_intervention`
 
 Expected: PASS with the recovered homepage hero visible and the intervention row expansion revealing the recovered detail content.
 
 - [ ] **Step 6: Run full verification**
+- [ ] **Step 7: Run full verification**
 
 Run: `cd site && npm run test && npm run build`
 
@@ -1090,9 +1105,10 @@ Expected:
 - Astro build succeeds with no warnings or noise
 
 - [ ] **Step 7: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
-git add site/tests/e2e/exploration_intervention.spec.ts site/src/pages/index.astro site/src/styles/global.css site/README.md
+git add site/tests/e2e/exploration_intervention.spec.ts site/playwright.config.ts site/src/pages/index.astro site/src/styles/global.css site/README.md
 git commit -m "test: verify recovered intervention interaction end to end"
 ```
 
