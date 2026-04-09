@@ -26,63 +26,50 @@ const schema = {
 ---
 
 <BaseLayout title="Home" schema={schema}>
+  <!-- Above the fold: POPA4Ease-style hero -->
   <section class="hero">
     <h1>Hospital Acupuncture<br />Implementation Framework</h1>
     <p class="subtitle">
-      A methodology for integrating acupuncture and acupressure into hospital practice.
-      Evidence-based. Practitioner-tested.
+      Post-operative nausea and vomiting (PONV) affects 30-50% of surgical patients.
+      Acupuncture and acupressure are the only non-pharmacological interventions included
+      in PONV management guidelines. This framework helps clinicians implement them
+      systematically in hospital settings.
     </p>
-    <a href={url('/framework/')} class="cta">Explore the Framework</a>
   </section>
 
-  <!-- Circular Phase Diagram (SVG) -->
-  <section aria-label="Framework phases diagram" style="text-align: center; margin: var(--spacing-xl) 0;">
-    <svg viewBox="0 0 400 400" width="320" height="320" role="img" aria-label="Four-phase implementation cycle: Exploration, Preparation, Implementation, Sustainment" style="max-width: 100%;">
-      <!-- Connecting arcs -->
-      <path d="M200 60 A140 140 0 0 1 340 200" fill="none" stroke="#dee2e6" stroke-width="3"/>
-      <path d="M340 200 A140 140 0 0 1 200 340" fill="none" stroke="#dee2e6" stroke-width="3"/>
-      <path d="M200 340 A140 140 0 0 1 60 200" fill="none" stroke="#dee2e6" stroke-width="3"/>
-      <path d="M60 200 A140 140 0 0 1 200 60" fill="none" stroke="#dee2e6" stroke-width="3"/>
+  <!-- Four phase cards with images -->
+  <div class="phase-card-grid">
+    <a href={url('/framework/exploration/')} class="phase-card">
+      <img src={url('/images/phase-1-exploration.jpg')} alt="Phase 1: Exploration — identifying factors" loading="lazy" />
+      <div class="phase-card-body">
+        <h3>Phase 1: Exploration</h3>
+        <p>Identifying human factors and environmental factors</p>
+      </div>
+    </a>
+    <a href={url('/framework/preparation/')} class="phase-card">
+      <img src={url('/images/phase-2-preparation.jpg')} alt="Phase 2: Preparation — addressing barriers" loading="lazy" />
+      <div class="phase-card-body">
+        <h3>Phase 2: Preparation</h3>
+        <p>Addressing barriers and using enablers</p>
+      </div>
+    </a>
+    <a href={url('/framework/implementation/')} class="phase-card">
+      <img src={url('/images/phase-3-implementation.jpg')} alt="Phase 3: Implementation — executing the plan" loading="lazy" />
+      <div class="phase-card-body">
+        <h3>Phase 3: Implementation</h3>
+        <p>Executing with evidence-based strategies</p>
+      </div>
+    </a>
+    <a href={url('/framework/sustainment/')} class="phase-card">
+      <img src={url('/images/phase-4-sustainment.jpg')} alt="Phase 4: Sustainment — maintaining practice" loading="lazy" />
+      <div class="phase-card-body">
+        <h3>Phase 4: Sustainment</h3>
+        <p>Normalising into routine practice</p>
+      </div>
+    </a>
+  </div>
 
-      <!-- Arrow indicators -->
-      <polygon points="330,165 345,195 315,195" fill="#dee2e6"/>
-      <polygon points="235,330 205,345 205,315" fill="#dee2e6"/>
-      <polygon points="70,235 55,205 85,205" fill="#dee2e6"/>
-      <polygon points="165,70 195,55 195,85" fill="#dee2e6"/>
-
-      <!-- Phase 1: Exploration (top) -->
-      <a href={url('/framework/exploration/')}>
-        <circle cx="200" cy="60" r="48" fill="#1a5276" stroke="#fff" stroke-width="2"/>
-        <text x="200" y="54" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 1</text>
-        <text x="200" y="70" text-anchor="middle" fill="#fff" font-size="10">Exploration</text>
-      </a>
-
-      <!-- Phase 2: Preparation (right) -->
-      <a href={url('/framework/preparation/')}>
-        <circle cx="340" cy="200" r="48" fill="#2980b9" stroke="#fff" stroke-width="2"/>
-        <text x="340" y="194" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 2</text>
-        <text x="340" y="210" text-anchor="middle" fill="#fff" font-size="10">Preparation</text>
-      </a>
-
-      <!-- Phase 3: Implementation (bottom) -->
-      <a href={url('/framework/implementation/')}>
-        <circle cx="200" cy="340" r="48" fill="#27ae60" stroke="#fff" stroke-width="2"/>
-        <text x="200" y="334" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 3</text>
-        <text x="200" y="350" text-anchor="middle" fill="#fff" font-size="10">Implementation</text>
-      </a>
-
-      <!-- Phase 4: Sustainment (left) -->
-      <a href={url('/framework/sustainment/')}>
-        <circle cx="60" cy="200" r="48" fill="#d4a017" stroke="#fff" stroke-width="2"/>
-        <text x="60" y="194" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 4</text>
-        <text x="60" y="210" text-anchor="middle" fill="#fff" font-size="10">Sustainment</text>
-      </a>
-
-      <!-- Center label -->
-      <text x="200" y="196" text-anchor="middle" fill="#2c3e50" font-size="13" font-weight="700">HAIF</text>
-      <text x="200" y="212" text-anchor="middle" fill="#6c757d" font-size="9">EPIS Framework</text>
-    </svg>
-  </section>
+  <!-- Below the fold: HAIF content -->
 
   <!-- Bottom Line -->
   <div class="bottom-line">
