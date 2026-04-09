@@ -96,4 +96,21 @@ describe('legacy recovery outputs', () => {
     expect(resourcesSource).toContain('resourceDownloads.ponvDataExtractionTemplate.href');
     expect(downloadsSource).toContain('ponv_data_extraction_template.xlsx');
   });
+
+  it('stores normalized intervention comparison data in a dedicated source file', () => {
+    const dataSource = readFileSync(
+      resolve(process.cwd(), 'src/data/legacy/interventionComparison.ts'),
+      'utf8',
+    );
+    const explorationSource = readFileSync(
+      resolve(process.cwd(), 'src/pages/framework/exploration.astro'),
+      'utf8',
+    );
+
+    expect(dataSource).toContain('manualAcupressure');
+    expect(dataSource).toContain('bandOrPatch');
+    expect(dataSource).toContain('pc6AllModalities');
+    expect(explorationSource).toContain('InterventionComparisonTable');
+    expect(explorationSource).toContain('exploration_acupressure_infographic_01_1.png');
+  });
 });

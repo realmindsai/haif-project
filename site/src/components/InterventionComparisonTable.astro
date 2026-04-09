@@ -1,0 +1,60 @@
+---
+import type { InterventionRow } from '../data/legacy/interventionComparison';
+
+interface Props {
+  rows: InterventionRow[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="comparison-table-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Modality</th>
+        <th>Invasiveness</th>
+        <th>Evidence Snapshot</th>
+        <th>Cost / Equipment</th>
+        <th>Training</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td>
+            <strong>{row.label}</strong>
+          </td>
+          <td>
+            <span class={`comparison-pill comparison-pill-${row.invasiveness.toLowerCase().replace(/[^a-z]+/g, '-')}`}>
+              {row.invasiveness}
+            </span>
+          </td>
+          <td>{row.evidence}</td>
+          <td>{row.cost}</td>
+          <td>{row.training}</td>
+          <td>
+            <details class="comparison-toggle">
+              <summary>View details</summary>
+              <div class="comparison-detail">
+                <h4>Effectiveness</h4>
+                <ul>
+                  {row.effectiveness.map((item) => <li>{item}</li>)}
+                </ul>
+                <h4>Advantages</h4>
+                <ul>
+                  {row.advantages.map((item) => <li>{item}</li>)}
+                </ul>
+                <h4>Disadvantages</h4>
+                <ul>
+                  {row.disadvantages.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </details>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

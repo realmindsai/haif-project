@@ -1,5 +1,7 @@
 ---
 import FrameworkLayout from '../../layouts/FrameworkLayout.astro';
+import InterventionComparisonTable from '../../components/InterventionComparisonTable.astro';
+import { interventionComparison } from '../../data/legacy/interventionComparison';
 import { url } from '../../utils';
 
 const schema = {
@@ -109,89 +111,23 @@ const schema = {
   <!-- Section 2: Intervention -->
   <h2 id="intervention">Intervention</h2>
   <p>
-    Acupuncture/acupressure modalities available for hospital implementation:
+    Compare the main acupuncture and acupressure modalities below. Expand any row for
+    detailed effectiveness data, advantages, disadvantages, and implementation notes
+    recovered from the legacy POPA4Ease site.
   </p>
 
-  <details open>
-    <summary>Manual Acupressure</summary>
-    <p><strong>Advantages:</strong> Avoids needles; requires no equipment; easily trained staff.</p>
-    <p><strong>Disadvantages:</strong> Effectiveness varies by practitioner skill.</p>
-  </details>
+  <figure class="recovered-figure">
+    <img
+      src={url('/images/exploration_acupressure_infographic_01_1.png')}
+      alt="Overview of acupuncture and acupressure modalities"
+      loading="lazy"
+    />
+    <figcaption>
+      Legacy POPA4Ease overview graphic retained as supporting context, not as the primary interaction.
+    </figcaption>
+  </figure>
 
-  <details open>
-    <summary>Electroacupressure (E-Stim)</summary>
-    <p>
-      <strong>Effectiveness:</strong>
-      Nausea reduced 45% to 30% (RR 0.71, 95% CI 0.62&ndash;0.81)
-      <span class="grade grade-high">High</span>;
-      Vomiting reduced 30% to 18% (RR 0.60, 95% CI 0.50&ndash;0.73)
-      <span class="grade grade-high">High</span>
-    </p>
-    <p><strong>Advantages:</strong> Extended-duration capability; adjustable intensity.</p>
-    <p><strong>Disadvantages:</strong> Equipment cost ($40&ndash;$200); training required.</p>
-  </details>
-
-  <details open>
-    <summary>Auricular Acupuncture (Ear)</summary>
-    <p><strong>Advantages:</strong> Economical (few cents per needle); individualized point selection; low needle misplacement risk.</p>
-    <p><strong>Disadvantages:</strong> Staff training required; qualified acupuncturist may be needed.</p>
-    <p><strong>Effectiveness:</strong> Effective for gynecological surgery and laparoscopic cholecystectomy.</p>
-  </details>
-
-  <details open>
-    <summary>Body Acupuncture (PC6 + Other Points)</summary>
-    <p>
-      <strong>Effectiveness:</strong>
-      Nausea reduced 54% to 29% (RR 0.56, 95% CI 0.39&ndash;0.80)
-      <span class="grade grade-moderate">Moderate</span>;
-      Vomiting reduced 41% to 20% (RR 0.51, 95% CI 0.34&ndash;0.76)
-      <span class="grade grade-moderate">Moderate</span>
-    </p>
-    <p>
-      Combined therapy: PC6 + acupoints reduced PONV 21% to 6%
-      (RR 0.29, 95% CI 0.17&ndash;0.49)
-      <span class="grade grade-moderate">Moderate</span>
-    </p>
-    <p><strong>Advantages:</strong> Economical ($0.05 per needle); individualized selection.</p>
-    <p><strong>Disadvantages:</strong> Training requirement; needle monitoring needed.</p>
-  </details>
-
-  <details open>
-    <summary>Electroacupuncture (EA)</summary>
-    <p><strong>Effectiveness:</strong> Equivalent to body acupuncture with adjustment capability.</p>
-    <p><strong>Advantages:</strong> Reusable equipment; adjustable stimulus intensity.</p>
-    <p><strong>Disadvantages:</strong> Higher equipment cost ($200&ndash;$800); monitoring required.</p>
-  </details>
-
-  <details open>
-    <summary>Acupressure Wristbands</summary>
-    <p>
-      <strong>Effectiveness:</strong>
-      Nausea reduced 36% to 24% (RR 0.60, 95% CI 0.53&ndash;0.69)
-      <span class="grade grade-high">High</span>;
-      Vomiting reduced 20% to 15% (RR 0.54, 95% CI 0.45&ndash;0.64)
-      <span class="grade grade-high">High</span>;
-      Rescue antiemetics reduced 22% to 13% (RR 0.62, 95% CI 0.52&ndash;0.74)
-      <span class="grade grade-moderate">Moderate</span>
-    </p>
-    <p><strong>Advantages:</strong> Cost-effective (~$5 AUD); extended-use capability; no infection risk; minimal training; flexible delivery; home-use continuation.</p>
-    <p><strong>Disadvantages:</strong> Limited sizing for large wrists; impractical with multiple IV lines; potential wrist injuries.</p>
-  </details>
-
-  <details open>
-    <summary>PC6 Acupoint Stimulation (All Modalities Combined)</summary>
-    <p>
-      <strong>Effectiveness:</strong>
-      Nausea 47% to 31% (RR 0.68, 95% CI 0.60&ndash;0.77)
-      <span class="grade grade-high">High</span>;
-      Vomiting 33% to 19% (RR 0.60, 95% CI 0.51&ndash;0.71)
-      <span class="grade grade-high">High</span>;
-      Rescue antiemetics 33% to 20% (RR 0.64, 95% CI 0.55&ndash;0.73)
-      <span class="grade grade-moderate">Moderate</span>
-    </p>
-    <p><strong>Advantages:</strong> Mild, transient side effects; equivalent to common antiemetics; enhanced efficacy when combined with drugs.</p>
-    <p><strong>Disadvantages:</strong> Staff training required.</p>
-  </details>
+  <InterventionComparisonTable rows={interventionComparison} />
 
   <!-- Section 3: The Team -->
   <h2 id="the-team">The Team</h2>
