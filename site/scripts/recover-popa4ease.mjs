@@ -197,6 +197,39 @@ async function crawlLegacySite() {
   };
 }
 
+async function syncRecoveredFiles(result) {
+  for (const item of result.items) {
+    if (item.itemType === 'config_asset') {
+      continue;
+    }
+
+    const target = getLocalTarget(item.itemType, item.localFilename);
+    if (existsSync(target)) {
+      continue;
+    }
+
+    const response = await fetch(item.legacyUrl);
+    if (!response.ok) {
+      throw new Error(`Download failed ${item.legacyUrl}: ${response.status}`);
+    }
+
+    const body = Buffer.from(await response.arrayBuffer());
+    await mkdir(dirname(target), { recursive: true });
+    await writeFile(target, body);
+  }
+}
+
+function refreshRecoveryState(result) {
+  return {
+    ...result,
+    items: result.items.map((item) => ({
+      ...item,
+      coverageStatus: getCoverageStatus(item.itemType, item.localFilename),
+      existingLocalPath: getExistingLocalPath(item.legacyUrl),
+    })),
+  };
+}
+
 function formatSection(title, rows) {
   return [
     title,
@@ -251,7 +284,9 @@ async function writeOutputs(result) {
   await writeFile(REPORT_PATH, report);
 }
 
-const result = await crawlLegacySite();
+const crawledResult = await crawlLegacySite();
+await syncRecoveredFiles(crawledResult);
+const result = refreshRecoveryState(crawledResult);
 await writeOutputs(result);
 console.log(`Wrote ${result.items.length} manifest rows`);
 process.exit(0);

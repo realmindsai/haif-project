@@ -19,7 +19,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/1-300x169.jpg",
       "itemType": "image",
       "localFilename": "home_1_300x169.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/phase-4-sustainment.jpg"
     },
     {
@@ -27,7 +27,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Acupressure-infographic-01-1.png",
       "itemType": "image",
       "localFilename": "exploration_acupressure_infographic_01_1.png",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": null
     },
     {
@@ -35,7 +35,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Digital-Strategy-for-Medical-Brand-Intervention-IQ-e1534562115603.jpg",
       "itemType": "image",
       "localFilename": "home_digital_strategy_for_medical_brand_intervention_iq_e1534562115603.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/phase-1-exploration.jpg"
     },
     {
@@ -43,7 +43,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Prescription-preparation-in-bangladesh-300x168.jpg",
       "itemType": "image",
       "localFilename": "home_prescription_preparation_in_bangladesh_300x168.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/phase-2-preparation.jpg"
     },
     {
@@ -51,7 +51,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/promo248112192-300x169.jpeg",
       "itemType": "image",
       "localFilename": "home_promo248112192_300x169.jpeg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/phase-3-implementation.jpg"
     },
     {
@@ -59,7 +59,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/checklist-300x200.jpg",
       "itemType": "image",
       "localFilename": "exploration_cari_checklist.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/cari-checklist.jpg"
     },
     {
@@ -67,7 +67,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/frontpage-image1-e1534678544443.jpg",
       "itemType": "image",
       "localFilename": "home_frontpage_image1_e1534678544443.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/hero-banner.jpg"
     },
     {
@@ -75,7 +75,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/risk-score.png",
       "itemType": "image",
       "localFilename": "exploration_ponv_risk_score.png",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/ponv-risk-score.png"
     },
     {
@@ -83,7 +83,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/algorithm-image.jpg",
       "itemType": "image",
       "localFilename": "home_algorithm_image.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": "images/ponv-algorithm.jpg"
     },
     {
@@ -91,7 +91,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/PONV-study-data-extraction-template.xlsx",
       "itemType": "download",
       "localFilename": "ponv_data_extraction_template.xlsx",
-      "coverageStatus": "missing_download",
+      "coverageStatus": "already_covered",
       "existingLocalPath": null
     },
     {
@@ -99,7 +99,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/Self-Assessment.jpg",
       "itemType": "image",
       "localFilename": "legacy_self_assessment.jpg",
-      "coverageStatus": "missing_asset",
+      "coverageStatus": "already_covered",
       "existingLocalPath": null
     },
     {

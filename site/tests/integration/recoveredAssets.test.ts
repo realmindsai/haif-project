@@ -31,9 +31,11 @@ describe('legacy recovery outputs', () => {
 
     for (const [legacyPath, localPath] of aliasBackedItems) {
       const item = manifest.items.find((entry) => entry.legacyUrl.includes(legacyPath));
-      expect(item?.coverageStatus).toBe('missing_asset');
+      expect(item?.coverageStatus).toBe('already_covered');
       expect(item?.existingLocalPath).toBe(localPath);
       expect(existsSync(resolve(publicRoot, localPath))).toBe(true);
+      const folder = item?.itemType === 'download' ? 'downloads' : 'images';
+      expect(existsSync(resolve(publicRoot, folder, item.localFilename))).toBe(true);
     }
 
     for (const item of manifest.items.filter((entry) => entry.coverageStatus === 'already_covered')) {
@@ -51,7 +53,7 @@ describe('legacy recovery outputs', () => {
       manifest.items.find((item) =>
         item.legacyUrl.includes('/PONV-study-data-extraction-template.xlsx'),
       )?.coverageStatus,
-    ).toBe('missing_download');
+    ).toBe('already_covered');
     expect(
       manifest.items.find((item) => item.itemType === 'config_asset')?.coverageStatus,
     ).toBe('missing_interaction');
@@ -61,9 +63,23 @@ describe('legacy recovery outputs', () => {
     expect(existsSync(reportPath)).toBe(true);
     const report = readFileSync(reportPath, 'utf8');
     expect(report).toContain('# POPA4Ease Gap Report');
+    expect(report).toContain('## already_covered');
     expect(report).toContain('## missing_asset');
+    expect(report).toContain('## missing_download');
     expect(report).toContain('## missing_interaction');
     expect(report).not.toContain('Generated:');
-    expect(report).toContain('existing local counterpart: `images/ponv-risk-score.png`');
+    expect(report).toContain('`download` https://popa4ease.com/site/wp-content/uploads/2019/05/PONV-study-data-extraction-template.xlsx -> `ponv_data_extraction_template.xlsx`');
+    expect(report).toContain('## missing_asset\n\n- none');
+    expect(report).toContain('## missing_download\n\n- none');
+  });
+
+  it('keeps original-format downloads when the source file is not a PDF', () => {
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    const xlsxItem = manifest.items.find((item) =>
+      item.legacyUrl.includes('PONV-study-data-extraction-template.xlsx'),
+    );
+
+    expect(xlsxItem?.localFilename.endsWith('.xlsx')).toBe(true);
+    expect(existsSync(resolve(publicRoot, 'downloads', xlsxItem.localFilename))).toBe(true);
   });
 });
