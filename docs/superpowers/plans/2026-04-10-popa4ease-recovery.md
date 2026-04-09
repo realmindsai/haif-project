@@ -503,6 +503,9 @@ it('keeps original-format downloads when the source file is not a PDF', () => {
     item => item.legacyUrl.includes('PONV-study-data-extraction-template.xlsx')
   );
   expect(xlsxItem.localFilename.endsWith('.xlsx')).toBe(true);
+  expect(
+    existsSync(resolve(process.cwd(), 'public/downloads', xlsxItem.localFilename))
+  ).toBe(true);
 });
 ```
 
@@ -510,7 +513,7 @@ it('keeps original-format downloads when the source file is not a PDF', () => {
 
 Run: `cd site && npm run test:integration -- recoveredAssets`
 
-Expected: FAIL if the manifest or sync logic does not preserve `.xlsx`.
+Expected: FAIL because the manifest preserves `.xlsx`, but the original-format file has not been synced into `site/public/downloads` yet.
 
 - [ ] **Step 3: Extend the recovery script to download files locally**
 
@@ -544,7 +547,7 @@ Expected: Local files appear under `site/public/images` and `site/public/downloa
 
 Run: `cd site && npm run test:integration -- recoveredAssets`
 
-Expected: PASS with the original `.xlsx` preserved in manifest data.
+Expected: PASS with the original `.xlsx` preserved in manifest data and present in `site/public/downloads`.
 
 - [ ] **Step 6: Commit**
 
