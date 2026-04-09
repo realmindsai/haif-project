@@ -985,7 +985,14 @@ git commit -m "feat: rebuild intervention content as comparison table"
 // site/tests/e2e/exploration_intervention.spec.ts
 import { expect, test } from '@playwright/test';
 
-test('exploration intervention rows expand on click', async ({ page }) => {
+test('homepage hero and exploration intervention interactions render recovered content', async ({ page }) => {
+  await page.goto('/');
+  await expect(
+    page.getByRole('img', {
+      name: /hospital recovery context from the legacy popa4ease homepage/i,
+    }),
+  ).toBeVisible();
+
   await page.goto('/framework/exploration/');
   await expect(page.getByRole('heading', { name: /intervention/i })).toBeVisible();
 
@@ -1000,7 +1007,7 @@ test('exploration intervention rows expand on click', async ({ page }) => {
 
 Run: `cd site && npm run test:e2e -- exploration_intervention`
 
-Expected: FAIL before the final interaction markup matches the assertion.
+Expected: FAIL because the recovered homepage hero image is not wired into `index.astro` yet.
 
 - [ ] **Step 3: Add the recovered homepage hero image**
 
@@ -1070,7 +1077,7 @@ Add a short section:
 
 Run: `cd site && npm run test:e2e -- exploration_intervention`
 
-Expected: PASS with the row expansion revealing the recovered detail content.
+Expected: PASS with the recovered homepage hero visible and the intervention row expansion revealing the recovered detail content.
 
 - [ ] **Step 6: Run full verification**
 
