@@ -8,7 +8,7 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   webServer: {
-    command: 'npm run dev -- --host 127.0.0.1 --port 4321',
+    command: 'env -u NO_COLOR npm run dev -- --host 127.0.0.1 --port 4321',
     port: 4321,
     reuseExistingServer: !process.env.CI,
     timeout: 120000,

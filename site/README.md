@@ -29,6 +29,13 @@ npm run build      # Production build to dist/
 npm run preview    # Preview production build
 ```
 
+## POPA4Ease recovery workflow
+
+- `npm run recover:popa4ease` crawls the legacy site, writes the manifest, updates the gap report, and syncs recovered local files.
+- `npm run test:unit` verifies recovery helpers.
+- `npm run test:integration` verifies manifest-backed rendering and original-format downloads.
+- `npm run test:e2e` verifies the Exploration intervention interaction.
+
 ## Author
 
 Dr Zhen Zheng, PhD — RMIT University, NHMRC Translating Research into Practice Fellow.

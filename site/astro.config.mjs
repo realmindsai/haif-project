@@ -12,5 +12,23 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
 
+  vite: {
+    logLevel: 'error',
+    build: {
+      rollupOptions: {
+        onwarn(warning, defaultHandler) {
+          if (
+            warning.id?.includes('node_modules/astro/dist/assets/utils/index.js') &&
+            warning.message.includes('matchHostname')
+          ) {
+            return;
+          }
+
+          defaultHandler(warning);
+        },
+      },
+    },
+  },
+
   integrations: [sitemap()],
 });
