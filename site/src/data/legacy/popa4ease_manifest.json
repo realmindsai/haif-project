@@ -1,5 +1,4 @@
 {
-  "generatedAt": "2026-04-09T20:56:10.252Z",
   "pages": [
     "https://popa4ease.com/site/",
     "https://popa4ease.com/site/index.php/acknowledgements/",
@@ -56,7 +55,7 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/checklist-300x200.jpg",
       "itemType": "image",
       "localFilename": "exploration_cari_checklist.jpg",
-      "coverageStatus": "missing_asset"
+      "coverageStatus": "already_covered"
     },
     {
       "sourcePage": "https://popa4ease.com/site/",
@@ -70,14 +69,14 @@
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/risk-score.png",
       "itemType": "image",
       "localFilename": "exploration_ponv_risk_score.png",
-      "coverageStatus": "missing_asset"
+      "coverageStatus": "already_covered"
     },
     {
       "sourcePage": "https://popa4ease.com/site/",
       "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/algorithm-image.jpg",
       "itemType": "image",
       "localFilename": "home_algorithm_image.jpg",
-      "coverageStatus": "missing_asset"
+      "coverageStatus": "already_covered"
     },
     {
       "sourcePage": "https://popa4ease.com/site/index.php/exploration/",

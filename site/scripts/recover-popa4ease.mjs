@@ -11,6 +11,11 @@ const SITE_ROOT = resolve(process.cwd());
 const MANIFEST_PATH = resolve(SITE_ROOT, 'src/data/legacy/popa4ease_manifest.json');
 const REPORT_PATH = resolve(SITE_ROOT, '../docs/reports/2026-04-10-popa4ease-gap-report.md');
 const PUBLIC_ROOT = resolve(SITE_ROOT, 'public');
+const LOCAL_COVERAGE_ALIASES = new Map([
+  ['https://popa4ease.com/site/wp-content/uploads/2018/08/risk-score.png', 'images/ponv-risk-score.png'],
+  ['https://popa4ease.com/site/wp-content/uploads/2018/08/checklist-300x200.jpg', 'images/cari-checklist.jpg'],
+  ['https://popa4ease.com/site/wp-content/uploads/2019/05/algorithm-image.jpg', 'images/ponv-algorithm.jpg'],
+]);
 
 const SEED_PAGES = ['https://popa4ease.com/site/'];
 const PAGE_LINK_PATTERN = /^https?:\/\/popa4ease\.com\/site\/(?:index\.php\/[^"'#?]+\/?)?$/i;
@@ -57,12 +62,21 @@ function getLocalTarget(itemType, localFilename) {
   return resolve(PUBLIC_ROOT, folder, localFilename);
 }
 
-function getCoverageStatus(itemType, localFilename) {
+function hasLocalCoverage(itemType, legacyUrl, localFilename) {
+  if (existsSync(getLocalTarget(itemType, localFilename))) {
+    return true;
+  }
+
+  const aliasedPath = LOCAL_COVERAGE_ALIASES.get(legacyUrl);
+  return aliasedPath ? existsSync(resolve(PUBLIC_ROOT, aliasedPath)) : false;
+}
+
+function getCoverageStatus(itemType, legacyUrl, localFilename) {
   if (itemType === 'config_asset') {
     return 'missing_interaction';
   }
 
-  if (existsSync(getLocalTarget(itemType, localFilename))) {
+  if (hasLocalCoverage(itemType, legacyUrl, localFilename)) {
     return 'already_covered';
   }
 
@@ -82,7 +96,7 @@ function makeManifestItem({ sourcePage, legacyUrl, itemType }) {
     legacyUrl: normalizedLegacyUrl,
     itemType,
     localFilename,
-    coverageStatus: getCoverageStatus(itemType, localFilename),
+    coverageStatus: getCoverageStatus(itemType, normalizedLegacyUrl, localFilename),
   };
 }
 
@@ -159,7 +173,6 @@ async function crawlLegacySite() {
   ].sort((left, right) => left.legacyUrl.localeCompare(right.legacyUrl));
 
   return {
-    generatedAt: new Date().toISOString(),
     pages: [...seenPages].sort(),
     items: uniqueItems,
   };
@@ -183,7 +196,6 @@ async function writeOutputs(result) {
   const report = [
     '# POPA4Ease Gap Report',
     '',
-    `Generated: ${result.generatedAt}`,
     `Pages crawled: ${result.pages.length}`,
     `Recoverable items: ${result.items.length}`,
     '',
