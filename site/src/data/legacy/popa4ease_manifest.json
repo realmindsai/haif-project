@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-04-09T20:56:10.252Z",
+  "pages": [
+    "https://popa4ease.com/site/",
+    "https://popa4ease.com/site/index.php/acknowledgements/",
+    "https://popa4ease.com/site/index.php/contact-us/",
+    "https://popa4ease.com/site/index.php/exploration/",
+    "https://popa4ease.com/site/index.php/fame-assessment-of-acupressure-for-ponv/",
+    "https://popa4ease.com/site/index.php/implementation/",
+    "https://popa4ease.com/site/index.php/modified-cari-readiness-checklist/",
+    "https://popa4ease.com/site/index.php/preparation/",
+    "https://popa4ease.com/site/index.php/references/",
+    "https://popa4ease.com/site/index.php/self-assessment-of-ponv-risk/",
+    "https://popa4ease.com/site/index.php/situation-analysis-of-acupressure-wristband-for-ponv",
+    "https://popa4ease.com/site/index.php/situation-analysis-of-acupressure-wristband-for-ponv/",
+    "https://popa4ease.com/site/index.php/sustainment/"
+  ],
+  "items": [
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/1-300x169.jpg",
+      "itemType": "image",
+      "localFilename": "home_1_300x169.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/exploration/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Acupressure-infographic-01-1.png",
+      "itemType": "image",
+      "localFilename": "exploration_acupressure_infographic_01_1.png",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Digital-Strategy-for-Medical-Brand-Intervention-IQ-e1534562115603.jpg",
+      "itemType": "image",
+      "localFilename": "home_digital_strategy_for_medical_brand_intervention_iq_e1534562115603.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/Prescription-preparation-in-bangladesh-300x168.jpg",
+      "itemType": "image",
+      "localFilename": "home_prescription_preparation_in_bangladesh_300x168.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/03/promo248112192-300x169.jpeg",
+      "itemType": "image",
+      "localFilename": "home_promo248112192_300x169.jpeg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/exploration/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/checklist-300x200.jpg",
+      "itemType": "image",
+      "localFilename": "exploration_cari_checklist.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/frontpage-image1-e1534678544443.jpg",
+      "itemType": "image",
+      "localFilename": "home_frontpage_image1_e1534678544443.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/exploration/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2018/08/risk-score.png",
+      "itemType": "image",
+      "localFilename": "exploration_ponv_risk_score.png",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/algorithm-image.jpg",
+      "itemType": "image",
+      "localFilename": "home_algorithm_image.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/exploration/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/PONV-study-data-extraction-template.xlsx",
+      "itemType": "download",
+      "localFilename": "ponv_data_extraction_template.xlsx",
+      "coverageStatus": "missing_download"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/self-assessment-of-ponv-risk/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/2019/05/Self-Assessment.jpg",
+      "itemType": "image",
+      "localFilename": "legacy_self_assessment.jpg",
+      "coverageStatus": "missing_asset"
+    },
+    {
+      "sourcePage": "https://popa4ease.com/site/index.php/exploration/",
+      "legacyUrl": "https://popa4ease.com/site/wp-content/uploads/imagelinks/1/config.json?ver=1558022196",
+      "itemType": "config_asset",
+      "localFilename": "exploration_config.json",
+      "coverageStatus": "missing_interaction"
+    }
+  ]
+}
