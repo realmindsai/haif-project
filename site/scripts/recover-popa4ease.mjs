@@ -11,7 +11,12 @@ const SITE_ROOT = resolve(process.cwd());
 const MANIFEST_PATH = resolve(SITE_ROOT, 'src/data/legacy/popa4ease_manifest.json');
 const REPORT_PATH = resolve(SITE_ROOT, '../docs/reports/2026-04-10-popa4ease-gap-report.md');
 const PUBLIC_ROOT = resolve(SITE_ROOT, 'public');
-const LOCAL_COVERAGE_ALIASES = new Map([
+const EXISTING_LOCAL_COUNTERPARTS = new Map([
+  ['https://popa4ease.com/site/wp-content/uploads/2018/03/Digital-Strategy-for-Medical-Brand-Intervention-IQ-e1534562115603.jpg', 'images/phase-1-exploration.jpg'],
+  ['https://popa4ease.com/site/wp-content/uploads/2018/03/Prescription-preparation-in-bangladesh-300x168.jpg', 'images/phase-2-preparation.jpg'],
+  ['https://popa4ease.com/site/wp-content/uploads/2018/03/promo248112192-300x169.jpeg', 'images/phase-3-implementation.jpg'],
+  ['https://popa4ease.com/site/wp-content/uploads/2018/03/1-300x169.jpg', 'images/phase-4-sustainment.jpg'],
+  ['https://popa4ease.com/site/wp-content/uploads/2018/08/frontpage-image1-e1534678544443.jpg', 'images/hero-banner.jpg'],
   ['https://popa4ease.com/site/wp-content/uploads/2018/08/risk-score.png', 'images/ponv-risk-score.png'],
   ['https://popa4ease.com/site/wp-content/uploads/2018/08/checklist-300x200.jpg', 'images/cari-checklist.jpg'],
   ['https://popa4ease.com/site/wp-content/uploads/2019/05/algorithm-image.jpg', 'images/ponv-algorithm.jpg'],
@@ -29,6 +34,22 @@ const ASSET_ATTRIBUTE_PATTERN = /\b(?:href|src|data-json-src)=["']([^"']+)["']/g
 
 function normalizeUrl(raw) {
   return raw.replace(/^http:\/\//i, 'https://');
+}
+
+function normalizePageUrl(raw) {
+  const url = new URL(normalizeUrl(raw));
+  url.hash = '';
+  url.search = '';
+
+  if (
+    (url.pathname === '/site' || url.pathname.startsWith('/site/index.php/')) &&
+    !url.pathname.endsWith('/') &&
+    !url.pathname.split('/').pop().includes('.')
+  ) {
+    url.pathname = `${url.pathname}/`;
+  }
+
+  return url.href;
 }
 
 function isCrawlablePage(raw) {
@@ -62,21 +83,17 @@ function getLocalTarget(itemType, localFilename) {
   return resolve(PUBLIC_ROOT, folder, localFilename);
 }
 
-function hasLocalCoverage(itemType, legacyUrl, localFilename) {
-  if (existsSync(getLocalTarget(itemType, localFilename))) {
-    return true;
-  }
-
-  const aliasedPath = LOCAL_COVERAGE_ALIASES.get(legacyUrl);
-  return aliasedPath ? existsSync(resolve(PUBLIC_ROOT, aliasedPath)) : false;
+function getExistingLocalPath(legacyUrl) {
+  const localPath = EXISTING_LOCAL_COUNTERPARTS.get(legacyUrl);
+  return localPath && existsSync(resolve(PUBLIC_ROOT, localPath)) ? localPath : null;
 }
 
-function getCoverageStatus(itemType, legacyUrl, localFilename) {
+function getCoverageStatus(itemType, localFilename) {
   if (itemType === 'config_asset') {
     return 'missing_interaction';
   }
 
-  if (hasLocalCoverage(itemType, legacyUrl, localFilename)) {
+  if (existsSync(getLocalTarget(itemType, localFilename))) {
     return 'already_covered';
   }
 
@@ -96,7 +113,8 @@ function makeManifestItem({ sourcePage, legacyUrl, itemType }) {
     legacyUrl: normalizedLegacyUrl,
     itemType,
     localFilename,
-    coverageStatus: getCoverageStatus(itemType, normalizedLegacyUrl, localFilename),
+    coverageStatus: getCoverageStatus(itemType, localFilename),
+    existingLocalPath: getExistingLocalPath(normalizedLegacyUrl),
   };
 }
 
@@ -106,7 +124,7 @@ async function crawlLegacySite() {
   const discoveredItems = [];
 
   while (queue.length > 0) {
-    const nextPage = normalizeUrl(queue.shift());
+    const nextPage = normalizePageUrl(queue.shift());
     if (!isCrawlablePage(nextPage) || seenPages.has(nextPage)) {
       continue;
     }
@@ -118,9 +136,10 @@ async function crawlLegacySite() {
 
     while ((match = ASSET_ATTRIBUTE_PATTERN.exec(html)) !== null) {
       const absoluteUrl = normalizeUrl(new URL(match[1], nextPage).href);
+      const normalizedPageCandidate = normalizePageUrl(absoluteUrl);
 
-      if (isCrawlablePage(absoluteUrl) && !seenPages.has(absoluteUrl)) {
-        queue.push(absoluteUrl);
+      if (isCrawlablePage(normalizedPageCandidate) && !seenPages.has(normalizedPageCandidate)) {
+        queue.push(normalizedPageCandidate);
       }
 
       if (!isRecoverableLegacyUrl(absoluteUrl)) {
@@ -209,7 +228,11 @@ async function writeOutputs(result) {
       '## missing_asset',
       result.items
         .filter((item) => item.coverageStatus === 'missing_asset')
-        .map((item) => `- ${item.legacyUrl}`),
+        .map((item) =>
+          item.existingLocalPath
+            ? `- ${item.legacyUrl} (existing local counterpart: \`${item.existingLocalPath}\`)`
+            : `- ${item.legacyUrl}`,
+        ),
     ),
     ...formatSection(
       '## missing_download',
