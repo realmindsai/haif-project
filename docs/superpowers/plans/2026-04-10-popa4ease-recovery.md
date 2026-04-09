@@ -572,7 +572,13 @@ Add this test:
 ```ts
 it('renders the original xlsx download on the Resources page', async () => {
   const resourcesSource = readFileSync(resolve(process.cwd(), 'src/pages/resources.astro'), 'utf8');
-  expect(resourcesSource).toContain("ponv_data_extraction_template.xlsx");
+  const metadataSource = readFileSync(
+    resolve(process.cwd(), 'src/data/legacy/resourceDownloads.ts'),
+    'utf8',
+  );
+
+  expect(resourcesSource).toContain('resourceDownloads.ponvDataExtractionTemplate');
+  expect(metadataSource).toContain('ponv_data_extraction_template.xlsx');
 });
 ```
 
@@ -580,7 +586,7 @@ it('renders the original xlsx download on the Resources page', async () => {
 
 Run: `cd site && npm run test:integration -- recoveredAssets`
 
-Expected: FAIL because `resources.astro` still links to the PDF.
+Expected: FAIL because the metadata file does not exist yet and `resources.astro` still links to the PDF.
 
 - [ ] **Step 3: Create structured download metadata**
 
