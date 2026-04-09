@@ -987,14 +987,14 @@ git commit -m "feat: rebuild intervention content as comparison table"
 import { expect, test } from '@playwright/test';
 
 test('homepage hero and exploration intervention interactions render recovered content', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('./');
   await expect(
     page.getByRole('img', {
       name: /hospital recovery context from the legacy popa4ease homepage/i,
     }),
   ).toBeVisible();
 
-  await page.goto('/framework/exploration/');
+  await page.goto('./framework/exploration/');
   await expect(page.getByRole('heading', { name: /intervention/i })).toBeVisible();
 
   await page.getByText('Manual Acupressure').scrollIntoViewIfNeeded();
@@ -1016,7 +1016,7 @@ Before rerunning the e2e suite, align Playwright with the Astro base path by upd
 
 ```ts
 use: {
-  baseURL: 'http://127.0.0.1:4321/haif-project',
+  baseURL: 'http://127.0.0.1:4321/haif-project/',
   trace: 'retain-on-failure',
 },
 ```
