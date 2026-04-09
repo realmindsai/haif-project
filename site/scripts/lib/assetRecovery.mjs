@@ -29,7 +29,10 @@ function sanitizeSegment(value) {
 }
 
 function getSourcePrefix(sourcePage) {
-  if (sourcePage === 'http://popa4ease.com/site/') {
+  if (
+    sourcePage === 'http://popa4ease.com/site/' ||
+    sourcePage === 'https://popa4ease.com/site/'
+  ) {
     return 'home';
   }
 
@@ -43,9 +46,14 @@ function getSourcePrefix(sourcePage) {
 export function classifyLegacyUrl(raw) {
   const pathname = getPathname(raw);
   const basename = pathname.slice(pathname.lastIndexOf('/') + 1);
+  const isUploadsAsset = pathname.includes('/wp-content/uploads/');
 
-  if (pathname.includes('/imagelinks/') && basename === 'config.json') {
+  if (isUploadsAsset && pathname.includes('/imagelinks/') && basename === 'config.json') {
     return 'config_asset';
+  }
+
+  if (!isUploadsAsset) {
+    return 'other';
   }
 
   const extension = getExtension(basename);

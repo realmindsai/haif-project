@@ -39,4 +39,27 @@ describe('asset recovery helpers', () => {
       }),
     ).toBe('exploration_ponv_risk_score.png');
   });
+
+  it('treats https home pages as home sources', () => {
+    expect(
+      toEvergreenFilename({
+        sourcePage: 'https://popa4ease.com/site/',
+        legacyUrl: 'https://popa4ease.com/site/wp-content/uploads/2018/03/1-300x169.jpg',
+        itemType: 'image',
+      }),
+    ).toBe('home_1_300x169.jpg');
+  });
+
+  it('rejects plugin chrome assets as non-recoverable', () => {
+    expect(
+      classifyLegacyUrl(
+        'https://popa4ease.com/site/wp-content/plugins/wpfront-scroll-top/images/icons/58.png',
+      ),
+    ).toBe('other');
+    expect(
+      isRecoverableLegacyUrl(
+        'https://popa4ease.com/site/wp-content/plugins/wpfront-scroll-top/images/icons/58.png',
+      ),
+    ).toBe(false);
+  });
 });
