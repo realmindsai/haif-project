@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Evidence Summaries — HAIF",
+  "description": "GRADE-rated evidence summaries for acupuncture and acupressure modalities in hospital settings, including relative risk, confidence intervals, and quality ratings.",
+  "lastReviewed": "2026-04-06",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Zhen Zheng",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "RMIT University"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Evidence"
+  description="GRADE-rated evidence summaries for acupuncture and acupressure modalities used in hospital settings. Relative risk, confidence intervals, and quality ratings."
+  lastReviewed="April 2026"
+  schema={schema}
+>
+  <h1>Evidence Summaries</h1>
+
+  <div class="bottom-line">
+    <strong>The Bottom Line</strong>
+    PC6 acupoint stimulation reduces post-operative nausea by 32%, vomiting by 40%,
+    and rescue antiemetic use by 36% compared with sham or no treatment. Evidence
+    quality ranges from high to moderate depending on modality. All modalities show
+    mild, transient side effects only.
+  </div>
+
+  <!-- Combined PC6 evidence -->
+  <h2>PC6 Acupoint Stimulation (All Modalities Combined)</h2>
+  <p>
+    When all modes of PC6 stimulation are pooled, the evidence shows consistent
+    benefit across nausea, vomiting, and rescue antiemetic outcomes.
+    Source: Lee et al., 2015 (Cochrane Database of Systematic Reviews).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Outcome</th>
+        <th>Control Rate</th>
+        <th>Intervention Rate</th>
+        <th>RR (95% CI)</th>
+        <th>GRADE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nausea</td>
+        <td>47%</td>
+        <td>31%</td>
+        <td>0.68 (0.60-0.77)</td>
+        <td><span class="grade grade-high">High</span></td>
+      </tr>
+      <tr>
+        <td>Vomiting</td>
+        <td>33%</td>
+        <td>19%</td>
+        <td>0.60 (0.51-0.71)</td>
+        <td><span class="grade grade-high">High</span></td>
+      </tr>
+      <tr>
+        <td>Rescue antiemetics</td>
+        <td>33%</td>
+        <td>20%</td>
+        <td>0.64 (0.55-0.73)</td>
+        <td><span class="grade grade-moderate">Moderate</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modality comparison -->
+  <h2>Evidence by Modality</h2>
+  <p>
+    The following table compares effectiveness data across individual modalities.
+    Data sourced from Lee et al. (2015) and Cheong et al. (2013) unless otherwise noted.
+  </p>
+
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Modality</th>
+          <th>Outcome</th>
+          <th>Control</th>
+          <th>Intervention</th>
+          <th>RR (95% CI)</th>
+          <th>GRADE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Manual Acupressure -->
+        <tr>
+          <td rowspan="2"><strong>Manual Acupressure</strong></td>
+          <td>Nausea</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Data variable by study</td>
+          <td>Varies</td>
+          <td><span class="grade grade-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Data variable by study</td>
+          <td>Varies</td>
+          <td><span class="grade grade-low">Low</span></td>
+        </tr>
+
+        <!-- Electroacupressure -->
+        <tr>
+          <td rowspan="2"><strong>Electroacupressure (E-Stim)</strong></td>
+          <td>Nausea</td>
+          <td>45%</td>
+          <td>30%</td>
+          <td>0.71 (0.62-0.81)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td>30%</td>
+          <td>18%</td>
+          <td>0.60 (0.50-0.73)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+
+        <!-- Auricular Acupuncture -->
+        <tr>
+          <td rowspan="2"><strong>Auricular Acupuncture</strong></td>
+          <td>Nausea</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Effective for gynaecological surgery and laparoscopic cholecystectomy</td>
+          <td>--</td>
+          <td><span class="grade grade-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Limited pooled data</td>
+          <td>--</td>
+          <td><span class="grade grade-low">Low</span></td>
+        </tr>
+
+        <!-- Body Acupuncture -->
+        <tr>
+          <td rowspan="3"><strong>Body Acupuncture (PC6 + Other Points)</strong></td>
+          <td>Nausea</td>
+          <td>54%</td>
+          <td>29%</td>
+          <td>0.56 (0.39-0.80)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td>41%</td>
+          <td>20%</td>
+          <td>0.51 (0.34-0.76)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>PONV (combined therapy)</td>
+          <td>21%</td>
+          <td>6%</td>
+          <td>0.29 (0.17-0.49)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+
+        <!-- Electroacupuncture -->
+        <tr>
+          <td rowspan="2"><strong>Electroacupuncture (EA)</strong></td>
+          <td>Nausea</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Equivalent to body acupuncture</td>
+          <td>Similar to body acupuncture</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td colspan="2" style="text-align: center; color: var(--color-text-muted);">Equivalent to body acupuncture</td>
+          <td>Similar to body acupuncture</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+
+        <!-- Acupressure Wristbands -->
+        <tr>
+          <td rowspan="3"><strong>Acupressure Wristbands</strong></td>
+          <td>Nausea</td>
+          <td>36%</td>
+          <td>24%</td>
+          <td>0.60 (0.53-0.69)</td>
+          <td><span class="grade grade-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td>20%</td>
+          <td>15%</td>
+          <td>0.54 (0.45-0.64)</td>
+          <td><span class="grade grade-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Rescue antiemetics</td>
+          <td>22%</td>
+          <td>13%</td>
+          <td>0.62 (0.52-0.74)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modality characteristics -->
+  <h2>Modality Characteristics Comparison</h2>
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Modality</th>
+          <th>Invasive?</th>
+          <th>Equipment Cost</th>
+          <th>Training Level</th>
+          <th>Key Advantage</th>
+          <th>Key Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Manual Acupressure</td>
+          <td>No</td>
+          <td>None</td>
+          <td>Low</td>
+          <td>No equipment needed</td>
+          <td>Effectiveness varies by practitioner skill</td>
+        </tr>
+        <tr>
+          <td>Electroacupressure</td>
+          <td>No</td>
+          <td>$40-$200</td>
+          <td>Moderate</td>
+          <td>Extended duration; adjustable intensity</td>
+          <td>Equipment cost and training</td>
+        </tr>
+        <tr>
+          <td>Auricular Acupuncture</td>
+          <td>Yes</td>
+          <td>Cents per needle</td>
+          <td>High</td>
+          <td>Individualised point selection; economical</td>
+          <td>Requires qualified acupuncturist</td>
+        </tr>
+        <tr>
+          <td>Body Acupuncture</td>
+          <td>Yes</td>
+          <td>~$0.05/needle</td>
+          <td>High</td>
+          <td>Strongest effect size; individualised</td>
+          <td>Needle monitoring; credentialling</td>
+        </tr>
+        <tr>
+          <td>Electroacupuncture</td>
+          <td>Yes</td>
+          <td>$200-$800</td>
+          <td>High</td>
+          <td>Adjustable stimulus; reusable equipment</td>
+          <td>Highest equipment cost; monitoring needed</td>
+        </tr>
+        <tr>
+          <td>Acupressure Wristbands</td>
+          <td>No</td>
+          <td>~$5 AUD</td>
+          <td>Low</td>
+          <td>Reusable; minimal training; home use</td>
+          <td>Sizing limits; impractical with IV lines</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- GRADE legend -->
+  <h2>Understanding GRADE Ratings</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Rating</th>
+        <th>Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="grade grade-high">High</span></td>
+        <td>Further research is very unlikely to change confidence in the effect estimate.</td>
+      </tr>
+      <tr>
+        <td><span class="grade grade-moderate">Moderate</span></td>
+        <td>Further research is likely to have an important impact on confidence and may change the estimate.</td>
+      </tr>
+      <tr>
+        <td><span class="grade grade-low">Low</span></td>
+        <td>Further research is very likely to have an important impact on confidence and is likely to change the estimate.</td>
+      </tr>
+      <tr>
+        <td><span class="grade grade-very-low">Very Low</span></td>
+        <td>Any estimate of effect is very uncertain.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+    GRADE ratings assigned based on published systematic reviews including
+    Lee et al. (2015), Cheong et al. (2013), and Cochrane methodology.
+    See <a href={url('/references/')}>full reference list</a>.
+  </p>
+</BaseLayout>

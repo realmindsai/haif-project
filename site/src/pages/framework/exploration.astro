@@ -1,0 +1,417 @@
+---
+import FrameworkLayout from '../../layouts/FrameworkLayout.astro';
+import { url } from '../../utils';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Phase 1: Exploration — Hospital Acupuncture Implementation",
+  "description": "Identify human and environmental factors before implementing acupuncture or acupressure in a hospital setting. Assess needs, interventions, staff readiness, patient perspectives, and funding.",
+  "url": "https://hospitalacupuncture.com/framework/exploration/",
+  "lastReviewed": "2026-04",
+  "about": {
+    "@type": "MedicalCondition",
+    "name": "Post-operative nausea and vomiting"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Dr Zhen Zheng",
+    "affiliation": { "@type": "Organization", "name": "RMIT University" }
+  }
+};
+---
+
+<FrameworkLayout
+  title="Exploration"
+  description="Identify human and environmental factors before implementing acupuncture or acupressure in a hospital setting."
+  phaseNumber={1}
+  bottomLine="Before launching any hospital acupuncture programme, you must understand the internal need, the available intervention options, your team composition, staff and patient attitudes, organisational readiness, and funding landscape. Skipping this phase is the most common reason implementations fail."
+  schema={schema}
+>
+
+  <h2>Overview</h2>
+  <p>
+    Before implementing acupuncture or acupressure in any hospital context, organisations must
+    understand both the human and environmental factors at play. This phase addresses seven
+    critical questions:
+  </p>
+  <ul>
+    <li>Does an internal need for change exist?</li>
+    <li>What intervention types are available?</li>
+    <li>Who should be on the implementation team?</li>
+    <li>What are staff perspectives on the proposed changes?</li>
+    <li>What are patient requirements and preferences?</li>
+    <li>Is funding necessary and available?</li>
+    <li>Is the organisation ready for change?</li>
+  </ul>
+
+  <!-- Section 1: Identify Internal Needs -->
+  <h2>1. Identify Internal Needs</h2>
+
+  <details>
+    <summary>Assessing current practice (using PONV as an example)</summary>
+    <p>
+      Using PONV (post-operative nausea and vomiting) as a worked example, the following
+      questions help establish baseline needs. Adapt these to your target clinical application
+      (e.g., pain management, anxiety, post-procedural recovery).
+    </p>
+    <h4>How is the condition currently prevented and managed locally?</h4>
+    <ul>
+      <li>Review hospital practice guidelines for the target condition</li>
+      <li>Identify current pharmacological and non-pharmacological approaches</li>
+    </ul>
+    <h4>Is the condition incidence charted?</h4>
+    <ul>
+      <li>Check observation charts across all relevant care settings (e.g., Recovery, ward, pre-discharge)</li>
+      <li>Verify documentation is consistent across phases of care</li>
+    </ul>
+    <h4>What is the current incidence and rescue medication usage?</h4>
+    <ul>
+      <li>Track current incident rates</li>
+      <li>Monitor rescue medication administration</li>
+      <li>Note: rescue medication use is not equivalent to the condition incidence itself</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>PONV risk assessment (example)</summary>
+    <p>
+      For PONV specifically, risk assessment is the first recommendation in management guidelines
+      (Gan, 2014). Four primary risk factors have been identified:
+    </p>
+    <ul>
+      <li>Female gender</li>
+      <li>Non-smoker status</li>
+      <li>Previous PONV or motion sickness history</li>
+      <li>Post-operative opioid use</li>
+    </ul>
+    <p>
+      Risk increases approximately 20% per additional factor present (Apfel et al., 1999).
+      A patient self-assessment checklist can streamline this process.
+    </p>
+  </details>
+
+  <!-- Section 2: Intervention Types -->
+  <h2>2. Intervention Types: Acupuncture and Acupressure Modalities</h2>
+  <p>
+    Several modalities are available for hospital acupuncture implementation. The table below
+    compares key options, with PONV effectiveness data as an illustrative example of the
+    evidence base. Similar evidence profiles exist for pain, anxiety, and other conditions.
+  </p>
+
+  <details>
+    <summary>Manual Acupressure</summary>
+    <p><strong>Advantages:</strong> Avoids needles; requires no equipment; staff are easily trained.</p>
+    <p><strong>Disadvantages:</strong> Effectiveness varies by practitioner skill and consistency.</p>
+  </details>
+
+  <details>
+    <summary>Electroacupressure (E-Stim)</summary>
+    <p>
+      <strong>PONV effectiveness example:</strong>
+      Nausea reduced from 45% to 30% (RR 0.71, 95% CI 0.62&ndash;0.81)
+      <span class="grade grade-high">High</span>;
+      Vomiting reduced from 30% to 18% (RR 0.60, 95% CI 0.50&ndash;0.73)
+      <span class="grade grade-high">High</span>
+    </p>
+    <p><strong>Advantages:</strong> Extended-duration capability; adjustable intensity.</p>
+    <p><strong>Disadvantages:</strong> Equipment cost ($40&ndash;$200 AUD); training required.</p>
+  </details>
+
+  <details>
+    <summary>Auricular Acupuncture (Ear)</summary>
+    <p><strong>Advantages:</strong> Economical (a few cents per needle); individualised point selection; low needle misplacement risk.</p>
+    <p><strong>Disadvantages:</strong> Staff training required; a qualified acupuncturist may be needed.</p>
+    <p>Shown effective for gynaecological surgery and laparoscopic cholecystectomy (PONV context).</p>
+  </details>
+
+  <details>
+    <summary>Body Acupuncture (PC6 + Other Points)</summary>
+    <p>
+      <strong>PONV effectiveness example:</strong>
+      Nausea reduced from 54% to 29% (RR 0.56, 95% CI 0.39&ndash;0.80)
+      <span class="grade grade-moderate">Moderate</span>;
+      Vomiting reduced from 41% to 20% (RR 0.51, 95% CI 0.34&ndash;0.76)
+      <span class="grade grade-moderate">Moderate</span>
+    </p>
+    <p>
+      Combined therapy (PC6 + additional acupoints) reduced PONV from 21% to 6%
+      (RR 0.29, 95% CI 0.17&ndash;0.49) <span class="grade grade-moderate">Moderate</span>
+    </p>
+    <p><strong>Advantages:</strong> Economical (~$0.05 per needle); individualised point selection.</p>
+    <p><strong>Disadvantages:</strong> Training requirement; needle monitoring needed during treatment.</p>
+  </details>
+
+  <details>
+    <summary>Electroacupuncture (EA)</summary>
+    <p>Effectiveness is equivalent to body acupuncture, with the benefit of adjustable stimulus intensity.</p>
+    <p><strong>Advantages:</strong> Reusable equipment; adjustable intensity.</p>
+    <p><strong>Disadvantages:</strong> Higher equipment cost ($200&ndash;$800 AUD); monitoring required.</p>
+  </details>
+
+  <details>
+    <summary>Acupressure Wristbands</summary>
+    <p>
+      <strong>PONV effectiveness example:</strong>
+      Nausea reduced from 36% to 24% (RR 0.60, 95% CI 0.53&ndash;0.69)
+      <span class="grade grade-high">High</span>;
+      Vomiting reduced from 20% to 15% (RR 0.54, 95% CI 0.45&ndash;0.64)
+      <span class="grade grade-high">High</span>;
+      Rescue antiemetics reduced from 22% to 13% (RR 0.62, 95% CI 0.52&ndash;0.74)
+      <span class="grade grade-moderate">Moderate</span>
+    </p>
+    <p><strong>Advantages:</strong> Cost-effective (~$5 AUD); extended-use capability; no infection risk; minimal training; patients can continue use at home.</p>
+    <p><strong>Disadvantages:</strong> Limited sizing for large wrists; impractical with multiple IV lines; potential wrist injuries.</p>
+  </details>
+
+  <details open>
+    <summary>Comparative Summary: PC6 Stimulation (All Modalities Combined)</summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Outcome</th>
+          <th>Control</th>
+          <th>Intervention</th>
+          <th>Effect (RR, 95% CI)</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nausea</td>
+          <td>47%</td>
+          <td>31%</td>
+          <td>0.68 (0.60&ndash;0.77)</td>
+          <td><span class="grade grade-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Vomiting</td>
+          <td>33%</td>
+          <td>19%</td>
+          <td>0.60 (0.51&ndash;0.71)</td>
+          <td><span class="grade grade-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Rescue antiemetics</td>
+          <td>33%</td>
+          <td>20%</td>
+          <td>0.64 (0.55&ndash;0.73)</td>
+          <td><span class="grade grade-moderate">Moderate</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+      PONV data shown as a worked example. Source: Lee et al., 2015 (Cochrane).
+      Side effects are mild and transient. Efficacy is equivalent to common antiemetics and
+      enhanced when combined with pharmacological approaches.
+    </p>
+  </details>
+
+  <details>
+    <summary>Cost Comparison of Modalities</summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Modality</th>
+          <th>Approximate Cost (AUD)</th>
+          <th>Reusable?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Acupuncture needles</td><td>~$0.05 per needle</td><td>No</td></tr>
+        <tr><td>Acupressure wristbands</td><td>~$5 per unit</td><td>Yes</td></tr>
+        <tr><td>Electroacupressure units</td><td>$40&ndash;$200</td><td>Yes</td></tr>
+        <tr><td>Electroacupuncture units</td><td>$200&ndash;$800</td><td>Yes</td></tr>
+        <tr><td>Auricular needles</td><td>A few cents per needle</td><td>No</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <!-- Section 3: Implementation Team -->
+  <h2>3. The Implementation Team</h2>
+
+  <details>
+    <summary>Key Team Roles</summary>
+    <p>Successful implementation requires individuals fulfilling three critical roles:</p>
+
+    <h4>Opinion Leaders / Facilitators</h4>
+    <p>
+      Individuals within the organisation who have formal or informal influence on attitudes
+      and beliefs regarding intervention implementation.
+    </p>
+
+    <h4>Champions</h4>
+    <p>
+      Individuals who drive through an implementation, overcoming indifference or resistance
+      from colleagues and institutional inertia.
+    </p>
+
+    <h4>External Change Agents</h4>
+    <p>
+      External individuals who formally influence or facilitate intervention decisions &mdash;
+      for example, an acupuncture researcher supporting a hospital team.
+    </p>
+
+    <p>
+      <strong>Key principle:</strong> Early adopters should share professional, educational,
+      cultural, or socioeconomic backgrounds with leadership for successful uptake.
+    </p>
+  </details>
+
+  <!-- Section 4: Staff Assessment -->
+  <h2>4. Staff Assessment</h2>
+
+  <details>
+    <summary>Staff Groups Requiring Involvement</summary>
+    <ul>
+      <li>Anaesthetists</li>
+      <li>Nurses</li>
+      <li>Midwives</li>
+      <li>Gynaecologists / Obstetricians</li>
+      <li>Surgeons</li>
+      <li>Administrative clerks</li>
+      <li>Interpreters</li>
+    </ul>
+    <p>
+      The specific groups will vary depending on the clinical application. For a pain management
+      programme, physiotherapists and pain specialists would also be relevant.
+    </p>
+  </details>
+
+  <details>
+    <summary>Survey Evidence: Staff Attitudes (USA)</summary>
+    <p>
+      A survey of 292 anaesthesia staff across 96 departments in the USA (Faircloth, 2014)
+      found broadly positive attitudes toward hospital acupuncture:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Finding</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Respondent composition</td><td>54% anaesthesiologists, 44% nurses, 2% aides</td></tr>
+        <tr><td>Prior use with positive outcomes</td><td>27%</td></tr>
+        <tr><td>Willing to consider use</td><td>54%</td></tr>
+        <tr><td>Willing to pursue education</td><td>74%</td></tr>
+      </tbody>
+    </table>
+    <h4>Main Barriers Identified</h4>
+    <table>
+      <thead>
+        <tr><th>Barrier</th><th>% Reporting</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Lack of scientific evidence (perceived)</td><td>79%</td></tr>
+        <tr><td>Unavailability of credentialled providers</td><td>71%</td></tr>
+        <tr><td>Lack of equipment</td><td>49%</td></tr>
+        <tr><td>Too time-consuming</td><td>38%</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <details>
+    <summary>Survey Evidence: Staff Attitudes (Australia)</summary>
+    <p>An Australian hospital survey of 165 doctors, nurses, midwives, and obstetricians found:</p>
+    <table>
+      <thead>
+        <tr><th>Finding</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Believed acupuncture effective for PONV</td><td>42%</td></tr>
+        <tr><td>Would encourage patients after education</td><td>81%</td></tr>
+        <tr><td>Wanted further education</td><td>88%</td></tr>
+      </tbody>
+    </table>
+    <p>
+      In the broader Australian primary care context, ~85% of 544 surveyed GPs considered
+      acupuncture effective and safe (Cohen et al., 2005), and 80% have referred patients
+      for acupuncture (Wardle et al., 2013). Some Australian medical schools already teach
+      acupuncture as electives.
+    </p>
+  </details>
+
+  <!-- Section 5: Organisational Readiness -->
+  <h2>5. Organisational Readiness Assessment</h2>
+
+  <details>
+    <summary>Using the CARI Checklist</summary>
+    <p>
+      The Modified Checklist to Assess Organisation Readiness (CARI) (Barwick, 2011) evaluates
+      five domains:
+    </p>
+    <ul>
+      <li>System readiness</li>
+      <li>Senior leadership support</li>
+      <li>Staff capability</li>
+      <li>Implementation plan maturity</li>
+      <li>Training requirements</li>
+    </ul>
+    <p>
+      <strong>Scoring:</strong> Total possible = 100 points.
+      Readiness threshold is 80+ points, with a minimum of 15 points per category.
+      Scores below 80 indicate areas that need strengthening before proceeding to Phase 2.
+    </p>
+  </details>
+
+  <!-- Section 6: Cost and Funding -->
+  <h2>6. Cost and Funding Considerations</h2>
+
+  <details>
+    <summary>Cost Assessment Framework</summary>
+    <p>Based on Myle (2016), the following costs should be tracked for any hospital acupuncture programme:</p>
+    <table>
+      <thead>
+        <tr><th>Cost Category</th><th>What to Track</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Device/consumable cost</td><td>Cost per patient per session</td></tr>
+        <tr><td>Staff time &mdash; delivery</td><td>Minutes per intervention delivery</td></tr>
+        <tr><td>Staff time &mdash; monitoring</td><td>Minutes per monitoring period</td></tr>
+        <tr><td>Existing medications</td><td>Preventive and rescue medication types, dosages, and costs</td></tr>
+        <tr><td>Equipment</td><td>Capital cost of reusable devices</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Compare the total cost of acupuncture/acupressure delivery against the existing pharmacological
+      pathway to assess whether the intervention is cost-neutral or cost-saving.
+    </p>
+  </details>
+
+  <!-- Section 7: Patient Perspectives -->
+  <h2>7. Patient Perspectives</h2>
+
+  <details>
+    <summary>Patient Survey Evidence</summary>
+    <p>
+      A survey of 160 Australian surgical patients (Weeks et al., 2017) found strong patient
+      receptivity to hospital acupuncture, particularly after brief education:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Measure</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Pre-education willingness to use acupuncture</td><td>65%</td></tr>
+        <tr><td>Baseline knowledge that acupuncture can treat nausea/vomiting</td><td>15%</td></tr>
+        <tr><td>Post-education willingness</td><td>87% (+22 percentage points)</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Clinical guidelines recommend considering patient preferences when selecting treatment
+      approaches. Brief education can substantially increase patient acceptance.
+    </p>
+  </details>
+
+  <!-- Downloads -->
+  <div class="downloads">
+    <h3>Phase 1 Resources</h3>
+    <ul>
+      <li><a href={url('/resources/')}>PONV risk self-assessment checklist</a></li>
+      <li><a href={url('/resources/')}>Data extraction template (Excel)</a></li>
+      <li><a href={url('/resources/')}>Modified CARI readiness checklist</a></li>
+      <li><a href={url('/resources/')}>Sample staff survey questions</a></li>
+      <li><a href={url('/resources/')}>Patient survey results and template</a></li>
+    </ul>
+  </div>
+
+</FrameworkLayout>

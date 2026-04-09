@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Hospital Acupuncture Implementation Framework (HAIF)",
+  "description": "A methodology for integrating acupuncture and acupressure into hospital practice. Evidence-based. Practitioner-tested.",
+  "url": "https://hospitalacupuncture.com/",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Zhen Zheng",
+    "jobTitle": "Senior Research Fellow",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "RMIT University"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hospital Acupuncture Implementation Framework",
+    "url": "https://hospitalacupuncture.com"
+  }
+};
+---
+
+<BaseLayout title="Home" schema={schema}>
+  <section class="hero">
+    <h1>Hospital Acupuncture<br />Implementation Framework</h1>
+    <p class="subtitle">
+      A methodology for integrating acupuncture and acupressure into hospital practice.
+      Evidence-based. Practitioner-tested.
+    </p>
+    <a href={url('/framework/')} class="cta">Explore the Framework</a>
+  </section>
+
+  <!-- Circular Phase Diagram (SVG) -->
+  <section aria-label="Framework phases diagram" style="text-align: center; margin: var(--spacing-xl) 0;">
+    <svg viewBox="0 0 400 400" width="320" height="320" role="img" aria-label="Four-phase implementation cycle: Exploration, Preparation, Implementation, Sustainment" style="max-width: 100%;">
+      <!-- Connecting arcs -->
+      <path d="M200 60 A140 140 0 0 1 340 200" fill="none" stroke="#dee2e6" stroke-width="3"/>
+      <path d="M340 200 A140 140 0 0 1 200 340" fill="none" stroke="#dee2e6" stroke-width="3"/>
+      <path d="M200 340 A140 140 0 0 1 60 200" fill="none" stroke="#dee2e6" stroke-width="3"/>
+      <path d="M60 200 A140 140 0 0 1 200 60" fill="none" stroke="#dee2e6" stroke-width="3"/>
+
+      <!-- Arrow indicators -->
+      <polygon points="330,165 345,195 315,195" fill="#dee2e6"/>
+      <polygon points="235,330 205,345 205,315" fill="#dee2e6"/>
+      <polygon points="70,235 55,205 85,205" fill="#dee2e6"/>
+      <polygon points="165,70 195,55 195,85" fill="#dee2e6"/>
+
+      <!-- Phase 1: Exploration (top) -->
+      <a href={url('/framework/exploration/')}>
+        <circle cx="200" cy="60" r="48" fill="#1a5276" stroke="#fff" stroke-width="2"/>
+        <text x="200" y="54" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 1</text>
+        <text x="200" y="70" text-anchor="middle" fill="#fff" font-size="10">Exploration</text>
+      </a>
+
+      <!-- Phase 2: Preparation (right) -->
+      <a href={url('/framework/preparation/')}>
+        <circle cx="340" cy="200" r="48" fill="#2980b9" stroke="#fff" stroke-width="2"/>
+        <text x="340" y="194" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 2</text>
+        <text x="340" y="210" text-anchor="middle" fill="#fff" font-size="10">Preparation</text>
+      </a>
+
+      <!-- Phase 3: Implementation (bottom) -->
+      <a href={url('/framework/implementation/')}>
+        <circle cx="200" cy="340" r="48" fill="#27ae60" stroke="#fff" stroke-width="2"/>
+        <text x="200" y="334" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 3</text>
+        <text x="200" y="350" text-anchor="middle" fill="#fff" font-size="10">Implementation</text>
+      </a>
+
+      <!-- Phase 4: Sustainment (left) -->
+      <a href={url('/framework/sustainment/')}>
+        <circle cx="60" cy="200" r="48" fill="#d4a017" stroke="#fff" stroke-width="2"/>
+        <text x="60" y="194" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Phase 4</text>
+        <text x="60" y="210" text-anchor="middle" fill="#fff" font-size="10">Sustainment</text>
+      </a>
+
+      <!-- Center label -->
+      <text x="200" y="196" text-anchor="middle" fill="#2c3e50" font-size="13" font-weight="700">HAIF</text>
+      <text x="200" y="212" text-anchor="middle" fill="#6c757d" font-size="9">EPIS Framework</text>
+    </svg>
+  </section>
+
+  <!-- Bottom Line -->
+  <div class="bottom-line">
+    <strong>The Bottom Line</strong>
+    Acupuncture and acupressure are the only non-pharmacological interventions included in post-operative nausea and vomiting management guidelines. Despite strong evidence, systematic implementation in hospitals remains rare. This framework shows you how.
+  </div>
+
+  <!-- Audience Entry Points -->
+  <h2>I am a...</h2>
+  <div class="audience-grid">
+    <a href={url('/for/administrators/')} class="audience-card">
+      <span class="role">Hospital Administrator</span>
+      <span class="desc">Cost, credentialing, and workflow impact</span>
+    </a>
+    <a href={url('/for/clinicians/')} class="audience-card">
+      <span class="role">Clinician</span>
+      <span class="desc">Evidence, protocols, and safety data</span>
+    </a>
+    <a href={url('/for/practitioners/')} class="audience-card">
+      <span class="role">Acupuncture Practitioner</span>
+      <span class="desc">Hospital credentialing and collaboration</span>
+    </a>
+    <a href={url('/for/researchers/')} class="audience-card">
+      <span class="role">Researcher</span>
+      <span class="desc">Methodology, data, and publications</span>
+    </a>
+  </div>
+
+  <!-- Application Examples -->
+  <h2>Application Examples</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Acupressure for PONV</h3>
+      <p>Nurse-led acupressure wristband implementation for post-operative nausea and vomiting at Northern Hospital, Victoria.</p>
+      <a href={url('/examples/ponv-acupressure/')}>View case study &rarr;</a>
+    </div>
+    <div class="card">
+      <h3>Acupuncture in Emergency <span class="coming-soon">Coming Soon</span></h3>
+      <p>Registrar-led acupuncture implementation in the emergency department. Research in progress.</p>
+    </div>
+  </div>
+
+  <!-- Evidence snapshot -->
+  <h2>Key Evidence</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Outcome</th>
+        <th>Effect (RR)</th>
+        <th>Evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nausea (PC6 stimulation)</td>
+        <td>0.68 (95% CI 0.60-0.77)</td>
+        <td><span class="grade grade-high">High</span></td>
+      </tr>
+      <tr>
+        <td>Vomiting (PC6 stimulation)</td>
+        <td>0.60 (95% CI 0.51-0.71)</td>
+        <td><span class="grade grade-high">High</span></td>
+      </tr>
+      <tr>
+        <td>Rescue antiemetics</td>
+        <td>0.64 (95% CI 0.55-0.73)</td>
+        <td><span class="grade grade-moderate">Moderate</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+    Source: Lee et al., 2015 (Cochrane Database of Systematic Reviews).
+    <a href={url('/evidence/')}>Full evidence summaries &rarr;</a>
+  </p>
+
+  <!-- Author attribution -->
+  <section style="margin-top: var(--spacing-2xl); padding: var(--spacing-lg); background: var(--color-bg-alt); border-radius: var(--radius);">
+    <h3 style="margin-top: 0;">About the Framework</h3>
+    <p>
+      Developed by <strong>Dr Zhen Zheng, PhD</strong>, Senior Research Fellow at RMIT University and
+      NHMRC Translating Research into Practice Fellow. The HAIF framework draws on implementation science
+      methodology (EPIS, CFIR) and real-world hospital implementation experience.
+    </p>
+    <a href={url('/about/')}>Learn more about HAIF &rarr;</a>
+  </section>
+</BaseLayout>

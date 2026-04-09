@@ -1,0 +1,263 @@
+---
+import FrameworkLayout from '../../layouts/FrameworkLayout.astro';
+import { url } from '../../utils';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Phase 3: Implementation — Hospital Acupuncture Implementation",
+  "description": "Execute the acupuncture or acupressure implementation plan using evidence-based strategies: education, opinion leaders, training, management engagement, and staged rollout.",
+  "url": "https://hospitalacupuncture.com/framework/implementation/",
+  "lastReviewed": "2026-04",
+  "author": {
+    "@type": "Person",
+    "name": "Dr Zhen Zheng",
+    "affiliation": { "@type": "Organization", "name": "RMIT University" }
+  }
+};
+---
+
+<FrameworkLayout
+  title="Implementation"
+  description="Execute the plan using evidence-based implementation strategies, training, management engagement, and staged rollout."
+  phaseNumber={3}
+  bottomLine="Successful hospital acupuncture implementation requires coordinating both internal factors (organisational structure, communication, readiness) and external factors (patient needs, peer networks, policy). Use proven implementation strategies — opinion leaders are the most effective at 12% behaviour change — and start with a controlled pilot before scaling."
+  schema={schema}
+>
+
+  <h2>Overview</h2>
+  <p>
+    Successful acupuncture/acupressure implementation requires both internal and external
+    enablers. Internal factors encompass organisation characteristics, networks and communication,
+    climate for change, and readiness for change. External factors cover patient needs, peer
+    pressure, organisational networks, and external policy.
+  </p>
+  <p>
+    This phase translates the preparation work into action, using the Consolidated Framework
+    for Implementation Research (CFIR) constructs as a guide. While PONV acupressure serves as
+    the worked example, the strategies apply to any hospital acupuncture programme.
+  </p>
+
+  <!-- Organisational Structure -->
+  <h2>1. Structure of the Organisation</h2>
+
+  <details>
+    <summary>CFIR: Structural Characteristics</summary>
+    <p>
+      Implementation scope determines which departments and units must be involved. The broader
+      the intervention window, the more coordination is required.
+    </p>
+    <p>
+      <strong>PONV example:</strong> If acupressure wristbands are used for 24 hours peri-surgically,
+      then staff from admission, theatre, recovery, and the wards will all be involved.
+      Coordination and communication among those units are essential.
+    </p>
+    <p>
+      <strong>General principle:</strong> Ensure all key stakeholders are part of the team.
+      Map the patient journey through your organisation and identify every handover point
+      where the intervention must be communicated, maintained, or documented.
+    </p>
+  </details>
+
+  <!-- Priority and Goals -->
+  <h2>2. Priority and Goals</h2>
+
+  <details>
+    <summary>Aligning Implementation with Clinician Priorities</summary>
+    <p>
+      Research shows that alignment between an intervention and existing clinician priorities is
+      a stronger predictor of implementation effectiveness than the strength of the evidence
+      itself.
+    </p>
+    <p>To achieve alignment:</p>
+    <ul>
+      <li>Communicate how the intervention supports goals staff already care about
+        (e.g., patient satisfaction, reduced medication burden, shorter recovery times)</li>
+      <li>Provide regular feedback on outcomes that matter to frontline clinicians</li>
+      <li>Frame the intervention as enhancing &mdash; not replacing &mdash; existing practice</li>
+    </ul>
+  </details>
+
+  <!-- Implementation Strategies -->
+  <h2>3. Implementation Strategies</h2>
+
+  <details open>
+    <summary>Evidence-Based Strategies (Grimshaw, 2012)</summary>
+    <p>
+      A systematic review by Grimshaw (2012) quantified the effectiveness of common
+      implementation strategies. The table below shows each strategy with its measured
+      effect and a hospital acupuncture example:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Strategy</th>
+          <th>Effectiveness</th>
+          <th>Hospital Acupuncture Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Printed educational material</td>
+          <td>4.3%</td>
+          <td>Evidence summary handouts, point location guides, patient information sheets
+            distributed to all relevant clinical areas</td>
+        </tr>
+        <tr>
+          <td>Educational meetings</td>
+          <td>6%</td>
+          <td>Grand rounds presentations, ward in-service sessions, lunchtime seminars
+            covering evidence, technique, and workflow integration</td>
+        </tr>
+        <tr>
+          <td>Local opinion leaders</td>
+          <td>12% <span class="grade grade-high">High</span></td>
+          <td>Respected senior clinicians who advocate for acupuncture/acupressure,
+            demonstrate technique, and mentor colleagues</td>
+        </tr>
+        <tr>
+          <td>Audit and feedback</td>
+          <td>5%</td>
+          <td>Regular reports on intervention uptake, patient outcomes, and compliance
+            fed back to clinical teams</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size: 0.85rem; color: var(--color-text-muted);">
+      Effectiveness refers to median absolute improvement in compliance with desired practice.
+      Strategies are most effective when combined.
+    </p>
+  </details>
+
+  <!-- Training -->
+  <h2>4. Training</h2>
+
+  <details>
+    <summary>CFIR: Access to Knowledge and Information</summary>
+    <p>
+      Training is essential for all staff involved in delivery, monitoring, and documentation.
+      The POPA4Ease project developed three differentiated training packages:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Package</th><th>Audience</th><th>Content Focus</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Package A</strong></td>
+          <td>Direct intervention deliverers (nurses, acupuncturists)</td>
+          <td>Point location, technique, dosage, contraindications, documentation</td>
+        </tr>
+        <tr>
+          <td><strong>Package B</strong></td>
+          <td>Supervising clinicians (anaesthetists, surgeons)</td>
+          <td>Evidence base, patient selection, safety monitoring, escalation protocols</td>
+        </tr>
+        <tr>
+          <td><strong>Package C</strong></td>
+          <td>Ward and support staff</td>
+          <td>Awareness of intervention, monitoring for displacement or adverse events,
+            documentation requirements</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Supplement formal training with on-the-job mentoring: pair trained staff with new
+      adopters for the first several patients.
+    </p>
+  </details>
+
+  <!-- Management Engagement -->
+  <h2>5. Engaging Management</h2>
+
+  <details>
+    <summary>CFIR: Leadership Engagement</summary>
+    <p>
+      Leadership engagement &mdash; defined as the commitment, involvement, and accountability
+      of leaders and managers &mdash; is required at three levels:
+    </p>
+    <table>
+      <thead>
+        <tr><th>Level</th><th>Role in Implementation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Executive leadership</strong></td>
+          <td>Authorise the programme, allocate resources, signal organisational priority</td>
+        </tr>
+        <tr>
+          <td><strong>Middle management</strong></td>
+          <td>Facilitate cross-departmental coordination, resolve operational barriers</td>
+        </tr>
+        <tr>
+          <td><strong>Frontline management</strong></td>
+          <td>Support daily practice, adjust rosters, reinforce training, provide immediate feedback</td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+
+  <!-- Assessment -->
+  <h2>6. Assessment and Evaluation</h2>
+
+  <details>
+    <summary>CFIR: Reflecting and Evaluating</summary>
+    <p>
+      Define outcome measures before launch. Decide what to measure, how to track it, and
+      how often to review:
+    </p>
+    <ul>
+      <li><strong>Clinical outcomes</strong> &mdash; condition incidence rates, rescue medication use, patient-reported outcomes</li>
+      <li><strong>Process measures</strong> &mdash; intervention uptake rate, correct technique adherence, documentation completeness</li>
+      <li><strong>Staff measures</strong> &mdash; confidence levels, satisfaction, feedback on workflow integration</li>
+      <li><strong>Patient measures</strong> &mdash; satisfaction, willingness to recommend, adverse events</li>
+    </ul>
+    <p>
+      Use regular audits to identify and correct implementation drift early. The Joanna Briggs
+      Institute's PACES online audit tool provides a structured approach to clinical audit.
+    </p>
+  </details>
+
+  <!-- Execution -->
+  <h2>7. Execute the Implementation</h2>
+
+  <details open>
+    <summary>Staged Rollout Approach</summary>
+    <p>
+      Rather than organisation-wide launch, use a staged approach to manage risk and build
+      confidence:
+    </p>
+    <h4>Step 1: Practice Runs</h4>
+    <p>
+      Conduct dry runs with simulated patients or willing volunteers. Identify workflow issues,
+      timing problems, and documentation gaps before any real patient contact.
+    </p>
+    <h4>Step 2: Pilot Implementation</h4>
+    <p>
+      Start with a single ward, unit, or surgical list. Collect data intensively, debrief
+      weekly, and refine protocols based on real-world experience.
+    </p>
+    <h4>Step 3: Controlled Expansion</h4>
+    <p>
+      Expand to additional units one at a time, using lessons from the pilot. Each new unit
+      benefits from refined protocols and trained mentors from earlier stages.
+    </p>
+    <p>
+      <strong>Tip:</strong> Limiting initial scope reduces resistance and allows early
+      adopters to become advocates before sceptical colleagues must engage.
+    </p>
+  </details>
+
+  <!-- External Resources -->
+  <div class="downloads">
+    <h3>Phase 3 Resources</h3>
+    <ul>
+      <li><a href="https://cfirguide.org/" target="_blank" rel="noopener">CFIR Guide</a> &mdash; constructs and matching tools for implementation research</li>
+      <li><a href="https://jbi.global/" target="_blank" rel="noopener">Joanna Briggs Institute PACES</a> &mdash; online clinical audit tool</li>
+      <li><a href={url('/resources/')}>Training package templates</a></li>
+      <li><a href={url('/resources/')}>Audit and feedback report template</a></li>
+      <li><a href={url('/resources/')}>Staged rollout planning checklist</a></li>
+    </ul>
+  </div>
+
+</FrameworkLayout>

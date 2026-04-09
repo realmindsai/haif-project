@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils';
+---
+
+<BaseLayout
+  title="Resources"
+  description="Downloadable resources for implementing acupuncture and acupressure in hospital settings: checklists, templates, assessment tools, and patient education materials."
+  lastReviewed="April 2026"
+>
+  <h1>Resources &amp; Downloads</h1>
+
+  <p>
+    The following resources support implementation of acupuncture and acupressure
+    in hospital settings. Each aligns with one or more phases of the
+    <a href={url('/framework/')}>HAIF framework</a>.
+  </p>
+
+  <!-- Phase Checklists -->
+  <h2>Phase Checklists</h2>
+  <div class="downloads">
+    <h3>Implementation Phase Checklists</h3>
+    <p>One checklist per phase, summarising key tasks, decision points, and outputs.</p>
+    <ul>
+      <li><a href={url('/downloads/exploration-checklist.pdf')}>Phase 1: Exploration Checklist</a> (PDF)</li>
+      <li><a href={url('/downloads/preparation-checklist.pdf')}>Phase 2: Preparation Checklist</a> (PDF)</li>
+      <li><a href={url('/downloads/implementation-checklist.pdf')}>Phase 3: Implementation Checklist</a> (PDF)</li>
+      <li><a href={url('/downloads/sustainment-checklist.pdf')}>Phase 4: Sustainment Checklist</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <!-- Clinical Tools -->
+  <h2>Clinical Tools</h2>
+  <div class="downloads">
+    <h3>Intervention Comparison Card</h3>
+    <p>
+      One-page reference card comparing all six modalities (manual acupressure,
+      electroacupressure, auricular acupuncture, body acupuncture,
+      electroacupuncture, wristbands) by effectiveness, cost, training
+      requirements, and practical considerations. Suitable for lamination
+      and display in clinical areas.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/intervention-comparison-card.pdf')}>Intervention Comparison Card</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <div class="downloads">
+    <h3>Clinical Decision Aid</h3>
+    <p>
+      Step-by-step decision guide for selecting and implementing acupuncture or
+      acupressure interventions. Covers patient risk assessment, modality selection,
+      timing, and delivery personnel.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/clinical-decision-aid.pdf')}>Clinical Decision Aid</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <div class="downloads">
+    <h3>Patient Education Sheet</h3>
+    <p>
+      Patient-facing information explaining acupressure for post-operative
+      symptom management, including what to expect, how to find the PC6 point,
+      wristband instructions, and common questions.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/patient-education-sheet.pdf')}>Patient Education Sheet</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <!-- Assessment Tools -->
+  <h2>Assessment Tools</h2>
+  <div class="downloads">
+    <h3>CARI Readiness Assessment</h3>
+    <p>
+      Modified Checklist to Assess Readiness for Implementation (CARI),
+      adapted from Barwick (2011). Evaluates system readiness, senior leadership
+      support, staff capability, implementation plan maturity, and training
+      requirements. Scoring: 100 points total; readiness threshold is 80+ points
+      with a minimum 15 points per category.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/cari-readiness-assessment.pdf')}>CARI Readiness Assessment</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <!-- Data Collection -->
+  <h2>Data Collection Templates</h2>
+  <div class="downloads">
+    <h3>PONV Data Extraction Template</h3>
+    <p>
+      Template for extracting PONV incidence data, rescue antiemetic usage,
+      and risk factor prevalence from hospital records. Designed for the
+      Exploration phase baseline audit.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/ponv-data-extraction-template.pdf')}>PONV Data Extraction Template</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <div class="downloads">
+    <h3>Staff Survey Template</h3>
+    <p>
+      Survey instrument for assessing staff attitudes, knowledge, and willingness
+      to participate in acupuncture/acupressure implementation. Based on validated
+      instruments used in Australian and US hospital surveys.
+    </p>
+    <ul>
+      <li><a href={url('/downloads/staff-survey-template.pdf')}>Staff Survey Template</a> (PDF)</li>
+    </ul>
+  </div>
+
+  <h2>Requesting Resources</h2>
+  <p>
+    If you need resources in an alternative format or have suggestions for
+    additional tools, please <a href={url('/contact/')}>contact us</a>.
+  </p>
+</BaseLayout>

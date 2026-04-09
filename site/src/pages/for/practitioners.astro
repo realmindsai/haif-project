@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="HAIF for Practitioners"
+  description="Hospital Acupuncture Implementation Framework for acupuncture and TCM practitioners: hospital credentialling, scope of practice, and interprofessional collaboration models."
+  lastReviewed="April 2026"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a>
+    <span>/</span>
+    HAIF for Practitioners
+  </nav>
+
+  <h1>HAIF for Acupuncture Practitioners</h1>
+
+  <div class="bottom-line">
+    <strong>Why This Matters to You</strong>
+    Hospital implementation creates new practice opportunities but requires
+    navigating credentialling, interprofessional collaboration, and institutional
+    governance. The HAIF framework provides a structured pathway for practitioners
+    to integrate acupuncture services into hospital clinical teams.
+  </div>
+
+  <h2>What Practitioners Need to Know</h2>
+  <ul>
+    <li>
+      <strong>Hospital credentialling:</strong> Invasive modalities (body acupuncture,
+      electroacupuncture, auricular acupuncture) require formal credentialling within
+      the hospital system. The framework's Preparation phase covers how to navigate
+      credentialling requirements and what documentation is needed.
+      <a href={url('/framework/preparation/')}>See Phase 2: Preparation &rarr;</a>
+    </li>
+    <li>
+      <strong>Scope of practice:</strong> Non-invasive modalities (wristbands, manual
+      acupressure) can be delivered by trained nurses, while needle-based interventions
+      may require a qualified acupuncturist or credentialled medical practitioner.
+      Understanding where your skills fit in the implementation model is critical.
+    </li>
+    <li>
+      <strong>Collaboration models:</strong> Successful hospital implementation depends
+      on interprofessional teamwork. The framework identifies roles for opinion leaders,
+      champions, and external change agents. Practitioners often serve as external
+      change agents providing clinical expertise.
+      <a href={url('/framework/exploration/')}>See Phase 1: Exploration &rarr;</a>
+    </li>
+    <li>
+      <strong>Staff attitudes:</strong> In Australian hospital surveys, 81% of staff
+      would encourage patients to use acupuncture/acupressure after education, and
+      88% wanted further education. In a US survey, 71% identified "unavailability
+      of credentialled providers" as a barrier — highlighting the demand for
+      qualified practitioners.
+    </li>
+    <li>
+      <strong>Real implementation experience:</strong> The Northern Hospital case study
+      documents how a nurse-led model worked in practice, including how acupuncture
+      practitioners contributed to training, protocol development, and fidelity
+      monitoring.
+      <a href={url('/examples/ponv-acupressure/')}>See PONV case study &rarr;</a>
+    </li>
+  </ul>
+
+  <h2>Start Here</h2>
+  <p>
+    Read the <a href={url('/examples/ponv-acupressure/')}>PONV acupressure case study</a>
+    to understand how implementation works in practice, then review the
+    <a href={url('/framework/exploration/')}>Exploration phase</a> to understand how
+    implementation teams are formed and where practitioner expertise fits. The
+    <a href={url('/evidence/')}>evidence summaries</a> will help you speak the language
+    of hospital-based evidence when engaging with clinical colleagues.
+  </p>
+
+  <h2>Key Resources for Practitioners</h2>
+  <ul>
+    <li><a href={url('/evidence/')}>Modality comparison table with GRADE ratings</a></li>
+    <li><a href={url('/resources/')}>Intervention comparison card</a></li>
+    <li><a href={url('/examples/ponv-acupressure/')}>Northern Hospital case study</a></li>
+    <li><a href={url('/framework/')}>Full framework walkthrough</a></li>
+    <li><a href={url('/references/')}>Reference list for clinical discussions</a></li>
+  </ul>
+
+  <div class="phase-nav">
+    <a href={url('/')}>&larr; Home</a>
+    <a href={url('/examples/ponv-acupressure/')}>View Case Study &rarr;</a>
+  </div>
+</BaseLayout>

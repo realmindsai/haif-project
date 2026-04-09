@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="ED Acupuncture Case Study"
+  description="Upcoming case study: Registrar-led acupuncture implementation in the emergency department. Research currently in progress."
+  lastReviewed="April 2026"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a>
+    <span>/</span>
+    <a href={url('/examples/')}>Examples</a>
+    <span>/</span>
+    ED Acupuncture
+  </nav>
+
+  <h1>
+    Acupuncture in Emergency Department
+    <span class="coming-soon">Coming Soon</span>
+  </h1>
+
+  <div class="bottom-line">
+    <strong>Research in Progress</strong>
+    This case study is currently being developed. The research has not yet been
+    completed, and findings will be published here once available.
+  </div>
+
+  <h2>Overview</h2>
+  <p>
+    This example will document a <strong>registrar-led</strong> initiative to
+    implement acupuncture in an emergency department setting. Unlike the
+    <a href={url('/examples/ponv-acupressure/')}>PONV acupressure case study</a>,
+    which uses a nurse-led, non-invasive model, this example involves
+    needle-based acupuncture delivered in an acute care environment.
+  </p>
+
+  <h2>What This Case Study Will Cover</h2>
+  <ul>
+    <li>
+      <strong>Setting:</strong> Emergency department at an Australian public hospital
+    </li>
+    <li>
+      <strong>Model:</strong> Registrar-led acupuncture delivery within ED workflows
+    </li>
+    <li>
+      <strong>Clinical focus:</strong> Acute presentations suitable for acupuncture intervention
+    </li>
+    <li>
+      <strong>Framework application:</strong> How HAIF's four phases adapt to the
+      distinct challenges of emergency department implementation — including faster
+      pace, higher patient turnover, and different credentialling requirements
+    </li>
+    <li>
+      <strong>Scope of practice:</strong> How a medical registrar's existing
+      credentials interact with acupuncture credentialling in a hospital context
+    </li>
+  </ul>
+
+  <h2>How This Differs from Example 1</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>PONV Acupressure</th>
+        <th>ED Acupuncture</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Setting</td>
+        <td>Surgical ward / Recovery</td>
+        <td>Emergency department</td>
+      </tr>
+      <tr>
+        <td>Lead clinician</td>
+        <td>Nurse</td>
+        <td>Medical registrar</td>
+      </tr>
+      <tr>
+        <td>Intervention</td>
+        <td>Acupressure wristband (non-invasive)</td>
+        <td>Needle acupuncture (invasive)</td>
+      </tr>
+      <tr>
+        <td>Timing</td>
+        <td>Planned peri-operative</td>
+        <td>Acute/unscheduled presentations</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td>Completed</td>
+        <td>In progress</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    When this research is complete, the case study will walk through all four HAIF
+    phases as applied to the emergency department context, including adaptations
+    required for acute care settings.
+  </p>
+
+  <p>
+    To be notified when this case study is published,
+    <a href={url('/contact/')}>contact us</a>.
+  </p>
+
+  <div class="phase-nav">
+    <a href={url('/examples/')}>&larr; All Examples</a>
+    <a href={url('/examples/ponv-acupressure/')}>PONV Case Study &rarr;</a>
+  </div>
+</BaseLayout>

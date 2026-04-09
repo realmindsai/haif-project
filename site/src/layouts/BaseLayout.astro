@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import { url } from '../utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  lastReviewed?: string;
+  schema?: object;
+}
+
+const {
+  title,
+  description = 'A methodology for integrating acupuncture and acupressure into hospital practice. Evidence-based. Practitioner-tested.',
+  lastReviewed,
+  schema,
+} = Astro.props;
+
+const fullTitle = title === 'Home'
+  ? 'HAIF — Hospital Acupuncture Implementation Framework'
+  : `${title} — HAIF`;
+
+const currentPath = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <link rel="canonical" href={new URL(currentPath, Astro.site).href} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(currentPath, Astro.site).href} />
+    <meta name="robots" content="index, follow" />
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <p class="site-title">
+          <a href={url('/')}>HAIF</a>
+        </p>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          &#9776;
+        </button>
+        <nav class="main-nav" role="navigation" aria-label="Main">
+          <a href={url('/framework/')} aria-current={currentPath.startsWith('/framework') ? 'page' : undefined}>Framework</a>
+          <a href={url('/examples/')} aria-current={currentPath.startsWith('/examples') ? 'page' : undefined}>Examples</a>
+          <a href={url('/evidence/')} aria-current={currentPath === '/evidence/' ? 'page' : undefined}>Evidence</a>
+          <a href={url('/faq/')} aria-current={currentPath === '/faq/' ? 'page' : undefined}>FAQ</a>
+          <a href={url('/resources/')} aria-current={currentPath === '/resources/' ? 'page' : undefined}>Resources</a>
+          <a href={url('/about/')} aria-current={currentPath === '/about/' ? 'page' : undefined}>About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" class="container">
+      <slot />
+
+      {lastReviewed && (
+        <p class="last-reviewed">
+          Last reviewed: {lastReviewed}
+        </p>
+      )}
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <p>
+          <strong>Hospital Acupuncture Implementation Framework (HAIF)</strong><br />
+          Dr Zhen Zheng, PhD &middot; RMIT University<br />
+          NHMRC Translating Research into Practice Fellow
+        </p>
+        <p>
+          <a href={url('/about/')}>About</a> &middot;
+          <a href={url('/contact/')}>Contact</a> &middot;
+          <a href={url('/references/')}>References</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('.main-nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const expanded = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!expanded));
+          nav.classList.toggle('open');
+        });
+      }
+    </script>
+  </body>
+</html>

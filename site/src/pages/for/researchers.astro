@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="HAIF for Researchers"
+  description="Hospital Acupuncture Implementation Framework for researchers: EPIS model, CFIR constructs, implementation science methodology, publications, and data."
+  lastReviewed="April 2026"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a>
+    <span>/</span>
+    HAIF for Researchers
+  </nav>
+
+  <h1>HAIF for Researchers</h1>
+
+  <div class="bottom-line">
+    <strong>Why This Matters to You</strong>
+    HAIF is the first implementation framework specifically designed for integrating
+    acupuncture and acupressure into hospital clinical practice. It is grounded in
+    the EPIS model and CFIR constructs, providing a reproducible, theory-driven
+    methodology suitable for implementation science research.
+  </div>
+
+  <h2>What Researchers Need to Know</h2>
+  <ul>
+    <li>
+      <strong>Theoretical foundations:</strong> HAIF uses the EPIS model (Aarons,
+      Hurlburt &amp; Horwitz, 2011) for its four-phase structure and the Consolidated
+      Framework for Implementation Research (CFIR) for within-phase constructs
+      including organisational readiness, structural characteristics, leadership
+      engagement, access to knowledge, and fidelity monitoring.
+      <a href={url('/about/')}>See methodology details &rarr;</a>
+    </li>
+    <li>
+      <strong>Evidence base:</strong> The framework draws on Cochrane-level systematic
+      reviews (Lee et al., 2015), GRADE-rated evidence summaries, and validated
+      assessment tools (CARI, FAME criteria). All evidence is presented with effect
+      sizes, confidence intervals, and quality ratings.
+      <a href={url('/evidence/')}>See evidence summaries &rarr;</a>
+    </li>
+    <li>
+      <strong>Implementation data:</strong> The PONV acupressure case study provides
+      real-world implementation data including staff survey results (n=165),
+      patient preference data (n=160), organisational readiness scores, and
+      implementation strategy effectiveness comparisons.
+      <a href={url('/examples/ponv-acupressure/')}>See case study &rarr;</a>
+    </li>
+    <li>
+      <strong>Assessment instruments:</strong> Validated tools used in HAIF include
+      the modified CARI readiness checklist (Barwick, 2011), PONV data extraction
+      templates, staff attitude surveys, and patient preference instruments.
+      <a href={url('/resources/')}>See available instruments &rarr;</a>
+    </li>
+    <li>
+      <strong>Research gaps:</strong> The ED acupuncture example (research in progress)
+      extends the framework to acute care settings with a registrar-led model,
+      addressing different credentialling, workflow, and scope-of-practice questions.
+      <a href={url('/examples/ed-acupuncture/')}>See upcoming research &rarr;</a>
+    </li>
+  </ul>
+
+  <h2>Start Here</h2>
+  <p>
+    Review the <a href={url('/about/')}>About page</a> for the theoretical foundations
+    of the framework, then read through the
+    <a href={url('/framework/')}>four framework phases</a> to understand the full
+    methodology. The <a href={url('/references/')}>reference list</a> provides the
+    complete citation set. For collaboration enquiries, please
+    <a href={url('/contact/')}>contact Dr Zhen Zheng</a>.
+  </p>
+
+  <h2>Key Resources for Researchers</h2>
+  <ul>
+    <li><a href={url('/about/')}>Theoretical foundations (EPIS, CFIR)</a></li>
+    <li><a href={url('/evidence/')}>GRADE-rated evidence summaries</a></li>
+    <li><a href={url('/references/')}>Full reference list</a></li>
+    <li><a href={url('/resources/')}>Assessment instruments and templates</a></li>
+    <li><a href={url('/examples/ponv-acupressure/')}>Implementation case study with data</a></li>
+    <li><a href={url('/examples/ed-acupuncture/')}>Upcoming ED acupuncture research</a></li>
+  </ul>
+
+  <h2>Key Publications</h2>
+  <p>
+    The HAIF framework and its application are documented in the following key references:
+  </p>
+  <ul>
+    <li>
+      Aarons, G. A., Hurlburt, M. &amp; Horwitz, S. M. (2011). Advancing a
+      conceptual model of evidence-based practice implementation in public
+      service sectors. <em>Administration and Policy in Mental Health</em>,
+      38(1), 4-23. [EPIS model]
+    </li>
+    <li>
+      Lee, A., Chan, S. K. &amp; Fan, L. T. (2015). Stimulation of the wrist
+      acupuncture point PC6 for preventing postoperative nausea and vomiting.
+      <em>Cochrane Database of Systematic Reviews</em>, (11), CD003281. [Primary evidence source]
+    </li>
+    <li>
+      Cheong, K. B. et al. (2013). The effectiveness of acupuncture in prevention
+      and treatment of postoperative nausea and vomiting. <em>PLoS ONE</em>, 8(12),
+      e82474. [Systematic review and meta-analysis]
+    </li>
+  </ul>
+  <p>
+    <a href={url('/references/')}>See complete reference list &rarr;</a>
+  </p>
+
+  <div class="phase-nav">
+    <a href={url('/')}>&larr; Home</a>
+    <a href={url('/about/')}>About HAIF &rarr;</a>
+  </div>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="Application Examples"
+  description="Real-world examples of hospital acupuncture and acupressure implementation using the HAIF framework, including PONV acupressure and emergency department acupuncture."
+  lastReviewed="April 2026"
+>
+  <h1>Application Examples</h1>
+
+  <p>
+    These case studies show how the HAIF framework has been applied in real
+    hospital settings. Each example walks through the four phases — Exploration,
+    Preparation, Implementation, and Sustainment — as applied to a specific
+    clinical context.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Example 1: Acupressure for PONV</h3>
+      <p>
+        Nurse-led acupressure wristband implementation for post-operative
+        nausea and vomiting at Northern Hospital, Victoria. A completed
+        case study demonstrating all four phases.
+      </p>
+      <a href={url('/examples/ponv-acupressure/')}>View case study &rarr;</a>
+    </div>
+
+    <div class="card">
+      <h3>
+        Example 2: Acupuncture in Emergency Department
+        <span class="coming-soon">Coming Soon</span>
+      </h3>
+      <p>
+        Registrar-led acupuncture implementation in the emergency department.
+        Research is currently in progress.
+      </p>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <strong>Have an Implementation Story?</strong>
+    If you have implemented acupuncture or acupressure in a hospital setting
+    and would like your experience featured as a case study,
+    <a href={url('/contact/')}>contact us</a>.
+  </div>
+</BaseLayout>

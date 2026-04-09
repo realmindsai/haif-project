@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="HAIF for Clinicians"
+  description="Hospital Acupuncture Implementation Framework for clinicians: evidence quality, safety profiles, clinical protocols, and time impact for acupuncture and acupressure."
+  lastReviewed="April 2026"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a>
+    <span>/</span>
+    HAIF for Clinicians
+  </nav>
+
+  <h1>HAIF for Clinicians</h1>
+
+  <div class="bottom-line">
+    <strong>Why This Matters to You</strong>
+    PC6 stimulation is the only non-pharmacological intervention included in
+    consensus PONV management guidelines (Gan et al., 2014). High-quality
+    Cochrane evidence shows a 32% reduction in nausea (RR 0.68) and 40%
+    reduction in vomiting (RR 0.60). Side effects are mild and transient.
+  </div>
+
+  <h2>What Clinicians Need to Know</h2>
+  <ul>
+    <li>
+      <strong>Evidence quality:</strong> PC6 stimulation for PONV has
+      <span class="grade grade-high">High</span> GRADE evidence for nausea
+      and vomiting outcomes based on the Cochrane systematic review (Lee et al., 2015).
+      Rescue antiemetic reduction is rated
+      <span class="grade grade-moderate">Moderate</span>.
+      <a href={url('/evidence/')}>See full evidence summaries &rarr;</a>
+    </li>
+    <li>
+      <strong>Safety profile:</strong> Side effects are mild, transient, and
+      self-limiting. Non-invasive modalities (wristbands, manual acupressure) carry
+      no infection risk. Acupuncture is equivalent in safety to common antiemetics
+      and can be combined with pharmacological prophylaxis for enhanced efficacy.
+    </li>
+    <li>
+      <strong>Clinical protocols:</strong> The framework provides specific guidance
+      on timing (pre-operative vs. post-operative application), patient selection
+      (risk factor-based targeting using Apfel scoring), and integration with
+      existing PONV protocols.
+      <a href={url('/framework/preparation/')}>See Phase 2: Preparation &rarr;</a>
+    </li>
+    <li>
+      <strong>Time impact:</strong> In a US survey of 292 anaesthesia staff, only
+      38% viewed acupuncture as too time-consuming. Wristband application adds
+      minimal time to existing pre-operative workflows.
+    </li>
+    <li>
+      <strong>Training:</strong> Three differentiated training packages are available
+      based on professional role, plus on-the-job training protocols covering correct
+      PC6 location, application technique, monitoring, and documentation.
+      <a href={url('/framework/implementation/')}>See Phase 3: Implementation &rarr;</a>
+    </li>
+  </ul>
+
+  <h2>Start Here</h2>
+  <p>
+    Review the <a href={url('/evidence/')}>evidence summaries page</a> for GRADE-rated
+    data on all six modalities. Then read the
+    <a href={url('/examples/ponv-acupressure/')}>PONV acupressure case study</a> to see
+    how the framework was applied at Northern Hospital. If you are considering
+    implementation at your institution, begin with the
+    <a href={url('/framework/exploration/')}>Exploration phase</a>.
+  </p>
+
+  <h2>Key Resources for Clinicians</h2>
+  <ul>
+    <li><a href={url('/evidence/')}>GRADE-rated evidence summaries</a></li>
+    <li><a href={url('/resources/')}>Intervention comparison card</a></li>
+    <li><a href={url('/resources/')}>PONV data extraction template</a></li>
+    <li><a href={url('/resources/')}>Patient education materials</a></li>
+    <li><a href={url('/references/')}>Full reference list</a></li>
+  </ul>
+
+  <div class="phase-nav">
+    <a href={url('/')}>&larr; Home</a>
+    <a href={url('/evidence/')}>View Evidence &rarr;</a>
+  </div>
+</BaseLayout>

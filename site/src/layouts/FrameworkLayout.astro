@@ -1,0 +1,69 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { url } from '../utils';
+
+interface Props {
+  title: string;
+  description: string;
+  phaseNumber: number;
+  bottomLine: string;
+  lastReviewed?: string;
+  schema?: object;
+}
+
+const { title, description, phaseNumber, bottomLine, lastReviewed = 'April 2026', schema } = Astro.props;
+
+const phases = [
+  { num: 1, name: 'Exploration', href: url('/framework/exploration/') },
+  { num: 2, name: 'Preparation', href: url('/framework/preparation/') },
+  { num: 3, name: 'Implementation', href: url('/framework/implementation/') },
+  { num: 4, name: 'Sustainment', href: url('/framework/sustainment/') },
+];
+
+const currentIndex = phases.findIndex(p => p.num === phaseNumber);
+const prevPhase = currentIndex > 0 ? phases[currentIndex - 1] : null;
+const nextPhase = currentIndex < phases.length - 1 ? phases[currentIndex + 1] : null;
+---
+
+<BaseLayout title={title} description={description} lastReviewed={lastReviewed} schema={schema}>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a><span>&rsaquo;</span>
+    <a href={url('/framework/')}>Framework</a><span>&rsaquo;</span>
+    {title}
+  </nav>
+
+  <div class="phase-stepper" role="navigation" aria-label="Framework phases">
+    {phases.map(phase => (
+      <a
+        href={phase.href}
+        class={`phase-step ${phase.num === phaseNumber ? 'active' : ''}`}
+        aria-current={phase.num === phaseNumber ? 'step' : undefined}
+      >
+        Phase {phase.num}: {phase.name}
+      </a>
+    ))}
+  </div>
+
+  <h1>Phase {phaseNumber}: {title}</h1>
+  <p style="color: var(--color-text-muted); font-size: 1.1rem;">{description}</p>
+
+  <div class="bottom-line">
+    <strong>Bottom Line</strong>
+    {bottomLine}
+  </div>
+
+  <slot />
+
+  <nav class="phase-nav" aria-label="Phase navigation">
+    {prevPhase ? (
+      <a href={prevPhase.href}>&larr; Phase {prevPhase.num}: {prevPhase.name}</a>
+    ) : (
+      <a href={url('/framework/')}>&larr; Framework Overview</a>
+    )}
+    {nextPhase ? (
+      <a href={nextPhase.href}>Phase {nextPhase.num}: {nextPhase.name} &rarr;</a>
+    ) : (
+      <a href={url('/examples/')}>View Examples &rarr;</a>
+    )}
+  </nav>
+</BaseLayout>
