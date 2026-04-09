@@ -907,7 +907,7 @@ import InterventionComparisonTable from '../../components/InterventionComparison
 
 <figure class="recovered-figure">
   <img
-    src={url('/images/intervention_modalities_overview.png')}
+    src={url('/images/exploration_acupressure_infographic_01_1.png')}
     alt="Overview of acupuncture and acupressure modalities"
     loading="lazy"
   />
