@@ -67,15 +67,14 @@ Update `site/package.json` to add recovery and test commands:
     "preview": "astro preview",
     "astro": "astro",
     "recover:popa4ease": "node scripts/recover-popa4ease.mjs",
-    "test:unit": "vitest run tests/unit",
-    "test:integration": "vitest run tests/integration",
-    "test:e2e": "playwright test",
+    "test:unit": "vitest run tests/unit --passWithNoTests",
+    "test:integration": "vitest run tests/integration --passWithNoTests",
+    "test:e2e": "playwright test --pass-with-no-tests",
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.0",
     "jsdom": "^26.1.0",
-    "playwright": "^1.54.0",
     "vitest": "^2.1.9"
   }
 }
