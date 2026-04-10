@@ -1,9 +1,13 @@
+import { spawnSync } from 'node:child_process';
 import { readdirSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { relative, resolve } from 'node:path';
 import { parseCLI, startVitest } from 'vitest/node';
 
 const TEST_FILE_PATTERN = /\.(?:test|spec)\.(?:[cm]?[jt]sx?)$/;
+const VITEST_CONTROL_FLAGS = new Set(['-h', '--help', '-v', '--version']);
 const [, , scopeDirectory, ...rawArgs] = process.argv;
+const require = createRequire(import.meta.url);
 
 if (!scopeDirectory) {
   console.error('Usage: node scripts/run-vitest-scope.mjs <scope-directory> [filter...]');
@@ -26,9 +30,36 @@ function collectTestFiles(directory) {
   });
 }
 
+function runVitestCli(args) {
+  const result = spawnSync(
+    process.execPath,
+    [require.resolve('vitest/vitest.mjs'), 'run', ...args],
+    {
+      env: process.env,
+      stdio: 'inherit',
+    },
+  );
+
+  if (result.error) {
+    throw result.error;
+  }
+
+  return result.status ?? 1;
+}
+
 async function main() {
+  if (rawArgs.some((arg) => VITEST_CONTROL_FLAGS.has(arg))) {
+    return runVitestCli(rawArgs);
+  }
+
   const scopePath = resolve(process.cwd(), scopeDirectory);
+  const projectRoot = resolve(process.cwd());
   let scopedFiles;
+
+  if (scopePath !== projectRoot && !scopePath.startsWith(`${projectRoot}/`)) {
+    console.error(`Scope directory "${scopeDirectory}" must stay within the project root.`);
+    return 1;
+  }
 
   try {
     scopedFiles = collectTestFiles(scopePath);

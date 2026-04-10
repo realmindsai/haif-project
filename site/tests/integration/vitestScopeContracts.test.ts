@@ -77,7 +77,7 @@ describe('scoped npm test contracts', () => {
   });
 
   it('fails when a discovered scope contains no tests', () => {
-    const fixtureRoot = mkdtempSync(resolve(tmpdir(), 'empty-vitest-scope-'));
+    const fixtureRoot = mkdtempSync(resolve(process.cwd(), 'tests/.tmp-empty-vitest-scope-'));
     scopeFixturePaths.push(fixtureRoot);
     const emptyScope = resolve(fixtureRoot, 'empty');
     mkdirSync(emptyScope, { recursive: true });
@@ -87,5 +87,26 @@ describe('scoped npm test contracts', () => {
 
     expect(result.status).toBe(1);
     expect(combinedOutput).toContain('No test files found within');
+  });
+
+  it('prints help without running scoped tests', () => {
+    const result = runNpmTestScript(['run', 'test:unit', '--', '--help']);
+    const combinedOutput = `${result.stdout}${result.stderr}`;
+
+    expect(result.status).toBe(0);
+    expect(combinedOutput).toContain('Usage:');
+    expect(combinedOutput).not.toContain('tests/unit/cloudflareDeploy.test.ts');
+  });
+
+  it('rejects scope directories outside the project root', () => {
+    const fixtureRoot = mkdtempSync(resolve(tmpdir(), 'outside-vitest-scope-'));
+    scopeFixturePaths.push(fixtureRoot);
+    mkdirSync(resolve(fixtureRoot, 'outside'), { recursive: true });
+
+    const result = runScopeRunner([resolve(fixtureRoot, 'outside')]);
+    const combinedOutput = `${result.stdout}${result.stderr}`;
+
+    expect(result.status).toBe(1);
+    expect(combinedOutput).toContain('must stay within the project root');
   });
 });
