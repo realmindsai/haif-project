@@ -13,8 +13,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "recover:popa4ease": "node scripts/recover-popa4ease.mjs",
-    "test:unit": "vitest run tests/unit --passWithNoTests",
-    "test:integration": "vitest run tests/integration --passWithNoTests",
+    "test:unit": "node scripts/run-vitest-scope.mjs tests/unit",
+    "test:integration": "node scripts/run-vitest-scope.mjs tests/integration",
     "test:e2e": "env -u NO_COLOR playwright test --pass-with-no-tests",
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e"
   },
