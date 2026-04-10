@@ -18,6 +18,8 @@ const TEXT_ARTIFACT_EXTENSIONS = new Set(['.css', '.html', '.js', '.txt', '.xml'
 const TEXT_ARTIFACT_NAMES = new Set(['_redirects']);
 const DIST_DIR = resolve(process.cwd(), 'dist');
 const DEPLOY_ENTRYPOINT = resolve(process.cwd(), 'scripts/deploy-cloudflare.mjs');
+const VITEST_SCOPE_ENTRYPOINT = resolve(process.cwd(), 'scripts/run-vitest-scope.mjs');
+const UNIT_SCOPE_DIRECTORY = 'tests/unit';
 
 function collectTextArtifacts(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -164,6 +166,19 @@ process.exit(101);
 }
 
 const fixturePaths: string[] = [];
+const scopedRunnerFixturePaths: string[] = [];
+
+function runScopedVitest(args: string[]) {
+  return spawnSync(process.execPath, [VITEST_SCOPE_ENTRYPOINT, ...args], {
+    cwd: process.cwd(),
+    env: {
+      ...process.env,
+      NO_COLOR: '1',
+    },
+    encoding: 'utf8',
+    stdio: 'pipe',
+  });
+}
 
 describe('cloudflare deployment configuration', () => {
   beforeAll(() => {
@@ -268,5 +283,91 @@ describe('deploy-cloudflare entrypoint', () => {
     expect(combinedOutput).toContain('Failed to run `git branch --show-current`');
     expect(combinedOutput).toContain('ENOENT');
     expect(combinedOutput).not.toContain('TypeError');
+  });
+});
+
+describe('run-vitest-scope entrypoint', () => {
+  afterEach(() => {
+    for (const fixturePath of scopedRunnerFixturePaths.splice(0)) {
+      rmSync(fixturePath, { recursive: true, force: true });
+    }
+  });
+
+  it('keeps unit scope isolated when filtering cloudflareDeploy', () => {
+    const scopedRun = runScopedVitest([
+      UNIT_SCOPE_DIRECTORY,
+      'cloudflareDeploy',
+      '--reporter=verbose',
+    ]);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(0);
+    expect(combinedOutput).toContain('tests/unit/cloudflareDeploy.test.ts');
+    expect(combinedOutput).not.toContain('tests/integration/cloudflareDeployment.test.ts');
+  });
+
+  it('fails when a positional filter matches no files in scope', () => {
+    const scopedRun = runScopedVitest([UNIT_SCOPE_DIRECTORY, 'does-not-exist']);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(1);
+    expect(combinedOutput).toContain('No test files matched');
+  });
+
+  it('forwards Vitest options after positional filters', () => {
+    const scopedRun = runScopedVitest([
+      UNIT_SCOPE_DIRECTORY,
+      'cloudflareDeploy',
+      '-t',
+      'builds the wrangler deploy command for the production project',
+      '--reporter=verbose',
+    ]);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(0);
+    expect(combinedOutput).toContain(
+      'builds the wrangler deploy command for the production project',
+    );
+  });
+
+  it('discovers .spec.ts tests within scope', () => {
+    const fixtureRoot = mkdtempSync(resolve(process.cwd(), 'tests/.tmp-vitest-scope-'));
+    scopedRunnerFixturePaths.push(fixtureRoot);
+    const fixtureVitestConfig = resolve(fixtureRoot, 'vitest.scope.config.ts');
+
+    writeFileSync(
+      resolve(fixtureRoot, 'scopePattern.spec.ts'),
+      `import { expect, test } from 'vitest';
+
+test('scope pattern spec file executes', () => {
+  expect(1).toBe(1);
+});
+`,
+      'utf8',
+    );
+    writeFileSync(
+      fixtureVitestConfig,
+      `import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)'],
+  },
+});
+`,
+      'utf8',
+    );
+
+    const scopedRun = runScopedVitest([
+      fixtureRoot,
+      'scopePattern',
+      '--config',
+      fixtureVitestConfig,
+      '--reporter=verbose',
+    ]);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(0);
+    expect(combinedOutput).toContain('scope pattern spec file executes');
   });
 });
