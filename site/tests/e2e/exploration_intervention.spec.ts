@@ -15,13 +15,16 @@ test('homepage hero and exploration intervention interactions render recovered c
     ),
   ).toBeGreaterThan(0);
 
-  const explorationPage = await page.context().newPage();
-  await explorationPage.goto('/framework/exploration/');
-  await expect(
-    explorationPage.getByRole('heading', { name: /intervention/i }),
-  ).toBeVisible();
+  const explorationLink = page.getByRole('link', {
+    name: /phase 1: exploration/i,
+  });
+  await Promise.all([
+    page.waitForURL('**/framework/exploration/'),
+    explorationLink.click(),
+  ]);
+  await expect(page.getByRole('heading', { name: /intervention/i })).toBeVisible();
 
-  const manualAcupressureRow = explorationPage
+  const manualAcupressureRow = page
     .locator('tbody tr')
     .filter({ hasText: 'Manual Acupressure' });
   await manualAcupressureRow.scrollIntoViewIfNeeded();
