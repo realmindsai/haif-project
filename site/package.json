@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "bash scripts/build-pdfs.sh && astro build",
     "build:pdfs": "bash scripts/build-pdfs.sh",
+    "deploy:cloudflare": "node scripts/deploy-cloudflare.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "recover:popa4ease": "node scripts/recover-popa4ease.mjs",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@playwright/test": "^1.54.0",
     "jsdom": "^26.1.0",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "wrangler": "^4.24.6"
   }
 }

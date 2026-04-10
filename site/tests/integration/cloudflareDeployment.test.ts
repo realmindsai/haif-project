@@ -66,4 +66,14 @@ describe('cloudflare deployment configuration', () => {
       'https://hospitalacupuncture.com/framework/exploration/',
     );
   });
+
+  it('exposes a manual Cloudflare deploy script in package.json', () => {
+    const packageJson = JSON.parse(
+      readFileSync(resolve(process.cwd(), 'package.json'), 'utf8'),
+    );
+
+    expect(packageJson.scripts['deploy:cloudflare']).toBe(
+      'node scripts/deploy-cloudflare.mjs',
+    );
+  });
 });
