@@ -1,5 +1,10 @@
-/** Prefix a path with the configured base URL so links work on GitHub Pages subpaths. */
+/** Prefix a path with the configured base URL so links work for both root-domain and subpath deployments. */
+export function joinBaseUrl(baseUrl: string, path: string): string {
+  const normalizedBase = baseUrl === '/' ? '' : baseUrl.replace(/\/$/, '');
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return normalizedBase + normalizedPath;
+}
+
 export function url(path: string): string {
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  return base + (path.startsWith('/') ? path : '/' + path);
+  return joinBaseUrl(import.meta.env.BASE_URL, path);
 }
