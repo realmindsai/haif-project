@@ -1,48 +1,70 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync } from 'node:fs';
-import { resolve } from 'node:path';
 
 import {
-  CLOUDFLARE_DEPLOY_DIR,
   getCloudflareDeployArgs,
   getCloudflareDeployBlockers,
+  resolveLocalWranglerEntrypoint,
 } from './lib/cloudflareDeploy.mjs';
 
-function run(command, args) {
+function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
     encoding: 'utf8',
+    ...options,
   });
 
-  if (result.status !== 0) {
-    const message = result.stderr.trim() || `${command} ${args.join(' ')} failed`;
-    throw new Error(message);
+  if (result.error) {
+    throw new Error(`Failed to run \`${command} ${args.join(' ')}\`: ${result.error.message}`);
   }
 
-  return result.stdout.trim();
+  if (result.status !== 0) {
+    const stderr = typeof result.stderr === 'string' ? result.stderr.trim() : '';
+    const stdout = typeof result.stdout === 'string' ? result.stdout.trim() : '';
+    const details = stderr || stdout || `${command} ${args.join(' ')} failed`;
+    throw new Error(`Failed to run \`${command} ${args.join(' ')}\`: ${details}`);
+  }
+
+  return typeof result.stdout === 'string' ? result.stdout.trim() : '';
 }
 
-const branch = run('git', ['branch', '--show-current']);
-const gitStatusOutput = run('git', ['status', '--porcelain']);
-const distPath = resolve(process.cwd(), CLOUDFLARE_DEPLOY_DIR);
+function main() {
+  const branch = run('git', ['branch', '--show-current']);
+  const gitStatusOutput = run('git', ['status', '--porcelain']);
 
-const blockers = getCloudflareDeployBlockers({
-  branch,
-  gitStatusOutput,
-  distExists: existsSync(distPath),
-  env: process.env,
-});
+  const blockers = getCloudflareDeployBlockers({
+    branch,
+    gitStatusOutput,
+    env: process.env,
+  });
 
-if (blockers.length > 0) {
-  for (const blocker of blockers) {
-    console.error(`- ${blocker}`);
+  if (blockers.length > 0) {
+    for (const blocker of blockers) {
+      console.error(`- ${blocker}`);
+    }
+
+    return 1;
   }
 
+  run('npm', ['run', 'build'], { stdio: 'inherit' });
+
+  const deploy = spawnSync(
+    process.execPath,
+    [resolveLocalWranglerEntrypoint(), ...getCloudflareDeployArgs()],
+    {
+      env: process.env,
+      stdio: 'inherit',
+    },
+  );
+
+  if (deploy.error) {
+    throw new Error(`Failed to run local wrangler deploy: ${deploy.error.message}`);
+  }
+
+  return deploy.status ?? 1;
+}
+
+try {
+  process.exit(main());
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
   process.exit(1);
 }
-
-const deploy = spawnSync('npx', getCloudflareDeployArgs(), {
-  env: process.env,
-  stdio: 'inherit',
-});
-
-process.exit(deploy.status ?? 1);

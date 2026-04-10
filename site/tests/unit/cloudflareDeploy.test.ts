@@ -9,7 +9,6 @@ import {
 describe('cloudflare deploy helpers', () => {
   it('builds the wrangler deploy command for the production project', () => {
     expect(getCloudflareDeployArgs()).toEqual([
-      'wrangler',
       'pages',
       'deploy',
       CLOUDFLARE_DEPLOY_DIR,
@@ -22,24 +21,23 @@ describe('cloudflare deploy helpers', () => {
       getCloudflareDeployBlockers({
         branch: 'feature/cloudflare',
         gitStatusOutput: ' M site/README.md',
-        distExists: false,
+        distExists: true,
         env: {},
       }),
     ).toEqual([
       'Deploys must run from main. Current branch: feature/cloudflare.',
       'Working tree must be clean before deploying to Cloudflare Pages.',
-      'Build output missing. Run `npm run build` before deploying.',
       'Missing CLOUDFLARE_ACCOUNT_ID.',
       'Missing CLOUDFLARE_API_TOKEN.',
     ]);
   });
 
-  it('allows deploy when branch, build output, and credentials are ready', () => {
+  it('allows deploy when branch and credentials are ready', () => {
     expect(
       getCloudflareDeployBlockers({
         branch: 'main',
         gitStatusOutput: '',
-        distExists: true,
+        distExists: false,
         env: {
           CLOUDFLARE_ACCOUNT_ID: 'acct',
           CLOUDFLARE_API_TOKEN: 'token',

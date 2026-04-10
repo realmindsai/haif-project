@@ -1,10 +1,13 @@
+import { createRequire } from 'node:module';
+
 export const CLOUDFLARE_PROJECT_NAME = 'haif-project';
 export const CLOUDFLARE_DEPLOY_DIR = 'dist';
+
+const require = createRequire(import.meta.url);
 
 export function getCloudflareDeployBlockers({
   branch,
   gitStatusOutput,
-  distExists,
   env,
 }) {
   const blockers = [];
@@ -15,10 +18,6 @@ export function getCloudflareDeployBlockers({
 
   if (gitStatusOutput.trim() !== '') {
     blockers.push('Working tree must be clean before deploying to Cloudflare Pages.');
-  }
-
-  if (!distExists) {
-    blockers.push('Build output missing. Run `npm run build` before deploying.');
   }
 
   if (!env.CLOUDFLARE_ACCOUNT_ID) {
@@ -36,5 +35,20 @@ export function getCloudflareDeployArgs({
   directory = CLOUDFLARE_DEPLOY_DIR,
   projectName = CLOUDFLARE_PROJECT_NAME,
 } = {}) {
-  return ['wrangler', 'pages', 'deploy', directory, `--project-name=${projectName}`];
+  return ['pages', 'deploy', directory, `--project-name=${projectName}`];
+}
+
+export function resolveLocalWranglerEntrypoint(cwd = process.cwd()) {
+  try {
+    return require.resolve('wrangler/bin/wrangler.js', {
+      paths: [cwd],
+    });
+  } catch (error) {
+    throw new Error(
+      `Unable to resolve local Wrangler in ${cwd}. Install dependencies before deploying.`,
+      {
+        cause: error,
+      },
+    );
+  }
 }
