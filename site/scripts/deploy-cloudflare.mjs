@@ -46,6 +46,12 @@ function main() {
 
   run('npm', ['run', 'build'], { stdio: 'inherit' });
 
+  const postBuildGitStatusOutput = run('git', ['status', '--porcelain']);
+  if (postBuildGitStatusOutput.trim() !== '') {
+    console.error('- Build created uncommitted changes.');
+    return 1;
+  }
+
   const deploy = spawnSync(
     process.execPath,
     [resolveLocalWranglerEntrypoint(), ...getCloudflareDeployArgs()],

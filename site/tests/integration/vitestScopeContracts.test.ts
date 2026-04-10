@@ -67,6 +67,20 @@ describe('scoped npm test contracts', () => {
     expect(combinedOutput).not.toContain('tests/integration/cloudflareDeployment.test.ts');
   });
 
+  it('accepts an absolute-path unit filter like raw Vitest does', () => {
+    const result = runNpmTestScript([
+      'run',
+      'test:unit',
+      '--',
+      resolve(process.cwd(), 'tests/unit/cloudflareDeploy.test.ts'),
+    ]);
+    const combinedOutput = `${result.stdout}${result.stderr}`;
+
+    expect(result.status).toBe(0);
+    expect(combinedOutput).toContain('tests/unit/cloudflareDeploy.test.ts');
+    expect(combinedOutput).not.toContain('tests/integration/cloudflareDeployment.test.ts');
+  });
+
   it('fails cleanly when the requested scope directory does not exist', () => {
     const result = runScopeRunner(['tests/does-not-exist']);
     const combinedOutput = `${result.stdout}${result.stderr}`;

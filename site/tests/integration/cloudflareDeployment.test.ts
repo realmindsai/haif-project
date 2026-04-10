@@ -93,6 +93,11 @@ function createDeployFixture(): string {
     ),
     'utf8',
   );
+  writeFileSync(
+    resolve(fixtureRoot, '.gitignore'),
+    '.deploy-artifacts/\ndist/\nnode_modules/\n',
+    'utf8',
+  );
 
   writeFileSync(
     resolve(fixtureRoot, 'build-site.mjs'),
@@ -159,6 +164,33 @@ writeFileSync(
 process.stderr.write('npx should not be invoked during deploy\\n');
 process.exit(101);
 `,
+  );
+
+  commitAll(fixtureRoot);
+  return fixtureRoot;
+}
+
+function createTrackedBuildFixture(): string {
+  const fixtureRoot = createDeployFixture();
+
+  writeFileSync(
+    resolve(fixtureRoot, 'tracked-build.txt'),
+    'before-build\n',
+    'utf8',
+  );
+  writeFileSync(
+    resolve(fixtureRoot, 'build-site.mjs'),
+    `
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+const distPath = resolve(process.cwd(), 'dist');
+rmSync(distPath, { recursive: true, force: true });
+mkdirSync(distPath, { recursive: true });
+writeFileSync(resolve(distPath, 'build.marker'), 'built-fresh\\n', 'utf8');
+writeFileSync(resolve(process.cwd(), 'tracked-build.txt'), 'after-build\\n', 'utf8');
+`,
+    'utf8',
   );
 
   commitAll(fixtureRoot);
@@ -373,6 +405,31 @@ describe('deploy-cloudflare entrypoint', () => {
     );
     expect(existsSync(resolve(fixtureRoot, 'dist/stale.marker'))).toBe(true);
     expect(existsSync(resolve(fixtureRoot, 'dist/build.marker'))).toBe(false);
+    expect(existsSync(resolve(fixtureRoot, '.deploy-artifacts/wrangler-call.json'))).toBe(
+      false,
+    );
+  });
+
+  it('aborts when the build dirties tracked files before deploy', () => {
+    const fixtureRoot = createTrackedBuildFixture();
+    fixturePaths.push(fixtureRoot);
+
+    const deploy = spawnSync(process.execPath, [DEPLOY_ENTRYPOINT], {
+      cwd: fixtureRoot,
+      env: {
+        ...process.env,
+        NO_COLOR: '1',
+        CLOUDFLARE_ACCOUNT_ID: 'acct',
+        CLOUDFLARE_API_TOKEN: 'token',
+      },
+      encoding: 'utf8',
+      stdio: 'pipe',
+    });
+    const combinedOutput = `${deploy.stdout}${deploy.stderr}`;
+
+    expect(deploy.status).toBe(1);
+    expect(combinedOutput).toContain('Build created uncommitted changes.');
+    expect(existsSync(resolve(fixtureRoot, 'dist/build.marker'))).toBe(true);
     expect(existsSync(resolve(fixtureRoot, '.deploy-artifacts/wrangler-call.json'))).toBe(
       false,
     );

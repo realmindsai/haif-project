@@ -23,7 +23,7 @@ function collectTestFiles(directory) {
     }
 
     if (entry.isFile() && TEST_FILE_PATTERN.test(entry.name)) {
-      return [relative(process.cwd(), absolutePath)];
+      return [absolutePath];
     }
 
     return [];
@@ -92,7 +92,12 @@ async function main() {
   const targetFiles =
     filters.length === 0
       ? scopedFiles
-      : scopedFiles.filter((file) => filters.some((filter) => file.includes(filter)));
+      : scopedFiles.filter((file) => {
+          const relativeFile = relative(projectRoot, file);
+          return filters.some(
+            (filter) => file.includes(filter) || relativeFile.includes(filter),
+          );
+        });
 
   if (filters.length > 0 && targetFiles.length === 0) {
     console.error(
