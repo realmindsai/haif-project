@@ -198,6 +198,39 @@ test('escaped integration fixture runs', () => {
   return fixtureRoot;
 }
 
+function createScopedRunnerIntegrationFixture(): string {
+  const fixtureRoot = mkdtempSync(resolve(process.cwd(), 'tests/.tmp-vitest-scope-'));
+  const unitDir = resolve(fixtureRoot, 'unit');
+  const integrationDir = resolve(fixtureRoot, 'integration');
+
+  mkdirSync(unitDir, { recursive: true });
+  mkdirSync(integrationDir, { recursive: true });
+
+  writeFileSync(
+    resolve(unitDir, 'cloudflareDeployFixture.test.ts'),
+    `import { expect, test } from 'vitest';
+
+test('unit-side contract fixture runs', () => {
+  expect(1).toBe(1);
+});
+`,
+    'utf8',
+  );
+
+  writeFileSync(
+    resolve(integrationDir, 'cloudflareDeploymentFixture.test.ts'),
+    `import { expect, test } from 'vitest';
+
+test('integration-side contract fixture runs', () => {
+  expect(1).toBe(1);
+});
+`,
+    'utf8',
+  );
+
+  return fixtureRoot;
+}
+
 const fixturePaths: string[] = [];
 const scopedRunnerFixturePaths: string[] = [];
 
@@ -418,5 +451,21 @@ export default defineConfig({
 
     expect(scopedRun.status).toBe(0);
     expect(combinedOutput).toContain('scope pattern spec file executes');
+  });
+
+  it('keeps integration scope isolated when filtering cloudflareDeployment', () => {
+    const fixtureRoot = createScopedRunnerIntegrationFixture();
+    scopedRunnerFixturePaths.push(fixtureRoot);
+
+    const scopedRun = runScopedVitest([
+      relative(process.cwd(), resolve(fixtureRoot, 'integration')),
+      'cloudflareDeploymentFixture',
+      '--reporter=verbose',
+    ]);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(0);
+    expect(combinedOutput).toContain('integration-side contract fixture runs');
+    expect(combinedOutput).not.toContain('unit-side contract fixture runs');
   });
 });
