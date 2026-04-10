@@ -3,9 +3,16 @@
 ## Current path and history
 
 - Historical production path: GitHub Pages from the `gh-pages` branch.
-- Current production path: manual upload to Cloudflare Pages.
+- Current production path: manual CLI deploy to Cloudflare Pages.
 - Canonical production URL: `https://hospitalacupuncture.com`.
 - `www` host is supported, but should always redirect to the apex domain.
+
+## Prerequisites
+
+- Run deploys from the `main` branch.
+- Keep the working tree clean before starting the deploy.
+- Install Node >= 22.12.0 dependencies in [`site/`](/Users/dewoller/code/people/zhen_zheng/hospital_acupuncture/site).
+- Install Typst and ensure `typst` is available on `PATH`. `npm run build` and `npm run deploy:cloudflare` both compile the tracked PDF resources before Astro builds `dist/`.
 
 ## First-time Cloudflare Pages setup
 
@@ -42,19 +49,20 @@ export CLOUDFLARE_API_TOKEN=your_api_token
 
 ## Manual production deploy
 
-Run from [`site/`](/Users/dewoller/code/people/zhen_zheng/hospital_acupuncture/site):
+Run from [`site/`](/Users/dewoller/code/people/zhen_zheng/hospital_acupuncture/site) on `main`:
 
 ```bash
 npm run test
 npm run deploy:cloudflare
 ```
 
-Do not run `npm run build` separately here. `npm run deploy:cloudflare` performs the production build itself and aborts if that build dirties tracked files.
+Do not run `npm run build` separately here. `npm run deploy:cloudflare` performs the production build itself and aborts if that build creates uncommitted changes.
 
 The deploy script enforces guardrails:
 
+- `main` branch only
 - clean working tree before deploy
-- clean working tree after build
+- clean working tree after build, including generated PDF updates
 - local Wrangler CLI invocation (no `npx`)
 
 ## Redirect setup (`www` -> apex)

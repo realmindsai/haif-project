@@ -20,7 +20,7 @@ The framework is application-agnostic: the same methodology applies whether impl
 
 ## Development
 
-Requires Node >= 22.12.0.
+Requires Node >= 22.12.0 and Typst on `PATH`. `npm run build` and `npm run deploy:cloudflare` both compile the PDF resources before the Astro build.
 
 ```bash
 npm install
@@ -31,7 +31,7 @@ npm run preview    # Preview production build
 
 ## Deployment
 
-Production is served from Cloudflare Pages at `https://hospitalacupuncture.com`.
+Production is served from Cloudflare Pages at `https://hospitalacupuncture.com`. Deploy from the `main` branch with a clean working tree after exporting `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`.
 
 ```bash
 npm run deploy:cloudflare

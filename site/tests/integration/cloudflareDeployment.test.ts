@@ -1,25 +1,27 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import {
   chmodSync,
+  cpSync,
   existsSync,
   mkdtempSync,
   mkdirSync,
   readFileSync,
   readdirSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { relative, resolve } from 'node:path';
 
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 const TEXT_ARTIFACT_EXTENSIONS = new Set(['.css', '.html', '.js', '.txt', '.xml']);
 const TEXT_ARTIFACT_NAMES = new Set(['_redirects']);
-const DIST_DIR = resolve(process.cwd(), 'dist');
 const DEPLOY_ENTRYPOINT = resolve(process.cwd(), 'scripts/deploy-cloudflare.mjs');
 const VITEST_SCOPE_ENTRYPOINT = resolve(process.cwd(), 'scripts/run-vitest-scope.mjs');
 const UNIT_SCOPE_DIRECTORY = 'tests/unit';
+const SITE_BUILD_ROOT = resolve(tmpdir(), `haif-site-build-${process.pid}`);
 
 function collectTextArtifacts(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -38,16 +40,32 @@ function collectTextArtifacts(directory: string): string[] {
   });
 }
 
-function buildSite(): void {
-  rmSync(DIST_DIR, { recursive: true, force: true });
-  execFileSync('npm', ['run', 'astro', '--', 'build'], {
-    cwd: process.cwd(),
+function buildSite(): string {
+  rmSync(SITE_BUILD_ROOT, { recursive: true, force: true });
+  mkdirSync(SITE_BUILD_ROOT, { recursive: true });
+
+  for (const entry of readdirSync(process.cwd())) {
+    if (entry === 'dist' || entry === 'node_modules' || entry === '.astro') {
+      continue;
+    }
+
+    cpSync(resolve(process.cwd(), entry), resolve(SITE_BUILD_ROOT, entry), {
+      recursive: true,
+    });
+  }
+
+  symlinkSync(resolve(process.cwd(), 'node_modules'), resolve(SITE_BUILD_ROOT, 'node_modules'));
+
+  execFileSync('npm', ['run', 'build'], {
+    cwd: SITE_BUILD_ROOT,
     env: {
       ...process.env,
       NO_COLOR: '1',
     },
     stdio: 'pipe',
   });
+
+  return SITE_BUILD_ROOT;
 }
 
 function initGitRepo(cwd: string): void {
@@ -279,14 +297,20 @@ function runScopedVitest(args: string[]) {
 }
 
 describe('cloudflare deployment configuration', () => {
+  let distDir = '';
+
   beforeAll(() => {
-    buildSite();
+    distDir = resolve(buildSite(), 'dist');
+  });
+
+  afterAll(() => {
+    rmSync(SITE_BUILD_ROOT, { recursive: true, force: true });
   });
 
   it('keeps built deployment artifacts free of the old /haif-project/ base path', () => {
-    expect(existsSync(DIST_DIR)).toBe(true);
+    expect(existsSync(distDir)).toBe(true);
 
-    const artifactPaths = collectTextArtifacts(DIST_DIR);
+    const artifactPaths = collectTextArtifacts(distDir);
 
     expect(artifactPaths.length).toBeGreaterThan(0);
     expect(
@@ -295,12 +319,12 @@ describe('cloudflare deployment configuration', () => {
       ),
     ).toEqual([]);
 
-    const homepage = readFileSync(resolve(DIST_DIR, 'index.html'), 'utf8');
+    const homepage = readFileSync(resolve(distDir, 'index.html'), 'utf8');
     expect(homepage).toContain('href="/framework/exploration/"');
     expect(homepage).toContain('href="/" aria-current="page">Home');
 
     const explorationPage = readFileSync(
-      resolve(DIST_DIR, 'framework/exploration/index.html'),
+      resolve(distDir, 'framework/exploration/index.html'),
       'utf8',
     );
     expect(explorationPage).toContain(
@@ -328,15 +352,20 @@ describe('cloudflare deployment configuration', () => {
     expect(readme).toContain('**Live site:** https://hospitalacupuncture.com');
     expect(readme).toContain('Cloudflare Pages');
     expect(readme).toContain('npm run deploy:cloudflare');
+    expect(readme).toContain('Typst');
+    expect(readme).toContain('from the `main` branch');
     expect(readme).not.toContain('realmindsai.github.io/haif-website');
 
     expect(runbook).toContain('# Cloudflare Pages Deployment Runbook');
     expect(runbook).toContain('## Current path and history');
+    expect(runbook).toContain('Typst');
     expect(runbook).toContain('CLOUDFLARE_ACCOUNT_ID');
     expect(runbook).toContain('CLOUDFLARE_API_TOKEN');
     expect(runbook).toContain('npm exec wrangler pages project create');
     expect(runbook).toContain('npm run deploy:cloudflare');
+    expect(runbook).toContain('main');
     expect(runbook).toContain('Do not run `npm run build` separately');
+    expect(runbook).toContain('uncommitted changes');
     expect(runbook).toContain('www -> apex');
     expect(runbook).toContain('https://hospitalacupuncture.com/${1}');
     expect(runbook).toContain('proxied by Cloudflare');
