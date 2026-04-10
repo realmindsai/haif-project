@@ -317,6 +317,26 @@ describe('cloudflare deployment configuration', () => {
       'node scripts/deploy-cloudflare.mjs',
     );
   });
+
+  it('keeps deployment docs aligned to Cloudflare Pages production workflow', () => {
+    const readme = readFileSync(resolve(process.cwd(), 'README.md'), 'utf8');
+    const runbook = readFileSync(
+      resolve(process.cwd(), '../docs/deployment/cloudflare_pages.md'),
+      'utf8',
+    );
+
+    expect(readme).toContain('**Live site:** https://hospitalacupuncture.com');
+    expect(readme).toContain('npm run deploy:cloudflare');
+    expect(readme).not.toContain('realmindsai.github.io/haif-website');
+
+    expect(runbook).toContain('# Cloudflare Pages Deployment Runbook');
+    expect(runbook).toContain('CLOUDFLARE_ACCOUNT_ID');
+    expect(runbook).toContain('CLOUDFLARE_API_TOKEN');
+    expect(runbook).toContain('npm exec wrangler pages project create');
+    expect(runbook).toContain('npm run deploy:cloudflare');
+    expect(runbook).toContain('www -> apex');
+    expect(runbook).toContain('Retire `gh-pages`');
+  });
 });
 
 describe('deploy-cloudflare entrypoint', () => {

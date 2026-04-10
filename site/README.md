@@ -2,7 +2,7 @@
 
 A methodology for integrating acupuncture and acupressure into hospital practice. Evidence-based. Practitioner-tested.
 
-**Live site:** https://realmindsai.github.io/haif-website/
+**Live site:** https://hospitalacupuncture.com
 
 ## What is HAIF?
 
@@ -28,6 +28,16 @@ npm run dev        # Dev server at localhost:4321
 npm run build      # Production build to dist/
 npm run preview    # Preview production build
 ```
+
+## Deployment
+
+Production is served from Cloudflare Pages at `https://hospitalacupuncture.com`.
+
+```bash
+npm run deploy:cloudflare
+```
+
+Deployment runbook: `../docs/deployment/cloudflare_pages.md`.
 
 ## POPA4Ease recovery workflow
 
