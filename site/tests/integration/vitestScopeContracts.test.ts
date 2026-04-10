@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { relative, resolve } from 'node:path';
 
@@ -108,5 +108,30 @@ describe('scoped npm test contracts', () => {
 
     expect(result.status).toBe(1);
     expect(combinedOutput).toContain('must stay within the project root');
+  });
+
+  it('rejects in-repo symlinks that point outside the project root', () => {
+    const externalRoot = mkdtempSync(resolve(tmpdir(), 'outside-vitest-symlink-target-'));
+    const symlinkPath = resolve(process.cwd(), 'tests/.tmp-symlink-scope');
+    scopeFixturePaths.push(externalRoot, symlinkPath);
+
+    writeFileSync(
+      resolve(externalRoot, 'outside.test.ts'),
+      `import { expect, test } from 'vitest';
+
+test('outside scope via symlink executes', () => {
+  expect(1).toBe(1);
+});
+`,
+      'utf8',
+    );
+    symlinkSync(externalRoot, symlinkPath);
+
+    const result = runScopeRunner(['tests/.tmp-symlink-scope', 'outside']);
+    const combinedOutput = `${result.stdout}${result.stderr}`;
+
+    expect(result.status).toBe(1);
+    expect(combinedOutput).toContain('must stay within the project root');
+    expect(combinedOutput).not.toContain('outside scope via symlink executes');
   });
 });

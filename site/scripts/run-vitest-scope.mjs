@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { readdirSync } from 'node:fs';
+import { readdirSync, realpathSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { relative, resolve } from 'node:path';
 import { parseCLI, startVitest } from 'vitest/node';
@@ -53,16 +53,22 @@ async function main() {
   }
 
   const scopePath = resolve(process.cwd(), scopeDirectory);
-  const projectRoot = resolve(process.cwd());
+  const projectRoot = realpathSync(resolve(process.cwd()));
   let scopedFiles;
-
-  if (scopePath !== projectRoot && !scopePath.startsWith(`${projectRoot}/`)) {
-    console.error(`Scope directory "${scopeDirectory}" must stay within the project root.`);
-    return 1;
-  }
+  let resolvedScopePath;
 
   try {
-    scopedFiles = collectTestFiles(scopePath);
+    resolvedScopePath = realpathSync(scopePath);
+
+    if (
+      resolvedScopePath !== projectRoot &&
+      !resolvedScopePath.startsWith(`${projectRoot}/`)
+    ) {
+      console.error(`Scope directory "${scopeDirectory}" must stay within the project root.`);
+      return 1;
+    }
+
+    scopedFiles = collectTestFiles(resolvedScopePath);
   } catch (error) {
     if (
       error &&
