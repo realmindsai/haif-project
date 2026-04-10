@@ -22,6 +22,7 @@ test('homepage hero and exploration intervention interactions render recovered c
     page.waitForURL('**/framework/exploration/'),
     explorationLink.click(),
   ]);
+  expect(new URL(page.url()).pathname).toBe('/framework/exploration/');
   await expect(page.getByRole('heading', { name: /intervention/i })).toBeVisible();
 
   const manualAcupressureRow = page
