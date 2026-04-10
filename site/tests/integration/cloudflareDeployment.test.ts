@@ -350,6 +350,33 @@ describe('deploy-cloudflare entrypoint', () => {
     expect(combinedOutput).toContain('ENOENT');
     expect(combinedOutput).not.toContain('TypeError');
   });
+
+  it('aborts before build and wrangler when deploy guardrails fail', () => {
+    const fixtureRoot = createDeployFixture();
+    fixturePaths.push(fixtureRoot);
+    writeFileSync(resolve(fixtureRoot, 'dirty.marker'), 'dirty\n', 'utf8');
+
+    const deploy = spawnSync(process.execPath, [DEPLOY_ENTRYPOINT], {
+      cwd: fixtureRoot,
+      env: {
+        ...process.env,
+        NO_COLOR: '1',
+      },
+      encoding: 'utf8',
+      stdio: 'pipe',
+    });
+    const combinedOutput = `${deploy.stdout}${deploy.stderr}`;
+
+    expect(deploy.status).toBe(1);
+    expect(combinedOutput).toContain(
+      'Working tree must be clean before deploying to Cloudflare Pages.',
+    );
+    expect(existsSync(resolve(fixtureRoot, 'dist/stale.marker'))).toBe(true);
+    expect(existsSync(resolve(fixtureRoot, 'dist/build.marker'))).toBe(false);
+    expect(existsSync(resolve(fixtureRoot, '.deploy-artifacts/wrangler-call.json'))).toBe(
+      false,
+    );
+  });
 });
 
 describe('run-vitest-scope entrypoint', () => {

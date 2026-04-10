@@ -26,9 +26,31 @@ function collectTestFiles(directory) {
   });
 }
 
-const scopedFiles = collectTestFiles(resolve(process.cwd(), scopeDirectory));
-
 async function main() {
+  const scopePath = resolve(process.cwd(), scopeDirectory);
+  let scopedFiles;
+
+  try {
+    scopedFiles = collectTestFiles(scopePath);
+  } catch (error) {
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      error.code === 'ENOENT'
+    ) {
+      console.error(`Scope directory "${scopeDirectory}" does not exist.`);
+      return 1;
+    }
+
+    throw error;
+  }
+
+  if (scopedFiles.length === 0) {
+    console.error(`No test files found within "${scopeDirectory}".`);
+    return 1;
+  }
+
   const { filter: filters, options } = parseCLI(['vitest', 'run', ...rawArgs]);
   const targetFiles =
     filters.length === 0
