@@ -46,9 +46,10 @@ Run from [`site/`](/Users/dewoller/code/people/zhen_zheng/hospital_acupuncture/s
 
 ```bash
 npm run test
-npm run build
 npm run deploy:cloudflare
 ```
+
+Do not run `npm run build` separately here. `npm run deploy:cloudflare` performs the production build itself and aborts if that build dirties tracked files.
 
 The deploy script enforces guardrails:
 
@@ -60,10 +61,11 @@ The deploy script enforces guardrails:
 
 In Cloudflare dashboard:
 
-1. Open **Rules** for the `www.hospitalacupuncture.com` hostname.
-2. Create a redirect rule with source `www.hospitalacupuncture.com/*`.
-3. Set destination to `https://hospitalacupuncture.com/$1`.
-4. Use `301` permanent redirect.
+1. Ensure `www.hospitalacupuncture.com` is proxied by Cloudflare.
+2. Open **Rules** and create a **Single Redirect** for the `www.hospitalacupuncture.com` hostname.
+3. Set source to `https://www.hospitalacupuncture.com/*`.
+4. Set destination to `https://hospitalacupuncture.com/${1}`.
+5. Use `301` permanent redirect.
 
 This should yield: `www -> apex`.
 

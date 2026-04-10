@@ -326,15 +326,21 @@ describe('cloudflare deployment configuration', () => {
     );
 
     expect(readme).toContain('**Live site:** https://hospitalacupuncture.com');
+    expect(readme).toContain('Cloudflare Pages');
     expect(readme).toContain('npm run deploy:cloudflare');
     expect(readme).not.toContain('realmindsai.github.io/haif-website');
 
     expect(runbook).toContain('# Cloudflare Pages Deployment Runbook');
+    expect(runbook).toContain('## Current path and history');
     expect(runbook).toContain('CLOUDFLARE_ACCOUNT_ID');
     expect(runbook).toContain('CLOUDFLARE_API_TOKEN');
     expect(runbook).toContain('npm exec wrangler pages project create');
     expect(runbook).toContain('npm run deploy:cloudflare');
+    expect(runbook).toContain('Do not run `npm run build` separately');
     expect(runbook).toContain('www -> apex');
+    expect(runbook).toContain('https://hospitalacupuncture.com/${1}');
+    expect(runbook).toContain('proxied by Cloudflare');
+    expect(runbook).toContain('## Verification checklist');
     expect(runbook).toContain('Retire `gh-pages`');
   });
 });
