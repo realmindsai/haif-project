@@ -23,8 +23,7 @@ function isKnownAstroUnusedExternalImportWarning(warning) {
 }
 
 export default defineConfig({
-  site: 'https://realmindsai.github.io',
-  base: '/haif-project/',
+  site: 'https://hospitalacupuncture.com',
   compressHTML: true,
 
   build: {
