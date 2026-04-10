@@ -3,6 +3,26 @@ import { readdirSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
 
 const TEST_FILE_PATTERN = /\.(?:test|spec)\.(?:[cm]?[jt]sx?)$/;
+const OPTIONS_WITH_VALUES = new Set([
+  '-c',
+  '-t',
+  '--api',
+  '--browser',
+  '--changed',
+  '--config',
+  '--coverage.provider',
+  '--coverage.reportsDirectory',
+  '--coverage.reporter',
+  '--dir',
+  '--environment',
+  '--mode',
+  '--pool',
+  '--project',
+  '--reporter',
+  '--root',
+  '--sequence',
+  '--testNamePattern',
+]);
 const [, , scopeDirectory, ...rawArgs] = process.argv;
 
 if (!scopeDirectory) {
@@ -10,11 +30,25 @@ if (!scopeDirectory) {
   process.exit(1);
 }
 
-const optionStartIndex = rawArgs.findIndex((arg) => arg.startsWith('-'));
-const filters =
-  optionStartIndex === -1 ? rawArgs : rawArgs.slice(0, optionStartIndex);
-const forwardedVitestArgs =
-  optionStartIndex === -1 ? [] : rawArgs.slice(optionStartIndex);
+const filters = [];
+const forwardedVitestArgs = [];
+
+for (let index = 0; index < rawArgs.length; index += 1) {
+  const arg = rawArgs[index];
+
+  if (arg.startsWith('-')) {
+    forwardedVitestArgs.push(arg);
+
+    if (!arg.includes('=') && OPTIONS_WITH_VALUES.has(arg) && index + 1 < rawArgs.length) {
+      forwardedVitestArgs.push(rawArgs[index + 1]);
+      index += 1;
+    }
+
+    continue;
+  }
+
+  filters.push(arg);
+}
 
 function collectTestFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

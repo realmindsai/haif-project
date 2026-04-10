@@ -10,7 +10,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { resolve } from 'node:path';
+import { relative, resolve } from 'node:path';
 
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 
@@ -162,6 +162,39 @@ process.exit(101);
   );
 
   commitAll(fixtureRoot);
+  return fixtureRoot;
+}
+
+function createScopedRunnerOverlapFixture(): string {
+  const fixtureRoot = mkdtempSync(resolve(process.cwd(), 'tests/.tmp-vitest-scope-'));
+  const unitDir = resolve(fixtureRoot, 'unit');
+  const integrationDir = resolve(fixtureRoot, 'integration');
+
+  mkdirSync(unitDir, { recursive: true });
+  mkdirSync(integrationDir, { recursive: true });
+
+  writeFileSync(
+    resolve(unitDir, 'scopeLeak.test.ts'),
+    `import { expect, test } from 'vitest';
+
+test('scoped unit fixture runs', () => {
+  expect(1).toBe(1);
+});
+`,
+    'utf8',
+  );
+
+  writeFileSync(
+    resolve(integrationDir, 'scopeLeakIntegration.test.ts'),
+    `import { expect, test } from 'vitest';
+
+test('escaped integration fixture runs', () => {
+  expect(1).toBe(1);
+});
+`,
+    'utf8',
+  );
+
   return fixtureRoot;
 }
 
@@ -328,6 +361,22 @@ describe('run-vitest-scope entrypoint', () => {
     expect(combinedOutput).toContain(
       'builds the wrangler deploy command for the production project',
     );
+  });
+
+  it('keeps scope isolation when Vitest options come before the file filter', () => {
+    const fixtureRoot = createScopedRunnerOverlapFixture();
+    scopedRunnerFixturePaths.push(fixtureRoot);
+
+    const scopedRun = runScopedVitest([
+      relative(process.cwd(), resolve(fixtureRoot, 'unit')),
+      '--reporter=verbose',
+      'scopeLeak',
+    ]);
+    const combinedOutput = `${scopedRun.stdout}${scopedRun.stderr}`;
+
+    expect(scopedRun.status).toBe(0);
+    expect(combinedOutput).toContain('scoped unit fixture runs');
+    expect(combinedOutput).not.toContain('escaped integration fixture runs');
   });
 
   it('discovers .spec.ts tests within scope', () => {
