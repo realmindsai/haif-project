@@ -33,7 +33,7 @@ async function main() {
   const targetFiles =
     filters.length === 0
       ? scopedFiles
-      : scopedFiles.filter((file) => filters.every((filter) => file.includes(filter)));
+      : scopedFiles.filter((file) => filters.some((filter) => file.includes(filter)));
 
   if (filters.length > 0 && targetFiles.length === 0) {
     console.error(
