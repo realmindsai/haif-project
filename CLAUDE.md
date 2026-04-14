@@ -10,21 +10,49 @@ All commands run from `site/`:
 cd site
 npm install          # Install dependencies (Node >=22.12.0 required)
 npm run dev          # Dev server at localhost:4321
-npm run build        # Production build to site/dist/
+npm run build        # Production build to site/dist/ (includes PDF generation)
 npm run preview      # Preview production build locally
 ```
 
-PDF generation (planned, not yet implemented):
+### Testing
+
 ```bash
-# Typst-based PDF pipeline: site/src/pdfs/*.typ → site/public/downloads/*.pdf
-# See pdf_generation_plan.md for details
+npm run test                    # Run all tests (unit → integration → e2e)
+npm run test:unit               # Vitest unit tests only
+npm run test:integration        # Vitest integration tests only
+npm run test:e2e                # Playwright browser tests only
+npm run test:unit cloudflareDeploy   # Run a single test file by name fragment
 ```
+
+- **Vitest** (unit + integration): `tests/**/*.test.ts`, node environment, 30s timeout
+- **Playwright** (e2e): `tests/e2e/*.spec.ts`, auto-launches dev server on 127.0.0.1:4321
+- Test organization: `tests/unit/` (pure functions), `tests/integration/` (build/deploy flows with temp fixtures), `tests/e2e/` (browser)
+
+### PDF Generation
+
+Typst-based pipeline: `site/src/pdfs/*.typ` → `site/public/downloads/*.pdf`
+
+```bash
+npm run build:pdfs     # Build PDFs only (requires `typst` CLI on PATH)
+```
+
+`haif-template.typ` is the shared template — not compiled directly. The `build` script chains PDF generation before `astro build`.
+
+### Deployment
+
+Manual CLI deploy to Cloudflare Pages (not git-connected):
+
+```bash
+npm run deploy:cloudflare
+```
+
+Requires env vars `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` (stored in `.env` at repo root, gitignored). The deploy script enforces: must be on `main`, working tree must be clean, build must not create unexpected uncommitted changes. See `docs/deployment/cloudflare_pages.md` for full runbook.
 
 ## Architecture
 
 ### Tech Stack
 - **Astro 6** static site (zero JS by default), deployed to Cloudflare Pages
-- **Target domain:** hospitalacupuncture.com (not yet live)
+- **Production domain:** hospitalacupuncture.com (`www.` 301-redirects to apex)
 - **Integrations:** @astrojs/sitemap
 - All styling in a single `site/src/styles/global.css` (CSS custom properties, mobile-first)
 - No component framework (React/Vue/etc) — pure `.astro` files
@@ -36,23 +64,15 @@ layouts/
   BaseLayout.astro       ← Root layout: <head>, sticky header, nav, footer, JSON-LD schema slot
   FrameworkLayout.astro  ← Wraps BaseLayout for phase pages: breadcrumbs, phase stepper, prev/next nav
 pages/
-  index.astro            ← Landing: hero, circular SVG diagram, audience cards, evidence table
-  about.astro
-  contact.astro
-  evidence.astro
-  faq.astro
-  references.astro
-  resources.astro
+  index.astro            ← Landing: hero, phase cards, audience cards, evidence table
+  about.astro, contact.astro, evidence.astro, faq.astro, references.astro, resources.astro
   framework/             ← 4 EPIS phases (exploration, preparation, implementation, sustainment)
   examples/              ← PONV acupressure (done) + ED acupuncture (shell only, blocked on paper)
   for/                   ← Audience entry points: administrators, clinicians, practitioners, researchers
-public/
-  llms.txt               ← AI site summary for GEO
-  robots.txt             ← Allows GPTBot, ClaudeBot, PerplexityBot
-  downloads/             ← PDF resources (to be generated)
 ```
 
 ### Key Patterns
+- **`url()` helper** (`src/utils.ts`) — wraps all internal hrefs/srcs with `import.meta.env.BASE_URL`; use it for every link and asset path
 - **FrameworkLayout** handles phase navigation (stepper bar, prev/next links) — all `/framework/*` pages use it
 - **BaseLayout** accepts `schema` prop for JSON-LD structured data (MedicalWebPage, FAQPage, etc.)
 - **`<details>/<summary>`** for collapsible content sections — no JS, native HTML
@@ -89,7 +109,6 @@ Collaboration with Dr Zhen Zheng (ZZ), RMIT academic. Two parallel projects:
 - `haif_site-structure.md` — full sitemap, page wireframes, llms.txt content
 - `zhen_requirements.md` — ZZ's requirements extracted from transcript
 - `popa4ease_site_content.md` — spider of the old WordPress site (content source)
-- `pdf_generation_plan.md` — plan for Typst-based PDF checklists and clinical tools
 
 ### Delivery Phases
 - **Phase A (NOW):** Site live on hospitalacupuncture.com, PONV content as Example 1, framework pages, mobile-first
