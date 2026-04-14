@@ -580,7 +580,7 @@ th {
 
 /* Hero section */
 .hero {
-  text-align: center;
+  text-align: left;
   padding: var(--spacing-2xl) 0;
 }
 .hero-split {
@@ -605,8 +605,8 @@ th {
 .hero .subtitle {
   font-size: 1.15rem;
   color: var(--color-text-muted);
-  max-width: 36rem;
-  margin: 0 auto var(--spacing-lg);
+  max-width: 44rem;
+  margin: 0 0 var(--spacing-lg);
 }
 .hero .cta {
   display: inline-block;
