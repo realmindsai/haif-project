@@ -1,2 +1,8 @@
 # OS junk
 .DS_Store
+
+# Secrets
+.env
+
+# Test artifacts
+site/test-results/
