@@ -646,13 +646,18 @@ th {
 /* Audience cards */
 .audience-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-md);
   margin: var(--spacing-lg) 0;
 }
+@media (min-width: 768px) {
+  .audience-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 .audience-card {
   display: block;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   border: 2px solid var(--color-border);
   border-radius: var(--radius);
   text-decoration: none;
