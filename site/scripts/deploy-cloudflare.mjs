@@ -47,9 +47,20 @@ function main() {
   run('npm', ['run', 'build'], { stdio: 'inherit' });
 
   const postBuildGitStatusOutput = run('git', ['status', '--porcelain']);
-  if (postBuildGitStatusOutput.trim() !== '') {
-    console.error('- Build created uncommitted changes.');
+  const unexpectedChanges = postBuildGitStatusOutput
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .filter((line) => !line.trim().endsWith('.pdf'));
+  if (unexpectedChanges.length > 0) {
+    console.error('- Build created uncommitted changes:');
+    for (const line of unexpectedChanges) {
+      console.error(`  ${line}`);
+    }
     return 1;
+  }
+  // Reset expected PDF regeneration so wrangler deploys the committed versions
+  if (postBuildGitStatusOutput.trim() !== '') {
+    run('git', ['checkout', '--', '.']);
   }
 
   const deploy = spawnSync(

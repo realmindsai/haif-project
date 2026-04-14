@@ -483,7 +483,7 @@ describe('deploy-cloudflare entrypoint', () => {
     const combinedOutput = `${deploy.stdout}${deploy.stderr}`;
 
     expect(deploy.status).toBe(1);
-    expect(combinedOutput).toContain('Build created uncommitted changes.');
+    expect(combinedOutput).toContain('Build created uncommitted changes:');
     expect(existsSync(resolve(fixtureRoot, 'dist/build.marker'))).toBe(true);
     expect(existsSync(resolve(fixtureRoot, '.deploy-artifacts/wrangler-call.json'))).toBe(
       false,
