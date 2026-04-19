@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { url } from '../utils';
+---
+
+<BaseLayout
+  title="Site Changes — April 2026 Review"
+  description="Changes made to the HAIF website following review by Professor Zhen Zheng, April 2026."
+  lastReviewed="April 2026"
+>
+  <h1>Site Changes — April 2026 Review</h1>
+
+  <div class="bottom-line">
+    <strong>About This Page</strong>
+    Changes below were made following a detailed review by Professor Zhen Zheng (18–19 April 2026).
+    Each item links to the affected page. Items marked <em>pending</em> are waiting on additional
+    content or confirmation from ZZ before they can be finalised.
+  </div>
+
+  <h2>Summary</h2>
+  <ul>
+    <li><strong>10 pages updated</strong> across the site</li>
+    <li><strong>8 items pending</strong> — waiting on ZZ for content or confirmation</li>
+    <li>Review date: 18–19 April 2026</li>
+    <li>Reviewer: Professor Zhen Zheng, RMIT University</li>
+  </ul>
+
+  <!-- ── HOME PAGE ── -->
+  <h2><a href={url('/')}>Home Page</a></h2>
+  <ul>
+    <li>
+      <strong>Hero text replaced.</strong>
+      The opening subtitle now describes HAIF as a service implementation framework, introduces
+      the PONV project, and mentions PANDA (the ED acupuncture initiative) as a future example.
+    </li>
+    <li>
+      <strong>Bottom Line box updated.</strong>
+      Changed from "the only non-pharmacological interventions" to "effective non-pharmacological
+      interventions" — a more accurate characterisation of the evidence. Scope broadened to include
+      acute pain alongside PONV.
+    </li>
+    <li>
+      <strong>Attribution added.</strong>
+      Added to the About the Framework section: "HAIF is a collaborative innovation created by
+      RMIT University and Northern Health, led by Professor Zhen Zheng."
+    </li>
+  </ul>
+
+  <!-- ── ABOUT ── -->
+  <h2><a href={url('/about/')}>About Page</a></h2>
+  <ul>
+    <li>
+      <strong>Collaborative attribution added</strong> to the Acknowledgements section:
+      "HAIF is a collaborative innovation created by RMIT University and Northern Health,
+      led by Professor Zhen Zheng."
+    </li>
+  </ul>
+
+  <!-- ── CONTACT ── -->
+  <h2><a href={url('/contact/')}>Contact Page</a></h2>
+  <ul>
+    <li>
+      <strong>Email address updated.</strong>
+      Changed from <code>contact [at] hospitalacupuncture.com</code> to
+      <code>panda@rmit.edu.au</code>. (Ideally <code>haif@rmit.edu.au</code> once set up.)
+    </li>
+    <li>
+      <strong>Response time statement removed.</strong>
+      Deleted "Please allow up to five business days for a response."
+    </li>
+  </ul>
+
+  <!-- ── EVIDENCE ── -->
+  <h2><a href={url('/evidence/')}>Evidence Page</a></h2>
+  <ul>
+    <li>
+      <strong>Acupressure wristband cost updated</strong> in the modality characteristics
+      table: ~$5 AUD → ~$8–$15 AUD per unit.
+    </li>
+    <li>
+      <strong>Acupuncture needle cost updated:</strong>
+      ~$0.05/needle → ~$0.10–$0.20/needle (~$0.60–$1.20 per treatment).
+    </li>
+    <li>
+      <strong>Wristband evidence data labelled as provisional.</strong>
+      A note has been added to the Acupressure Wristbands rows explaining that the current
+      RR figures reflect PC6 acupressure broadly, not wristband-specific trials.
+      Wristband-specific data will be updated when ZZ provides it.
+      <em class="pending">(Data pending — ZZ to supply)</em>
+    </li>
+    <li>
+      <strong>Three new references added</strong> (placeholder entries):
+      PubMed PMIDs 35579002, 36153218, and 27158297.
+      Full citation details to be confirmed by ZZ.
+      <em class="pending">(Citations pending — ZZ to confirm)</em>
+    </li>
+  </ul>
+
+  <!-- ── RESOURCES ── -->
+  <h2><a href={url('/resources/')}>Resources &amp; Downloads Page</a></h2>
+  <ul>
+    <li>
+      <strong>Phase 2, 3, and 4 checklist links removed.</strong>
+      Only the Phase 1: Exploration Checklist file exists. Phases 2–4 now show
+      "coming soon" instead of broken links.
+    </li>
+    <li>
+      <strong>CARI readiness assessment scoring corrected.</strong>
+      Previous text incorrectly stated "100 points total, minimum 15 per category."
+      Correct scoring: 8 categories × 20 points = 160 total; threshold is 80% overall.
+    </li>
+    <li>
+      <strong>PONV Data Extraction Template link replaced</strong> with "coming soon."
+      ZZ has the file but needs to locate and send it.
+      <em class="pending">(File pending — ZZ to supply)</em>
+    </li>
+    <li>
+      <strong>Staff Survey Template link replaced</strong> with a reference to
+      Zheng et al. and Faircloth (2014). ZZ to provide the actual survey instrument
+      and confirm citation.
+      <em class="pending">(File and citation pending — ZZ to supply)</em>
+    </li>
+  </ul>
+
+  <!-- ── FRAMEWORK EXPLORATION ── -->
+  <h2><a href={url('/framework/exploration/')}>Framework — Phase 1: Exploration</a></h2>
+  <ul>
+    <li>
+      <strong>Wristband cost updated:</strong> ~$5 AUD → ~$8–$15 AUD per unit.
+    </li>
+    <li>
+      <strong>Needle cost updated:</strong> ~$0.05 → ~$0.10–$0.20 per needle.
+    </li>
+    <li>
+      <strong>CARI scoring corrected</strong> (same correction as Resources page):
+      8 categories × 20 points = 160 total; 80% threshold.
+    </li>
+    <li>
+      <strong>Australian Hospital Survey citation added.</strong>
+      Survey results (n=165) now reference "Zheng et al. (reference to be confirmed)."
+      <em class="pending">(Citation pending — ZZ to confirm)</em>
+    </li>
+  </ul>
+
+  <!-- ── FRAMEWORK SUSTAINMENT ── -->
+  <h2><a href={url('/framework/sustainment/')}>Framework — Phase 4: Sustainment</a></h2>
+  <ul>
+    <li>
+      <strong>Phase 4 content gap acknowledged.</strong>
+      A note has been added at the top of the page explaining that HAIF currently has
+      limited published information for Phase 4, and that content will grow as experience
+      accumulates.
+    </li>
+    <li>
+      <strong>External factors bullet updated:</strong>
+      "Evidence of peer hospital interest as external motivation" →
+      "Evidence of peer hospital interest <em>and implementation success</em> as external motivations."
+    </li>
+    <li>
+      <strong>Broken Phase 4 resource links removed.</strong>
+      All four resource links (sustainment checklist, fidelity audit template, orientation guide,
+      leadership template) replaced with "Phase 4 resources are in development."
+    </li>
+  </ul>
+
+  <!-- ── PONV EXAMPLE ── -->
+  <h2><a href={url('/examples/ponv-acupressure/')}>Example: PONV Acupressure (Northern Hospital)</a></h2>
+  <ul>
+    <li>
+      <strong>Evidence attribution clarified.</strong>
+      The wristband selection rationale now notes that the RR figures (nausea 0.60, vomiting 0.54)
+      reflect PC6 acupressure broadly, and that wristband-specific data will be updated.
+      <em class="pending">(Data pending — ZZ to supply)</em>
+    </li>
+    <li>
+      <strong>Wristband cost updated:</strong> ~$5 AUD → ~$8–$15 AUD per unit.
+    </li>
+    <li>
+      <strong>Staff survey citation added.</strong>
+      The survey of 165 staff now references "Zheng et al. (reference to be confirmed)."
+      <em class="pending">(Citation pending — ZZ to confirm)</em>
+    </li>
+    <li>
+      <strong>CARI scoring corrected:</strong> "80+ points out of 100" →
+      "8 categories × 20 points = 160 total; readiness threshold 80% overall."
+    </li>
+    <li>
+      <strong>External factors bullet updated</strong> (same as Sustainment page above).
+    </li>
+    <li>
+      <strong>Key Outcomes table updated.</strong>
+      Cost row updated to $8–$15 AUD. Wristband-specific nausea and vomiting reduction rows
+      now labelled as "PC6 acupressure evidence" with a note that wristband-specific data
+      will be updated.
+      <em class="pending">(Data pending — ZZ to supply)</em>
+    </li>
+    <li>
+      <strong>Implementation Outcomes section added.</strong>
+      New section covers implementation outcomes (PONV risk assessed; acupressure recorded
+      in pre-operative checklist) and clinical outcomes (PONV incidence within 24 hours;
+      rescue anti-emetic use).
+    </li>
+  </ul>
+
+  <!-- ── FOR ADMINISTRATORS ── -->
+  <h2><a href={url('/for/administrators/')}>For Hospital Administrators</a></h2>
+  <ul>
+    <li>
+      <strong>Wristband cost updated</strong> in the Bottom Line box and cost-effectiveness bullet:
+      ~$5 AUD → ~$8–$15 AUD per unit.
+    </li>
+    <li>
+      <strong>Needle cost updated:</strong> $0.05/needle → ~$0.10–$0.20/needle.
+    </li>
+    <li>
+      <strong>CARI scoring corrected</strong> in the organisational readiness bullet.
+    </li>
+  </ul>
+
+  <!-- ── FAQ ── -->
+  <h2><a href={url('/faq/')}>FAQ Page</a></h2>
+  <ul>
+    <li>
+      <strong>Wristband cost updated</strong> across three FAQ answers:
+      ~$5 AUD → ~$8–$15 AUD per unit.
+    </li>
+    <li>
+      <strong>Needle cost updated</strong> in equipment FAQ:
+      ~$0.05/needle → ~$0.10–$0.20/needle.
+    </li>
+    <li>
+      <strong>CARI scoring corrected</strong> across two FAQ answers.
+    </li>
+  </ul>
+
+  <!-- ── PENDING ITEMS ── -->
+  <h2>Pending Items — Waiting on ZZ</h2>
+  <p>The following items cannot be completed until Professor Zhen Zheng provides content or confirmation.</p>
+  <ol>
+    <li>Correct wristband-specific RR evidence data (to replace PC6 acupressure aggregate figures)</li>
+    <li>Full citation for PMID 35579002</li>
+    <li>Full citation for PMID 36153218</li>
+    <li>Confirm Zheng et al. staff survey citation (~2021, <em>Acupuncture in Medicine</em>, PMID 27158297)</li>
+    <li>Correct outcome measures / provide PONV protocol for Key Outcomes table</li>
+    <li>PONV Data Extraction Template file</li>
+    <li>Staff Survey instrument file</li>
+    <li>Setup of <code>haif@rmit.edu.au</code> email address</li>
+  </ol>
+
+  <!-- ── STRUCTURAL DECISIONS ── -->
+  <h2>Structural Decisions Pending</h2>
+  <p>These items require a joint decision between DW and ZZ.</p>
+  <ol>
+    <li>
+      <strong>Evidence table consolidation:</strong>
+      Evidence appears in multiple pages in different formats. Should all pages point to one
+      canonical source, or should each page maintain its own copy?
+    </li>
+    <li>
+      <strong>Clinical Decision Aid:</strong>
+      The Step 3 modality selection table has a Nausea RR + Evidence column that ZZ says
+      may not have valid data. Should the column be replaced with implementation
+      barriers/facilitators?
+    </li>
+    <li>
+      <strong>Key Outcomes table on PONV page:</strong>
+      Remove entirely, or keep with "data to be updated" markers?
+    </li>
+  </ol>
+</BaseLayout>
+
+<style>
+  .pending {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 0.9em;
+  }
+  h2 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-accent);
+  }
+  h2 a:hover {
+    color: var(--color-primary);
+  }
+</style>
