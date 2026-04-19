@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { url } from '../utils';
-import { resourceDownloads } from '../data/legacy/resourceDownloads';
 ---
 
 <BaseLayout
@@ -24,9 +23,9 @@ import { resourceDownloads } from '../data/legacy/resourceDownloads';
     <p>One checklist per phase, summarising key tasks, decision points, and outputs.</p>
     <ul>
       <li><a href={url('/downloads/exploration-checklist.pdf')}>Phase 1: Exploration Checklist</a> (PDF)</li>
-      <li><a href={url('/downloads/preparation-checklist.pdf')}>Phase 2: Preparation Checklist</a> (PDF)</li>
-      <li><a href={url('/downloads/implementation-checklist.pdf')}>Phase 3: Implementation Checklist</a> (PDF)</li>
-      <li><a href={url('/downloads/sustainment-checklist.pdf')}>Phase 4: Sustainment Checklist</a> (PDF)</li>
+      <li>Phase 2: Preparation Checklist — <em>coming soon</em></li>
+      <li>Phase 3: Implementation Checklist — <em>coming soon</em></li>
+      <li>Phase 4: Sustainment Checklist — <em>coming soon</em></li>
     </ul>
   </div>
 
@@ -78,8 +77,8 @@ import { resourceDownloads } from '../data/legacy/resourceDownloads';
       Modified Checklist to Assess Readiness for Implementation (CARI),
       adapted from Barwick (2011). Evaluates system readiness, senior leadership
       support, staff capability, implementation plan maturity, and training
-      requirements. Scoring: 100 points total; readiness threshold is 80+ points
-      with a minimum 15 points per category.
+      requirements. Scoring: 8 categories, each worth 20 points (160 points total);
+      readiness threshold is 80% overall.
     </p>
     <ul>
       <li><a href={url('/downloads/cari-readiness-assessment.pdf')}>CARI Readiness Assessment</a> (PDF)</li>
@@ -96,12 +95,7 @@ import { resourceDownloads } from '../data/legacy/resourceDownloads';
       Exploration phase baseline audit.
     </p>
     <ul>
-      <li>
-        <a href={resourceDownloads.ponvDataExtractionTemplate.href}>
-          {resourceDownloads.ponvDataExtractionTemplate.label}
-        </a>
-        ({resourceDownloads.ponvDataExtractionTemplate.format})
-      </li>
+      <li>PONV Data Extraction Template — <em>coming soon</em></li>
     </ul>
   </div>
 
@@ -113,7 +107,7 @@ import { resourceDownloads } from '../data/legacy/resourceDownloads';
       instruments used in Australian and US hospital surveys.
     </p>
     <ul>
-      <li><a href={url('/downloads/staff-survey-template.pdf')}>Staff Survey Template</a> (PDF)</li>
+      <li>Staff Knowledge and Attitudes Survey — see Zheng et al. (reference to be added) and Faircloth (2014)</li>
     </ul>
   </div>
 
