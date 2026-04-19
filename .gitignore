@@ -6,3 +6,8 @@
 
 # Test artifacts
 site/test-results/
+
+# Working/review files
+generate_review_doc.py
+haif_zz_review_tracked_changes.docx
+live_site/
