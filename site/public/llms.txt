@@ -1,6 +1,6 @@
 # Hospital Acupuncture Implementation Framework (HAIF)
 
-The Hospital Acupuncture Implementation Framework (HAIF) is a structured, evidence-based methodology for integrating acupuncture and acupressure into hospital practice. Developed by Dr Zhen Zheng, PhD, at RMIT University (NHMRC Translating Research into Practice Fellow), HAIF guides clinicians and hospital administrators through four implementation phases based on the EPIS (Exploration, Preparation, Implementation, Sustainment) model. The primary application is post-operative nausea and vomiting (PONV), where PC6 acupoint stimulation has high-quality Cochrane-level evidence.
+The Hospital Acupuncture Implementation Framework (HAIF) is a structured, evidence-based methodology for integrating acupuncture and acupressure into hospital practice. HAIF is a collaborative innovation between RMIT University and Northern Health, led by Professor Zhen Zheng, PhD (NHMRC Translating Research into Practice Fellow, App 1110446). HAIF guides clinicians and hospital administrators through four implementation phases based on the EPIS (Exploration, Preparation, Implementation, Sustainment) model. The primary application is post-operative nausea and vomiting (PONV), where PC6 acupoint stimulation has high-quality Cochrane-level evidence. HAIF has also been applied to PANDA — Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain.
 
 ## About
 
@@ -24,6 +24,7 @@ The Hospital Acupuncture Implementation Framework (HAIF) is a structured, eviden
 ## Application Examples
 
 - [Acupressure for PONV](https://hospitalacupuncture.com/examples/ponv-acupressure/): Nurse-led acupressure wristband implementation for post-operative nausea and vomiting at Northern Hospital, Victoria. Real-world case study with timeline and outcomes.
+- [PANDA — Acupuncture in the ED](https://hospitalacupuncture.com/examples/panda/): Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain. Research in progress — extends HAIF from peri-operative care into acute emergency medicine and addresses acupuncturist credentialling in a hospital setting.
 
 ## Resources
 

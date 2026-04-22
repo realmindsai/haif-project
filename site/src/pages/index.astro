@@ -10,8 +10,10 @@ const schema = {
   "url": "https://hospitalacupuncture.com/",
   "author": {
     "@type": "Person",
-    "name": "Dr Zhen Zheng",
-    "jobTitle": "Senior Research Fellow",
+    "name": "Professor Zhen Zheng",
+    "honorificPrefix": "Professor",
+    "honorificSuffix": "PhD",
+    "jobTitle": "Professor",
     "affiliation": {
       "@type": "Organization",
       "name": "RMIT University"
@@ -34,9 +36,9 @@ const schema = {
       implementation. The Hospital Acupuncture Implementation Framework (HAIF) was developed
       to address this need, drawing on implementation science methodology and grounded in
       real-world experience from an acupressure project for post-operative nausea and vomiting
-      (PONV). HAIF has since been applied to a new initiative, PANDA (implementing acupuncture
-      in the emergency department for acute pain). Current examples focus on the PONV project.
-      Information about PANDA will be updated here when available.
+      (PONV). HAIF has since been applied to <strong>PANDA</strong> — Personalised Acupuncture
+      in the Northern Hospital Emergency Department for Acute Pain. Current examples focus on
+      the PONV project; information about PANDA will be updated here when available.
     </p>
   </section>
 
@@ -110,8 +112,9 @@ const schema = {
       <a href={url('/examples/ponv-acupressure/')}>View case study &rarr;</a>
     </div>
     <div class="card">
-      <h3>Acupuncture in Emergency <span class="coming-soon">Coming Soon</span></h3>
-      <p>Registrar-led acupuncture implementation in the emergency department. Research in progress.</p>
+      <h3>PANDA — Acupuncture in the ED <span class="coming-soon">Coming Soon</span></h3>
+      <p>Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain. Research in progress.</p>
+      <a href={url('/examples/panda/')}>Preview case study &rarr;</a>
     </div>
   </div>
 
@@ -152,12 +155,14 @@ const schema = {
   <section style="margin-top: var(--spacing-2xl); padding: var(--spacing-lg); background: var(--color-bg-alt); border-radius: var(--radius);">
     <h3 style="margin-top: 0;">About the Framework</h3>
     <p>
-      Developed by <strong>Dr Zhen Zheng, PhD</strong>, Senior Research Fellow at RMIT University and
-      NHMRC Translating Research into Practice Fellow. The HAIF framework draws on implementation science
-      methodology (EPIS, CFIR) and real-world hospital implementation experience.
-      HAIF is a collaborative innovation created by RMIT University and Northern Health,
-      led by Professor Zhen Zheng.
-</p>
+      HAIF is a collaborative innovation between <strong>RMIT University</strong> and
+      <strong>Northern Health</strong>, led by <strong>Professor Zhen Zheng, PhD</strong>.
+      It was developed during Professor Zheng's NHMRC Translating Research into Practice
+      (TRIP) Fellowship (App 1110446), drawing on implementation science and hands-on
+      experience from an acupressure project for post-operative nausea and vomiting (PONV).
+      HAIF has since been applied to PANDA, implementing acupuncture in the Northern Hospital
+      emergency department for acute pain.
+    </p>
     <a href={url('/about/')}>Learn more about HAIF &rarr;</a>
   </section>
 </BaseLayout>

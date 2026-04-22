@@ -20,7 +20,7 @@
   doc-type: "Resource",
   body,
 ) = {
-  set document(title: title, author: "Dr Zhen Zheng, RMIT University")
+  set document(title: title, author: "Professor Zhen Zheng, RMIT University and Northern Health")
   set page(
     paper: "a4",
     margin: (top: 3cm, bottom: 2.5cm, left: 2cm, right: 2cm),
@@ -42,7 +42,7 @@
       v(4pt)
       grid(
         columns: (1fr, 1fr),
-        align(left)[Dr Zhen Zheng, PhD #sym.dot.c RMIT University #sym.dot.c hospitalacupuncture.com],
+        align(left)[Professor Zhen Zheng, PhD #sym.dot.c RMIT University #sym.dot.c Northern Health #sym.dot.c hospitalacupuncture.com],
         align(right)[Page #context counter(page).display("1 of 1", both: true)],
       )
     },

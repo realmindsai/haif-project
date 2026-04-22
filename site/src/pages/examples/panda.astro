@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { url } from '../../utils';
+---
+
+<BaseLayout
+  title="PANDA — Acupuncture in the Northern Hospital ED"
+  description="PANDA (Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain) — upcoming case study on acupuncturist-delivered acupuncture in an Australian public hospital ED. Research in progress."
+  lastReviewed="April 2026"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href={url('/')}>Home</a>
+    <span>/</span>
+    <a href={url('/examples/')}>Examples</a>
+    <span>/</span>
+    PANDA
+  </nav>
+
+  <h1>
+    PANDA: Acupuncture in the Emergency Department
+    <span class="coming-soon">Coming Soon</span>
+  </h1>
+
+  <p>
+    <strong>PANDA</strong> — <em>Personalised Acupuncture in the Northern
+    Hospital Emergency Department for Acute Pain</em> — is HAIF's second
+    named application, extending the framework from peri-operative care
+    into acute emergency medicine at Northern Hospital, Victoria.
+  </p>
+
+  <div class="bottom-line">
+    <strong>Research in Progress</strong>
+    This case study is currently being developed. Findings will be published
+    here once the research is complete.
+  </div>
+
+  <h2>Overview</h2>
+  <p>
+    PANDA documents an emergency-department initiative in which
+    <strong>registered acupuncturists</strong> deliver needle-based
+    acupuncture for acute pain presentations. Unlike the
+    <a href={url('/examples/ponv-acupressure/')}>PONV acupressure case study</a>,
+    which uses a nurse-led, non-invasive model, PANDA involves invasive
+    acupuncture delivered in an acute care environment by credentialed
+    acupuncture practitioners working alongside emergency medicine physicians.
+  </p>
+
+  <h2>What This Case Study Will Cover</h2>
+  <ul>
+    <li>
+      <strong>Setting:</strong> Emergency department at Northern Hospital, Victoria
+    </li>
+    <li>
+      <strong>Model:</strong> Acupuncturist-delivered acupuncture within ED
+      workflows, in collaboration with emergency medicine physicians
+    </li>
+    <li>
+      <strong>Clinical focus:</strong> Acute pain presentations suitable for
+      acupuncture intervention
+    </li>
+    <li>
+      <strong>Framework application:</strong> How HAIF's four phases adapt to
+      the distinct challenges of emergency department implementation — faster
+      pace, higher patient turnover, and different credentialling requirements
+    </li>
+    <li>
+      <strong>Acupuncturist credentialling:</strong> Hospitals typically have
+      no established pathway for credentialing acupuncturists, making this one
+      of the more challenging aspects of implementation. PANDA demonstrates how
+      acupuncturist credentialing was achieved in a hospital setting.
+    </li>
+  </ul>
+
+  <h2>How This Differs from Example 1</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>PONV Acupressure</th>
+        <th>PANDA (ED Acupuncture)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Setting</td>
+        <td>Surgical ward / Recovery</td>
+        <td>Emergency department</td>
+      </tr>
+      <tr>
+        <td>Practitioner</td>
+        <td>Nurse / acupressure</td>
+        <td>Registered acupuncturist / acupuncture</td>
+      </tr>
+      <tr>
+        <td>Intervention</td>
+        <td>Acupressure wristband (non-invasive)</td>
+        <td>Needle acupuncture (invasive)</td>
+      </tr>
+      <tr>
+        <td>Timing</td>
+        <td>Planned peri-operative</td>
+        <td>Acute/unscheduled presentations</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td>Completed</td>
+        <td>In progress</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    When this research is complete, the case study will walk through all four
+    HAIF phases as applied to the emergency department context, including
+    adaptations required for acute care settings.
+  </p>
+
+  <p>
+    To be notified when this case study is published,
+    <a href={url('/contact/')}>contact us</a>.
+  </p>
+
+  <div class="phase-nav">
+    <a href={url('/examples/')}>&larr; All Examples</a>
+    <a href={url('/examples/ponv-acupressure/')}>PONV Case Study &rarr;</a>
+  </div>
+</BaseLayout>

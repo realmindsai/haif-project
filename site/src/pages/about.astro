@@ -7,10 +7,11 @@ const schema = {
   "@graph": [
     {
       "@type": "Person",
-      "name": "Dr Zhen Zheng",
-      "honorificPrefix": "Dr",
-      "jobTitle": "Senior Research Fellow",
-      "description": "NHMRC Translating Research into Practice Fellow, developer of the Hospital Acupuncture Implementation Framework",
+      "name": "Professor Zhen Zheng",
+      "honorificPrefix": "Professor",
+      "honorificSuffix": "PhD",
+      "jobTitle": "Professor",
+      "description": "NHMRC Translating Research into Practice Fellow (App 1110446); lead of the Hospital Acupuncture Implementation Framework, a collaboration between RMIT University and Northern Health.",
       "affiliation": {
         "@type": "Organization",
         "name": "RMIT University",
@@ -27,16 +28,23 @@ const schema = {
       "name": "Hospital Acupuncture Implementation Framework",
       "alternateName": "HAIF",
       "url": "https://hospitalacupuncture.com",
-      "description": "A methodology for integrating acupuncture and acupressure into hospital practice using implementation science frameworks (EPIS, CFIR).",
+      "description": "A collaborative innovation between RMIT University and Northern Health, led by Professor Zhen Zheng. A methodology for integrating acupuncture and acupressure into hospital practice using implementation science frameworks (EPIS, CFIR).",
       "founder": {
         "@type": "Person",
-        "name": "Dr Zhen Zheng"
+        "name": "Professor Zhen Zheng"
       },
-      "parentOrganization": {
-        "@type": "Organization",
-        "name": "RMIT University",
-        "url": "https://www.rmit.edu.au"
-      }
+      "parentOrganization": [
+        {
+          "@type": "Organization",
+          "name": "RMIT University",
+          "url": "https://www.rmit.edu.au"
+        },
+        {
+          "@type": "Organization",
+          "name": "Northern Health",
+          "url": "https://www.nh.org.au"
+        }
+      ]
     }
   ]
 };
@@ -44,28 +52,31 @@ const schema = {
 
 <BaseLayout
   title="About"
-  description="About the Hospital Acupuncture Implementation Framework (HAIF), Dr Zhen Zheng, methodology, acknowledgements, and conflict of interest disclosure."
+  description="About the Hospital Acupuncture Implementation Framework (HAIF), a collaboration between RMIT University and Northern Health led by Professor Zhen Zheng. Methodology, acknowledgements, and conflict of interest disclosure."
   lastReviewed="April 2026"
   schema={schema}
 >
   <h1>About HAIF</h1>
 
-  <!-- Lead researcher -->
-  <h2>Dr Zhen Zheng</h2>
+  <!-- Overview -->
+  <h2>About the Framework</h2>
   <p>
-    <strong>Dr Zhen Zheng, PhD</strong> is a Senior Research Fellow at
-    <a href="https://www.rmit.edu.au">RMIT University</a> and a
-    National Health and Medical Research Council (NHMRC)
-    <strong>Translating Research into Practice (TRIP) Fellow</strong>
-    (App 1110446). Her research focuses on translating acupuncture
-    and acupressure evidence into routine hospital practice using
-    implementation science methodology.
+    The Hospital Acupuncture Implementation Framework (HAIF) is a
+    collaborative innovation that grew out of a partnership between
+    <a href="https://www.rmit.edu.au">RMIT University</a> and
+    <a href="https://www.nh.org.au">Northern Health</a>, led by
+    <strong>Professor Zhen Zheng, PhD</strong>. It was developed
+    during Professor Zheng's
+    <strong>NHMRC Translating Research into Practice (TRIP)
+    Fellowship (App 1110446)</strong>, drawing on implementation
+    science and hands-on experience from an acupressure project
+    for post-operative nausea and vomiting (PONV).
   </p>
   <p>
-    Dr Zheng developed the Hospital Acupuncture Implementation
-    Framework (HAIF) based on real-world implementation experience
-    at Victorian public hospitals and systematic review of the
-    clinical evidence base.
+    HAIF has since been applied to a new initiative —
+    <strong>PANDA</strong> (Personalised Acupuncture in the Northern
+    Hospital Emergency Department for Acute Pain) — extending the
+    framework from peri-operative care into acute emergency medicine.
   </p>
 
   <!-- What is HAIF -->
@@ -115,18 +126,19 @@ const schema = {
   </p>
   <p>
     The content draws on the collaborative work of the team that implemented
-    acupressure for post-operative nausea and vomiting at a Victorian public
-    hospital, integrating implementation science expertise, acupuncture and
-    acupressure evidence, and team learning.
-    HAIF is a collaborative innovation created by RMIT University and Northern Health,
-    led by Professor Zhen Zheng.
+    acupressure for post-operative nausea and vomiting at Northern Hospital,
+    Victoria, integrating implementation science expertise, acupuncture and
+    acupressure evidence, and team learning. HAIF is a collaborative innovation
+    between <a href="https://www.rmit.edu.au">RMIT University</a> and
+    <a href="https://www.nh.org.au">Northern Health</a>, led by
+    <strong>Professor Zhen Zheng</strong>.
   </p>
 
   <h3>Funding Sources</h3>
   <ul>
     <li>
       <strong>NHMRC Translating Research into Practice (TRIP) Fellowship</strong>
-      to Dr Zhen Zheng (App 1110446)
+      to Professor Zhen Zheng (App 1110446)
     </li>
     <li>
       <strong>RMIT University Postgraduate Scholarship</strong> to Ms Jenny Layton
@@ -151,7 +163,7 @@ const schema = {
   <!-- Conflict of Interest -->
   <h2>Conflict of Interest Disclosure</h2>
   <p>
-    Dr Zhen Zheng receives no financial benefit from the recommendation of any
+    Professor Zhen Zheng receives no financial benefit from the recommendation of any
     specific acupuncture or acupressure product, device, or training programme.
     The HAIF framework is developed as a public-good research output. Funding
     sources (NHMRC, RMIT University) had no role in the framework design,
