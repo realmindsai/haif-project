@@ -89,10 +89,6 @@ const faqs = [
     a: "The Cochrane review by Lee, Chan & Fan (2025) — \"Stimulation of the wrist acupuncture point PC6 for preventing postoperative nausea and vomiting\" — found consistent, statistically significant reductions in nausea, vomiting, and rescue antiemetic use across multiple stimulation methods. The evidence quality was rated high for nausea and vomiting outcomes."
   },
   {
-    q: "How does acupuncture compare to antiemetic drugs?",
-    a: "PC6 stimulation has been shown to be equivalent to common antiemetic medications for PONV prevention, with the added advantage of only mild, transient side effects. Importantly, combining acupuncture with antiemetic drugs enhances efficacy beyond either intervention alone, making it a complementary rather than replacement approach."
-  },
-  {
     q: "What are the side effects of hospital acupuncture?",
     a: "Side effects of acupoint stimulation are mild and transient. Acupressure wristbands carry no infection risk, and in the hands of trained professionals, needle-based acupuncture side effects are limited to minor bruising at the insertion site."
   },
@@ -228,7 +224,7 @@ const schema = {
   <!-- Evidence -->
   <h2>Evidence</h2>
 
-  {faqs.slice(18, 24).map(faq => (
+  {faqs.slice(18, 23).map(faq => (
     <details>
       <summary>{faq.q}</summary>
       <p>{faq.a}</p>
@@ -238,7 +234,7 @@ const schema = {
   <!-- Practical -->
   <h2>Practical Considerations</h2>
 
-  {faqs.slice(24, 31).map(faq => (
+  {faqs.slice(23, 30).map(faq => (
     <details>
       <summary>{faq.q}</summary>
       <p>{faq.a}</p>
@@ -248,7 +244,7 @@ const schema = {
   <!-- Getting Started -->
   <h2>Getting Started</h2>
 
-  {faqs.slice(31).map(faq => (
+  {faqs.slice(30).map(faq => (
     <details>
       <summary>{faq.q}</summary>
       <p>{faq.a}</p>

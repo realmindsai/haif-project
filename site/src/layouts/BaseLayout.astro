@@ -7,6 +7,7 @@ interface Props {
   description?: string;
   lastReviewed?: string;
   schema?: object;
+  noindex?: boolean;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   description = 'A methodology for integrating acupuncture and acupressure into hospital practice. Evidence-based. Practitioner-tested.',
   lastReviewed,
   schema,
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = title === 'Home'
@@ -34,7 +36,7 @@ const currentPath = Astro.url.pathname;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={new URL(currentPath, Astro.site).href} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
     {schema && (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -63,15 +65,6 @@ const currentPath = Astro.url.pathname;
             </div>
           </div>
           <a href={url('/examples/')} aria-current={currentPath.startsWith('/examples') ? 'page' : undefined}>Examples</a>
-          <div class="nav-dropdown">
-            <a href={url('/for/clinicians/')} class="nav-dropdown-trigger" aria-current={currentPath.startsWith('/for') ? 'page' : undefined}>For You</a>
-            <div class="nav-dropdown-menu">
-              <a href={url('/for/administrators/')}>Administrators</a>
-              <a href={url('/for/clinicians/')}>Clinicians</a>
-              <a href={url('/for/practitioners/')}>Practitioners</a>
-              <a href={url('/for/researchers/')}>Researchers</a>
-            </div>
-          </div>
           <a href={url('/evidence/')} aria-current={currentPath === '/evidence/' ? 'page' : undefined}>Evidence</a>
           <a href={url('/faq/')} aria-current={currentPath === '/faq/' ? 'page' : undefined}>FAQ</a>
           <a href={url('/resources/')} aria-current={currentPath === '/resources/' ? 'page' : undefined}>Resources</a>
