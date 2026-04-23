@@ -99,6 +99,16 @@ a:focus-visible {
   top: var(--spacing-sm);
 }
 
+/* Site-wide development notice */
+.site-notice {
+  background: #fff3cd;
+  border-bottom: 1px solid #ffc107;
+  color: #664d03;
+  text-align: center;
+  padding: 0.5rem var(--spacing-md);
+  font-size: 0.9rem;
+}
+
 /* Header */
 .site-header {
   background: var(--color-primary);

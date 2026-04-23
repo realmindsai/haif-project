@@ -21,8 +21,8 @@ export const interventionComparison: InterventionRow[] = [
     advantages: ['Avoids needles', 'Requires no equipment', 'Easily trained staff'],
     disadvantages: ['Effectiveness varies by practitioner skill', 'Legacy source offered less detail than other modalities'],
     effectiveness: [
-      'Lee et al., 2015: nausea reduced from 45% to 30% (RR 0.71, 95% CI 0.62-0.81).',
-      'Lee et al., 2015: vomiting reduced from 30% to 18% (RR 0.60, 95% CI 0.50-0.73).',
+      'Lee et al., 2025: nausea reduced from 45% to 30% (RR 0.71, 95% CI 0.62-0.81).',
+      'Lee et al., 2025: vomiting reduced from 30% to 18% (RR 0.60, 95% CI 0.50-0.73).',
     ],
   },
   {
@@ -36,7 +36,7 @@ export const interventionComparison: InterventionRow[] = [
     disadvantages: ['Requires equipment', 'Requires staff training'],
     effectiveness: [
       'Legacy source describes it as the strongest non-invasive stimulation option.',
-      'Lee et al., 2015 pooled PC6 evidence: nausea reduced from 45% to 30% and vomiting reduced from 30% to 18%.',
+      'Lee et al., 2025 pooled PC6 evidence: nausea reduced from 45% to 30% and vomiting reduced from 30% to 18%.',
     ],
   },
   {
@@ -76,8 +76,8 @@ export const interventionComparison: InterventionRow[] = [
       'Requires monitoring for misplaced needles',
     ],
     effectiveness: [
-      'Lee et al., 2015: nausea reduced from 54% to 29% (RR 0.56, 95% CI 0.39-0.80).',
-      'Lee et al., 2015: vomiting reduced from 41% to 20% (RR 0.51, 95% CI 0.34-0.76).',
+      'Lee et al., 2025: nausea reduced from 54% to 29% (RR 0.56, 95% CI 0.39-0.80).',
+      'Lee et al., 2025: vomiting reduced from 41% to 20% (RR 0.51, 95% CI 0.34-0.76).',
       'Cheong et al., 2013: PC6 plus other acupoints reduced PONV from 21% to 6% (RR 0.29, 95% CI 0.17-0.49).',
     ],
   },
@@ -136,9 +136,9 @@ export const interventionComparison: InterventionRow[] = [
     ],
     disadvantages: ['Requires staff training or a qualified acupuncturist'],
     effectiveness: [
-      'Lee et al., 2015: nausea reduced from 47% to 31%.',
-      'Lee et al., 2015: vomiting reduced from 33% to 19%.',
-      'Lee et al., 2015: rescue antiemetics reduced from 33% to 20%.',
+      'Lee et al., 2025: nausea reduced from 47% to 31%.',
+      'Lee et al., 2025: vomiting reduced from 33% to 19%.',
+      'Lee et al., 2025: rescue antiemetics reduced from 33% to 20%.',
     ],
   },
 ];
