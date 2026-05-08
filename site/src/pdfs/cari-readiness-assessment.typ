@@ -166,6 +166,6 @@ Rate each item 0 (not at all) to 4 (fully in place).
 
 #align(center)[
   #text(size: 8pt, fill: haif-text-muted)[
-    Hospital Acupuncture Implementation Framework (HAIF) #sym.dot.c hospitalacupuncture.com #sym.dot.c April 2026
+    Hospital Acupuncture Implementation Framework (HAIF) #sym.dot.c hospitalacupuncture.org #sym.dot.c April 2026
   ]
 ]

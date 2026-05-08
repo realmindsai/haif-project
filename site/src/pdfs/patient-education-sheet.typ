@@ -86,6 +86,6 @@ If you feel nauseous while wearing the bands, try these steps:
 
 #align(center)[
   #text(size: 8pt, fill: haif-text-muted)[
-    Hospital Acupuncture Implementation Framework (HAIF) #sym.dot.c hospitalacupuncture.com #sym.dot.c April 2026
+    Hospital Acupuncture Implementation Framework (HAIF) #sym.dot.c hospitalacupuncture.org #sym.dot.c April 2026
   ]
 ]

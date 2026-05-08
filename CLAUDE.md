@@ -52,7 +52,7 @@ Requires env vars `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` (stored in 
 
 ### Tech Stack
 - **Astro 6** static site (zero JS by default), deployed to Cloudflare Pages
-- **Production domain:** hospitalacupuncture.com (`www.` 301-redirects to apex)
+- **Production domain:** hospitalacupuncture.org (`www.` 301-redirects to apex)
 - **Integrations:** @astrojs/sitemap
 - All styling in a single `site/src/styles/global.css` (CSS custom properties, mobile-first)
 - No component framework (React/Vue/etc) — pure `.astro` files
@@ -111,7 +111,7 @@ Collaboration with Dr Zhen Zheng (ZZ), RMIT academic. Two parallel projects:
 - `popa4ease_site_content.md` — spider of the old WordPress site (content source)
 
 ### Delivery Phases
-- **Phase A (NOW):** Site live on hospitalacupuncture.com, PONV content as Example 1, framework pages, mobile-first
+- **Phase A (NOW):** Site live on hospitalacupuncture.org, PONV content as Example 1, framework pages, mobile-first
 - **Phase B (LATER):** ED acupuncture as Example 2 (after paper publishes), full downloadable assets, GRADE badges on all claims
 
 ## Conventions

@@ -4,7 +4,7 @@
 
 - Historical production path: GitHub Pages from the `gh-pages` branch.
 - Current production path: manual CLI deploy to Cloudflare Pages.
-- Canonical production URL: `https://hospitalacupuncture.com`.
+- Canonical production URL: `https://hospitalacupuncture.org`.
 - `www` host is supported, but should always redirect to the apex domain.
 
 ## Prerequisites
@@ -30,8 +30,8 @@ Recommended project settings:
 
 Then add custom domains in Cloudflare Pages:
 
-1. `hospitalacupuncture.com`
-2. `www.hospitalacupuncture.com`
+1. `hospitalacupuncture.org`
+2. `www.hospitalacupuncture.org`
 
 ## Authentication requirements
 
@@ -69,21 +69,21 @@ The deploy script enforces guardrails:
 
 In Cloudflare dashboard:
 
-1. Ensure `www.hospitalacupuncture.com` is proxied by Cloudflare.
-2. Open **Rules** and create a **Single Redirect** for the `www.hospitalacupuncture.com` hostname.
-3. Set source to `https://www.hospitalacupuncture.com/*`.
-4. Set destination to `https://hospitalacupuncture.com/${1}`.
+1. Ensure `www.hospitalacupuncture.org` is proxied by Cloudflare.
+2. Open **Rules** and create a **Single Redirect** for the `www.hospitalacupuncture.org` hostname.
+3. Set source to `https://www.hospitalacupuncture.org/*`.
+4. Set destination to `https://hospitalacupuncture.org/${1}`.
 5. Use `301` permanent redirect.
 
 This should yield: `www -> apex`.
 
 ## Verification checklist
 
-- `curl -I https://hospitalacupuncture.com/` returns `200`.
-- `curl -I https://www.hospitalacupuncture.com/` returns `301`.
-- `location` header points to `https://hospitalacupuncture.com/...`.
-- `curl -s https://hospitalacupuncture.com/framework/exploration/ | rg 'Manual Acupressure'` returns a match.
-- `curl -s https://hospitalacupuncture.com/resources/ | rg 'ponv_data_extraction_template.xlsx'` returns a match.
+- `curl -I https://hospitalacupuncture.org/` returns `200`.
+- `curl -I https://www.hospitalacupuncture.org/` returns `301`.
+- `location` header points to `https://hospitalacupuncture.org/...`.
+- `curl -s https://hospitalacupuncture.org/framework/exploration/ | rg 'Manual Acupressure'` returns a match.
+- `curl -s https://hospitalacupuncture.org/resources/ | rg 'ponv_data_extraction_template.xlsx'` returns a match.
 
 ## Retire `gh-pages`
 

@@ -328,7 +328,7 @@ describe('cloudflare deployment configuration', () => {
       'utf8',
     );
     expect(explorationPage).toContain(
-      'https://hospitalacupuncture.com/framework/exploration/',
+      'https://hospitalacupuncture.org/framework/exploration/',
     );
   });
 
@@ -349,7 +349,7 @@ describe('cloudflare deployment configuration', () => {
       'utf8',
     );
 
-    expect(readme).toContain('**Live site:** https://hospitalacupuncture.com');
+    expect(readme).toContain('**Live site:** https://hospitalacupuncture.org');
     expect(readme).toContain('Cloudflare Pages');
     expect(readme).toContain('npm run deploy:cloudflare');
     expect(readme).toContain('Typst');
@@ -367,7 +367,7 @@ describe('cloudflare deployment configuration', () => {
     expect(runbook).toContain('Do not run `npm run build` separately');
     expect(runbook).toContain('uncommitted changes');
     expect(runbook).toContain('www -> apex');
-    expect(runbook).toContain('https://hospitalacupuncture.com/${1}');
+    expect(runbook).toContain('https://hospitalacupuncture.org/${1}');
     expect(runbook).toContain('proxied by Cloudflare');
     expect(runbook).toContain('## Verification checklist');
     expect(runbook).toContain('Retire `gh-pages`');

@@ -42,7 +42,7 @@
       v(4pt)
       grid(
         columns: (1fr, 1fr),
-        align(left)[Professor Zhen Zheng, PhD #sym.dot.c RMIT University #sym.dot.c Northern Health #sym.dot.c hospitalacupuncture.com],
+        align(left)[Professor Zhen Zheng, PhD #sym.dot.c RMIT University #sym.dot.c Northern Health #sym.dot.c hospitalacupuncture.org],
         align(right)[Page #context counter(page).display("1 of 1", both: true)],
       )
     },

@@ -2,7 +2,7 @@
 
 A methodology for integrating acupuncture and acupressure into hospital practice. Evidence-based. Practitioner-tested.
 
-**Live site:** https://hospitalacupuncture.com
+**Live site:** https://hospitalacupuncture.org
 
 ## What is HAIF?
 
@@ -31,7 +31,7 @@ npm run preview    # Preview production build
 
 ## Deployment
 
-Production is served from Cloudflare Pages at `https://hospitalacupuncture.com`. Deploy from the `main` branch with a clean working tree after exporting `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`.
+Production is served from Cloudflare Pages at `https://hospitalacupuncture.org`. Deploy from the `main` branch with a clean working tree after exporting `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN`.
 
 ```bash
 npm run deploy:cloudflare

@@ -23,7 +23,7 @@ function isKnownAstroUnusedExternalImportWarning(warning) {
 }
 
 export default defineConfig({
-  site: 'https://hospitalacupuncture.com',
+  site: 'https://hospitalacupuncture.org',
   compressHTML: true,
 
   build: {

@@ -4,29 +4,29 @@ The Hospital Acupuncture Implementation Framework (HAIF) is a structured, eviden
 
 ## About
 
-- [Home](https://hospitalacupuncture.com/): Overview of the HAIF framework, key evidence summary, and audience-segmented entry points for administrators, clinicians, practitioners, and researchers.
-- [About HAIF](https://hospitalacupuncture.com/about/): Background on the framework, its development at RMIT University, and the team behind it.
-- [FAQ](https://hospitalacupuncture.com/faq/): Comprehensive answers to 40+ questions about hospital acupuncture including evidence, costs, training requirements, barriers, and getting started.
+- [Home](https://hospitalacupuncture.org/): Overview of the HAIF framework, key evidence summary, and audience-segmented entry points for administrators, clinicians, practitioners, and researchers.
+- [About HAIF](https://hospitalacupuncture.org/about/): Background on the framework, its development at RMIT University, and the team behind it.
+- [FAQ](https://hospitalacupuncture.org/faq/): Comprehensive answers to 40+ questions about hospital acupuncture including evidence, costs, training requirements, barriers, and getting started.
 
 ## Framework Phases
 
-- [Framework Overview](https://hospitalacupuncture.com/framework/): The four-phase EPIS implementation cycle with navigation to each phase.
-- [Phase 1: Exploration](https://hospitalacupuncture.com/framework/exploration/): Identifying internal needs, assessing PONV incidence, reviewing intervention modalities, forming the implementation team, surveying staff attitudes, evaluating organizational readiness (CARI checklist), and assessing costs.
-- [Phase 2: Preparation](https://hospitalacupuncture.com/framework/preparation/): Developing implementation strategies, selecting timing and patient populations, revising hospital guidelines, addressing barriers (awareness, capability, equipment, time), and FAME criteria assessment.
-- [Phase 3: Implementation](https://hospitalacupuncture.com/framework/implementation/): Executing the plan using CFIR domains, training staff with role-differentiated packages, engaging leadership, running pilot programs, and applying audit and feedback strategies.
-- [Phase 4: Sustainment](https://hospitalacupuncture.com/framework/sustainment/): Normalizing practice into routine operations, fidelity monitoring, champion identification, continuous education, leadership reporting, and cost-effectiveness tracking.
+- [Framework Overview](https://hospitalacupuncture.org/framework/): The four-phase EPIS implementation cycle with navigation to each phase.
+- [Phase 1: Exploration](https://hospitalacupuncture.org/framework/exploration/): Identifying internal needs, assessing PONV incidence, reviewing intervention modalities, forming the implementation team, surveying staff attitudes, evaluating organizational readiness (CARI checklist), and assessing costs.
+- [Phase 2: Preparation](https://hospitalacupuncture.org/framework/preparation/): Developing implementation strategies, selecting timing and patient populations, revising hospital guidelines, addressing barriers (awareness, capability, equipment, time), and FAME criteria assessment.
+- [Phase 3: Implementation](https://hospitalacupuncture.org/framework/implementation/): Executing the plan using CFIR domains, training staff with role-differentiated packages, engaging leadership, running pilot programs, and applying audit and feedback strategies.
+- [Phase 4: Sustainment](https://hospitalacupuncture.org/framework/sustainment/): Normalizing practice into routine operations, fidelity monitoring, champion identification, continuous education, leadership reporting, and cost-effectiveness tracking.
 
 ## Evidence
 
-- [Evidence Summaries](https://hospitalacupuncture.com/evidence/): GRADE-rated evidence for PC6 acupoint stimulation modalities including acupressure wristbands, manual acupressure, body acupuncture, electroacupuncture, electroacupressure, and auricular acupuncture. Based on Cochrane review by Lee et al. (2015).
-- [References](https://hospitalacupuncture.com/references/): Complete bibliography including Cochrane reviews, EPIS model, CFIR framework, CARI readiness checklist, WHO acupuncture report, and 27+ peer-reviewed sources.
+- [Evidence Summaries](https://hospitalacupuncture.org/evidence/): GRADE-rated evidence for PC6 acupoint stimulation modalities including acupressure wristbands, manual acupressure, body acupuncture, electroacupuncture, electroacupressure, and auricular acupuncture. Based on Cochrane review by Lee et al. (2015).
+- [References](https://hospitalacupuncture.org/references/): Complete bibliography including Cochrane reviews, EPIS model, CFIR framework, CARI readiness checklist, WHO acupuncture report, and 27+ peer-reviewed sources.
 
 ## Application Examples
 
-- [Acupressure for PONV](https://hospitalacupuncture.com/examples/ponv-acupressure/): Nurse-led acupressure wristband implementation for post-operative nausea and vomiting at Northern Hospital, Victoria. Real-world case study with timeline and outcomes.
-- [PANDA — Acupuncture in the ED](https://hospitalacupuncture.com/examples/panda/): Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain. Research in progress — extends HAIF from peri-operative care into acute emergency medicine and addresses acupuncturist credentialling in a hospital setting.
+- [Acupressure for PONV](https://hospitalacupuncture.org/examples/ponv-acupressure/): Nurse-led acupressure wristband implementation for post-operative nausea and vomiting at Northern Hospital, Victoria. Real-world case study with timeline and outcomes.
+- [PANDA — Acupuncture in the ED](https://hospitalacupuncture.org/examples/panda/): Personalised Acupuncture in the Northern Hospital Emergency Department for Acute Pain. Research in progress — extends HAIF from peri-operative care into acute emergency medicine and addresses acupuncturist credentialling in a hospital setting.
 
 ## Resources
 
-- [Resources](https://hospitalacupuncture.com/resources/): Downloadable tools including PONV risk self-assessment checklist, PONV data extraction template (Excel), Modified CARI readiness checklist, sample staff survey questions, patient survey templates, and cost assessment frameworks.
-- [Contact](https://hospitalacupuncture.com/contact/): Contact form for questions about the HAIF framework and hospital acupuncture implementation.
+- [Resources](https://hospitalacupuncture.org/resources/): Downloadable tools including PONV risk self-assessment checklist, PONV data extraction template (Excel), Modified CARI readiness checklist, sample staff survey questions, patient survey templates, and cost assessment frameworks.
+- [Contact](https://hospitalacupuncture.org/contact/): Contact form for questions about the HAIF framework and hospital acupuncture implementation.
