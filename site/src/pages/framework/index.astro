@@ -94,7 +94,7 @@ const schema = {
 
   <h2>The Four Phases</h2>
 
-  <div class="card-grid">
+  <div class="card-grid phases-2x2">
     <div class="card">
       <h3>Phase 1: Exploration</h3>
       <p>
@@ -156,3 +156,14 @@ const schema = {
     </a>
   </div>
 </BaseLayout>
+
+<style>
+  .card-grid.phases-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 768px) {
+    .card-grid.phases-2x2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
